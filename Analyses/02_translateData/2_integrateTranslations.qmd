@@ -1,0 +1,139 @@
+---
+title: "Add translations to concept file"
+author: "Julius Fenn"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    html-math-method: katex
+---
+
+
+
+# Notes
+
+
+# create raw data files
+
+```{r}
+#| label: load files
+#| warning: false
+
+### load packages
+require(pacman)
+p_load('tidyverse', 'xlsx', 'readxl','DT')
+
+setwd("data")
+drawnConcepts <- xlsx::read.xlsx2(file = "drawnConcepts_translate.xlsx", sheetIndex = 1, encoding = "UTF-8", header = TRUE)
+
+setwd("../output")
+translationComment <- xlsx::read.xlsx2(file = "translations_comment_final.xlsx", sheetIndex = 1, encoding = "UTF-8", header = TRUE)
+translationText <- xlsx::read.xlsx2(file = "translations_text.xlsx", sheetIndex = 1, encoding = "UTF-8", header = TRUE)
+```
+
+
+
+# add column for translated text
+
+
+```{r}
+#| label: add translated text
+#| warning: false
+
+drawnConcepts$text_translated <- NA
+
+# remove white spaces
+drawnConcepts$text <- str_trim(string = drawnConcepts$text, side = "both")
+# remove the leading and trailing quotation marks
+translationText$English[1:2]
+translationText$English <- str_remove_all(translationText$English, '^"|"$')
+translationText$English[1:2]
+
+# > match by text
+# translationText$German[!translationText$German %in% drawnConcepts$text]
+
+for(i in 1:nrow(translationText)){
+  drawnConcepts$text_translated[drawnConcepts$text %in% translationText$German[i]] <- translationText$English[i]
+  
+  if(sum(drawnConcepts$text %in% translationText$German[i]) == 0){
+    cat("possible error in", i, "\n")
+  }
+}
+
+sum(is.na(drawnConcepts$text_translated))
+drawnConcepts$text[is.na(drawnConcepts$text_translated)]
+```
+
+
+
+# add column for translated comment
+
+
+```{r}
+#| label: add translated comment
+#| warning: false
+
+
+drawnConcepts$comment_translated <- NA
+
+# > match by id
+# translationComment$ID[!translationComment$ID %in% drawnConcepts$id]
+
+# remove the leading and trailing quotation marks
+translationComment$English[1:2]
+translationComment$English <- str_remove_all(translationComment$English, '^"|"$')
+translationComment$English[1:2]
+
+
+for(i in 1:nrow(translationComment)){
+  drawnConcepts$comment_translated[drawnConcepts$id %in% translationComment$ID[i]] <- translationComment$English[i]
+  
+  if(sum(drawnConcepts$id %in% translationComment$ID[i]) == 0){
+    cat("possible error in", i, "\n")
+  }
+}
+
+# sum(is.na(drawnConcepts$comment_translated))
+tmp <- drawnConcepts$comment[is.na(drawnConcepts$comment_translated)]
+tmp[tmp != ""]
+```
+
+
+# get rows you need to adjust manually
+
+*add dummy variables in Excel*
+
+```{r}
+#| label: check text
+#| warning: false
+
+# for text:
+drawnConcepts$check_text <- 0
+
+drawnConcepts$text_translated[nchar(x = drawnConcepts$text_translated) >= 40]
+drawnConcepts$check_text[nchar(x = drawnConcepts$text_translated) >= 40] <- 1
+```
+```{r}
+#| label: check comment
+#| warning: false
+
+# for text:
+drawnConcepts$check_comment <- 0
+
+str_subset(string = drawnConcepts$comment_translated, pattern = "adjectives")
+
+tmp <- str_detect(string = drawnConcepts$comment_translated, pattern = "adjectives")
+tmp[is.na(tmp)] <- FALSE
+drawnConcepts$check_comment[tmp] <- 1
+```
+
+
+# save file
+
+```{r}
+#| label: save
+#| warning: false
+
+setwd("output translated file")
+xlsx::write.xlsx2(x = drawnConcepts, file = "drawnConcepts_translated.xlsx")
+```
