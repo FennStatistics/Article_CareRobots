@@ -2,7 +2,7 @@
 
 **Authors:**  
 
-Laura Londoño, Julius Fenn, Abhinav Valada$^{1}$, Markus Langer
+Laura Londoño, Julius Fenn, Abhinav Valada, Markus Langer
 
 ---
 
