@@ -1,0 +1,134 @@
+---
+title: "Data analysis all studies"
+author: "Richard Bergs, Julius Fenn"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    html-math-method: katex
+    number-sections: true
+---
+
+
+# Notes
+
+
+# global variables
+
+Define your global variables (e.g., to reduce run time):
+
+```{r}
+#| label: global variables
+
+
+```
+
+
+# functions
+
+```{r}
+########################################
+# xx
+########################################
+### argss:
+# xx
+
+
+```
+
+
+# load packages
+
+```{r}
+#| label: load packages
+#| warning: false
+
+### load packages (also packages loaded, which are not needed for data preperation)
+require(pacman)
+p_load('tidyverse', 'jsonlite',
+       'stargazer',  'DT', 'psych',
+       'writexl', 'associatoR',
+       'ggstatsplot')
+# devtools::install_github("samuelae/associatoR")
+```
+
+
+# load prepared data
+
+```{r}
+setwd("outputs/questionnaire")
+
+ques_study <- readRDS(file = paste0("ques_study", ".rds"))
+```
+
+```{r}
+setwd("outputs/associations")
+
+ass_study <- readRDS(file = paste0("ass_study", ".rds"))
+```
+# Check and summarize scales
+
+
+```{r}
+# Ich finde es wichtig, dass ein Mensch in dem beschriebenen Kontext Aufsicht über KI hat.
+barplot(table(ques_study$`PUR-1`))
+# Ich halte den Einsatz von KI in diesem Kontext für riskant.
+barplot(table(ques_study$`PUR-2`))
+```
+
+
+## compute mean scores
+
+```{r}
+ques_study$mean_AIAS <- rowMeans(x = ques_study[, str_subset(string = colnames(ques_study), pattern = "^AIAS")], na.rm = FALSE) # no missing
+ques_study$mean_PTTA <- rowMeans(x = ques_study[, str_subset(string = colnames(ques_study), pattern = "^PTTA")], na.rm = FALSE) # no missing
+```
+
+```{r}
+hist(ques_study$mean_AIAS)
+hist(ques_study$mean_PTTA)
+cor(ques_study$mean_AIAS, ques_study$mean_PTTA)
+```
+
+
+
+# Analyze data
+
+```{r}
+ggstatsplot::ggbetweenstats(data = ques_study, x = study_condition, y = mean_AIAS, type = "parametric")
+ggstatsplot::ggbetweenstats(data = ques_study, x = study_condition, y = mean_PTTA, type = "parametric")
+```
+
+```{r}
+library(afex)
+
+# Run the Between-Subjects ANOVA
+model_anova <- aov_ez(
+  id = "PROLIFIC_PID",      # Replace with your subject ID column name
+  dv = "mean_PTTA",           # Your Dependent Variable
+  data = ques_study, 
+  between = "study_condition" # Your Independent Variable
+)
+
+# Print the ANOVA table
+print(model_anova)
+
+
+library(emmeans)
+
+# Get the marginal means
+ls_means <- emmeans(model_anova, specs = "study_condition")
+
+# Perform pairwise comparisons
+post_hocs <- pairs(ls_means, adjust = "tukey")
+
+# View results
+print(post_hocs)
+```
+
+
+
+```{r}
+ggstatsplot::ggbetweenstats(data = ques_study, x = study_condition, y = `PUR-2`, type = "parametric")
+```
+

@@ -45,174 +45,214 @@ Define your global variables (e.g., to reduce run time):
 require(pacman)
 p_load('tidyverse',
        'stargazer',  'DT', 'psych',
-       'writexl', 'readxl')
+       'writexl', 'readxl', 'haven')
 ```
 
 # load and prepare raw data files
 
+corrupt csv file: 
 
 ```{r}
-setwd("../data")
-ds <- readxl::read_xlsx(path = "data_Carerobots_2026-01-20_09-51.xlsx", sheet = 1)
+setwd("data")
+
+con <- file("data_Carerobots_2026-01-27_10-05.csv", open = "r", encoding = "UTF-16")
+head(readLines(con, n = 4), warn = FALSE)
+close(con)
+```
 
 
-options(encoding = "UTF-8")
-ds = read.delim(
-  file=ds_file, encoding="UTF-8", fileEncoding="UTF-8",
-  header = FALSE, sep = "\t", quote = "\"",
-  dec = ".", row.names = NULL,
-  col.names = c(
-    "CASE","SERIAL","REF","QUESTNNR","MODE","STARTED","A011_01","A011_02","A012",
-    "A012_01","A012_02","A012_03","A012_04","A012_05","A012_06","A012_06a",
-    "A014_01","A014_02","A014_03","A015_01","A015_02","A015_03","A015_04","A016_01",
-    "A016_02","A016_03","A016_04","A017_01","A017_02","A017_03","A017_04","A018_01",
-    "A018_02","A018_03","A019_01","A019_02","A019_03","A019_04","A019_05","A019_06",
-    "A019_07","A110_01","A110_02","A111","A111_01","A111_02","A111_03","A111_04",
-    "A111_05","A111_06","A111_06a","A112_01","A112_02","A112_03","A113_01",
-    "A113_02","A113_03","A113_04","A114_01","A114_02","A114_03","A114_04","A115_01",
-    "A115_02","A115_03","A115_04","A116_01","A116_02","A116_03","A117_01","A117_02",
-    "A117_03","A117_04","A117_05","A117_06","A117_07","A209_01","A209_02","A211",
-    "A211_01","A211_02","A211_03","A211_04","A211_05","A211_06","A211_06a",
-    "A212_01","A212_02","A212_03","A213_01","A213_02","A213_03","A213_04","A214_01",
-    "A214_02","A214_03","A214_04","A215_01","A215_02","A215_03","A215_04","A216_01",
-    "A216_02","A216_03","A217_01","A217_02","A217_03","A217_04","A217_05","A217_06",
-    "A217_07","A310_01","A310_02","A311","A311_01","A311_02","A311_03","A311_04",
-    "A311_05","A311_06","A311_06a","A312_01","A312_02","A312_03","A313_01",
-    "A313_02","A313_03","A313_04","A314_01","A314_02","A314_03","A314_04","A315_01",
-    "A315_02","A315_03","A315_04","A316_01","A316_02","A316_03","A317_01","A317_02",
-    "A317_03","A317_04","A317_05","A317_06","A317_07","A401","A701_01","A702",
-    "A702_05","A703","A705_01","D101_01","D101_02","D102","D102_01","D102_02",
-    "D102_03","D102_04","D102_05","D102_06","D102_06a","D103_01","D103_02",
-    "D103_03","D104_01","D104_02","D104_03","D104_04","D105_01","D105_02","D105_03",
-    "D105_04","D106_01","D106_02","D106_03","D106_04","D107_01","D107_02","D107_03",
-    "D108_01","D108_02","D108_03","D108_04","D108_05","D108_06","D108_07","D201_01",
-    "D201_02","D202","D202_01","D202_02","D202_03","D202_04","D202_05","D202_06",
-    "D202_06a","D203_01","D203_02","D203_03","D204_01","D204_02","D204_03",
-    "D204_04","D205_01","D205_02","D205_03","D205_04","D206_01","D206_02","D206_03",
-    "D206_04","D207_01","D207_02","D207_03","D208_01","D208_02","D208_03","D208_04",
-    "D208_05","D208_06","D301_01","D301_02","D302","D302_01","D302_02","D302_03",
-    "D302_04","D302_05","D302_06","D302_06a","D303_01","D303_02","D303_03",
-    "D304_01","D304_02","D304_03","D304_04","D305_01","D305_02","D305_03","D305_04",
-    "D306_01","D306_02","D306_03","D306_04","D307_01","D307_02","D307_03","D308_01",
-    "D308_02","D308_03","D308_04","D308_05","D308_06","D401_01","D401_02","D402",
-    "D402_01","D402_02","D402_03","D402_04","D402_05","D402_06","D402_06a",
-    "D403_01","D403_02","D403_03","D404_01","D404_02","D404_03","D404_04","D405_01",
-    "D405_02","D405_03","D405_04","D406_01","D406_02","D406_03","D406_04","D407_01",
-    "D407_02","D407_03","D408_01","D408_02","D408_03","D408_04","D408_05","D408_06",
-    "D501","D801_01","D802","D803","D804_01","RA01_CP","RA01","TIME001","TIME002",
-    "TIME003","TIME004","TIME005","TIME006","TIME007","TIME008","TIME009","TIME010",
-    "TIME011","TIME012","TIME013","TIME014","TIME015","TIME016","TIME017","TIME018",
-    "TIME019","TIME020","TIME021","TIME022","TIME023","TIME024","TIME025",
-    "TIME_SUM","MAILSENT","LASTDATA","STATUS","FINISHED","Q_VIEWER","LASTPAGE",
-    "MAXPAGE","MISSING","MISSREL","TIME_RSI"
-  ),
-  as.is = TRUE,
-  colClasses = c(
-    CASE="numeric", SERIAL="character", REF="character", QUESTNNR="character",
-    MODE="factor", STARTED="POSIXct", A011_01="numeric", A011_02="numeric",
-    A012="numeric", A012_01="logical", A012_02="logical", A012_03="logical",
-    A012_04="logical", A012_05="logical", A012_06="logical",
-    A012_06a="character", A014_01="character", A014_02="character",
-    A014_03="character", A015_01="numeric", A015_02="numeric",
-    A015_03="numeric", A015_04="numeric", A016_01="numeric", A016_02="numeric",
-    A016_03="numeric", A016_04="numeric", A017_01="numeric", A017_02="numeric",
-    A017_03="numeric", A017_04="numeric", A018_01="numeric", A018_02="numeric",
-    A018_03="numeric", A019_01="numeric", A019_02="numeric", A019_03="numeric",
-    A019_04="numeric", A019_05="numeric", A019_06="numeric", A019_07="numeric",
-    A110_01="numeric", A110_02="numeric", A111="numeric", A111_01="logical",
-    A111_02="logical", A111_03="logical", A111_04="logical", A111_05="logical",
-    A111_06="logical", A111_06a="character", A112_01="character",
-    A112_02="character", A112_03="character", A113_01="numeric",
-    A113_02="numeric", A113_03="numeric", A113_04="numeric", A114_01="numeric",
-    A114_02="numeric", A114_03="numeric", A114_04="numeric", A115_01="numeric",
-    A115_02="numeric", A115_03="numeric", A115_04="numeric", A116_01="numeric",
-    A116_02="numeric", A116_03="numeric", A117_01="numeric", A117_02="numeric",
-    A117_03="numeric", A117_04="numeric", A117_05="numeric", A117_06="numeric",
-    A117_07="numeric", A209_01="numeric", A209_02="numeric", A211="numeric",
-    A211_01="logical", A211_02="logical", A211_03="logical", A211_04="logical",
-    A211_05="logical", A211_06="logical", A211_06a="character",
-    A212_01="character", A212_02="character", A212_03="character",
-    A213_01="numeric", A213_02="numeric", A213_03="numeric", A213_04="numeric",
-    A214_01="numeric", A214_02="numeric", A214_03="numeric", A214_04="numeric",
-    A215_01="numeric", A215_02="numeric", A215_03="numeric", A215_04="numeric",
-    A216_01="numeric", A216_02="numeric", A216_03="numeric", A217_01="numeric",
-    A217_02="numeric", A217_03="numeric", A217_04="numeric", A217_05="numeric",
-    A217_06="numeric", A217_07="numeric", A310_01="numeric", A310_02="numeric",
-    A311="numeric", A311_01="logical", A311_02="logical", A311_03="logical",
-    A311_04="logical", A311_05="logical", A311_06="logical",
-    A311_06a="character", A312_01="character", A312_02="character",
-    A312_03="character", A313_01="numeric", A313_02="numeric",
-    A313_03="numeric", A313_04="numeric", A314_01="numeric", A314_02="numeric",
-    A314_03="numeric", A314_04="numeric", A315_01="numeric", A315_02="numeric",
-    A315_03="numeric", A315_04="numeric", A316_01="numeric", A316_02="numeric",
-    A316_03="numeric", A317_01="numeric", A317_02="numeric", A317_03="numeric",
-    A317_04="numeric", A317_05="numeric", A317_06="numeric", A317_07="numeric",
-    A401="numeric", A701_01="numeric", A702="numeric", A702_05="character",
-    A703="numeric", A705_01="character", D101_01="numeric", D101_02="numeric",
-    D102="numeric", D102_01="logical", D102_02="logical", D102_03="logical",
-    D102_04="logical", D102_05="logical", D102_06="logical",
-    D102_06a="character", D103_01="character", D103_02="character",
-    D103_03="character", D104_01="numeric", D104_02="numeric",
-    D104_03="numeric", D104_04="numeric", D105_01="numeric", D105_02="numeric",
-    D105_03="numeric", D105_04="numeric", D106_01="numeric", D106_02="numeric",
-    D106_03="numeric", D106_04="numeric", D107_01="numeric", D107_02="numeric",
-    D107_03="numeric", D108_01="numeric", D108_02="numeric", D108_03="numeric",
-    D108_04="numeric", D108_05="numeric", D108_06="numeric", D108_07="numeric",
-    D201_01="numeric", D201_02="numeric", D202="numeric", D202_01="logical",
-    D202_02="logical", D202_03="logical", D202_04="logical", D202_05="logical",
-    D202_06="logical", D202_06a="character", D203_01="character",
-    D203_02="character", D203_03="character", D204_01="numeric",
-    D204_02="numeric", D204_03="numeric", D204_04="numeric", D205_01="numeric",
-    D205_02="numeric", D205_03="numeric", D205_04="numeric", D206_01="numeric",
-    D206_02="numeric", D206_03="numeric", D206_04="numeric", D207_01="numeric",
-    D207_02="numeric", D207_03="numeric", D208_01="numeric", D208_02="numeric",
-    D208_03="numeric", D208_04="numeric", D208_05="numeric", D208_06="numeric",
-    D301_01="numeric", D301_02="numeric", D302="numeric", D302_01="logical",
-    D302_02="logical", D302_03="logical", D302_04="logical", D302_05="logical",
-    D302_06="logical", D302_06a="character", D303_01="character",
-    D303_02="character", D303_03="character", D304_01="numeric",
-    D304_02="numeric", D304_03="numeric", D304_04="numeric", D305_01="numeric",
-    D305_02="numeric", D305_03="numeric", D305_04="numeric", D306_01="numeric",
-    D306_02="numeric", D306_03="numeric", D306_04="numeric", D307_01="numeric",
-    D307_02="numeric", D307_03="numeric", D308_01="numeric", D308_02="numeric",
-    D308_03="numeric", D308_04="numeric", D308_05="numeric", D308_06="numeric",
-    D401_01="numeric", D401_02="numeric", D402="numeric", D402_01="logical",
-    D402_02="logical", D402_03="logical", D402_04="logical", D402_05="logical",
-    D402_06="logical", D402_06a="character", D403_01="character",
-    D403_02="character", D403_03="character", D404_01="numeric",
-    D404_02="numeric", D404_03="numeric", D404_04="numeric", D405_01="numeric",
-    D405_02="numeric", D405_03="numeric", D405_04="numeric", D406_01="numeric",
-    D406_02="numeric", D406_03="numeric", D406_04="numeric", D407_01="numeric",
-    D407_02="numeric", D407_03="numeric", D408_01="numeric", D408_02="numeric",
-    D408_03="numeric", D408_04="numeric", D408_05="numeric", D408_06="numeric",
-    D501="numeric", D801_01="character", D802="numeric", D803="numeric",
-    D804_01="character", RA01_CP="numeric", RA01="numeric", TIME001="integer",
-    TIME002="integer", TIME003="integer", TIME004="integer", TIME005="integer",
-    TIME006="integer", TIME007="integer", TIME008="integer", TIME009="integer",
-    TIME010="integer", TIME011="integer", TIME012="integer", TIME013="integer",
-    TIME014="integer", TIME015="integer", TIME016="integer", TIME017="integer",
-    TIME018="integer", TIME019="integer", TIME020="integer", TIME021="integer",
-    TIME022="integer", TIME023="integer", TIME024="integer", TIME025="integer",
-    TIME_SUM="integer", MAILSENT="POSIXct", LASTDATA="POSIXct",
-    STATUS="character", FINISHED="logical", Q_VIEWER="logical",
-    LASTPAGE="numeric", MAXPAGE="numeric", MISSING="numeric", MISSREL="numeric",
-    TIME_RSI="numeric"
-  ),
-  skip = 1,
-  check.names = TRUE, fill = TRUE,
-  strip.white = FALSE, blank.lines.skip = TRUE,
-  comment.char = "",
-  na.strings = ""
+
+```{r}
+# Define the classes based on your colClasses logic
+type_map <- c(
+  CASE="numeric", SERIAL="character", REF="character", QUESTNNR="character",
+  MODE="factor", STARTED="POSIXct", A011_01="numeric", A011_02="numeric",
+  A012="numeric", A012_01="logical", A012_02="logical", A012_03="logical",
+  A012_04="logical", A012_05="logical", A012_06="logical",
+  A012_06a="character", A014_01="character", A014_02="character",
+  A014_03="character", A015_01="numeric", A015_02="numeric",
+  A015_03="numeric", A015_04="numeric", A016_01="numeric", A016_02="numeric",
+  A016_03="numeric", A016_04="numeric", A017_01="numeric", A017_02="numeric",
+  A017_03="numeric", A017_04="numeric", A018_01="numeric", A018_02="numeric",
+  A018_03="numeric", A019_01="numeric", A019_02="numeric", A019_03="numeric",
+  A019_04="numeric", A019_05="numeric", A019_06="numeric", A019_07="numeric",
+  A110_01="numeric", A110_02="numeric", A111="numeric", A111_01="logical",
+  A111_02="logical", A111_03="logical", A111_04="logical", A111_05="logical",
+  A111_06="logical", A111_06a="character", A112_01="character",
+  A112_02="character", A112_03="character", A113_01="numeric",
+  A113_02="numeric", A113_03="numeric", A113_04="numeric", A114_01="numeric",
+  A114_02="numeric", A114_03="numeric", A114_04="numeric", A115_01="numeric",
+  A115_02="numeric", A115_03="numeric", A115_04="numeric", A116_01="numeric",
+  A116_02="numeric", A116_03="numeric", A117_01="numeric", A117_02="numeric",
+  A117_03="numeric", A117_04="numeric", A117_05="numeric", A117_06="numeric",
+  A117_07="numeric", A209_01="numeric", A209_02="numeric", A211="numeric",
+  A211_01="logical", A211_02="logical", A211_03="logical", A211_04="logical",
+  A211_05="logical", A211_06="logical", A211_06a="character",
+  A212_01="character", A212_02="character", A212_03="character",
+  A213_01="numeric", A213_02="numeric", A213_03="numeric", A213_04="numeric",
+  A214_01="numeric", A214_02="numeric", A214_03="numeric", A214_04="numeric",
+  A215_01="numeric", A215_02="numeric", A215_03="numeric", A215_04="numeric",
+  A216_01="numeric", A216_02="numeric", A216_03="numeric", A217_01="numeric",
+  A217_02="numeric", A217_03="numeric", A217_04="numeric", A217_05="numeric",
+  A217_06="numeric", A217_07="numeric", A310_01="numeric", A310_02="numeric",
+  A311="numeric", A311_01="logical", A311_02="logical", A311_03="logical",
+  A311_04="logical", A311_05="logical", A311_06="logical",
+  A311_06a="character", A312_01="character", A312_02="character",
+  A312_03="character", A313_01="numeric", A313_02="numeric",
+  A313_03="numeric", A313_04="numeric", A314_01="numeric", A314_02="numeric",
+  A314_03="numeric", A314_04="numeric", A315_01="numeric", A315_02="numeric",
+  A315_03="numeric", A315_04="numeric", A316_01="numeric", A316_02="numeric",
+  A316_03="numeric", A317_01="numeric", A317_02="numeric", A317_03="numeric",
+  A317_04="numeric", A317_05="numeric", A317_06="numeric", A317_07="numeric",
+  A401="numeric", A701_01="numeric", A702="numeric", A702_05="character",
+  A703="numeric", A705_01="character", D101_01="numeric", D101_02="numeric",
+  D102="numeric", D102_01="logical", D102_02="logical", D102_03="logical",
+  D102_04="logical", D102_05="logical", D102_06="logical",
+  D102_06a="character", D103_01="character", D103_02="character",
+  D103_03="character", D104_01="numeric", D104_02="numeric",
+  D104_03="numeric", D104_04="numeric", D105_01="numeric", D105_02="numeric",
+  D105_03="numeric", D105_04="numeric", D106_01="numeric", D106_02="numeric",
+  D106_03="numeric", D106_04="numeric", D107_01="numeric", D107_02="numeric",
+  D107_03="numeric", D108_01="numeric", D108_02="numeric", D108_03="numeric",
+  D108_04="numeric", D108_05="numeric", D108_06="numeric", D108_07="numeric",
+  D201_01="numeric", D201_02="numeric", D202="numeric", D202_01="logical",
+  D202_02="logical", D202_03="logical", D202_04="logical", D202_05="logical",
+  D202_06="logical", D202_06a="character", D203_01="character",
+  D203_02="character", D203_03="character", D204_01="numeric",
+  D204_02="numeric", D204_03="numeric", D204_04="numeric", D205_01="numeric",
+  D205_02="numeric", D205_03="numeric", D205_04="numeric", D206_01="numeric",
+  D206_02="numeric", D206_03="numeric", D206_04="numeric", D207_01="numeric",
+  D207_02="numeric", D207_03="numeric", D208_01="numeric", D208_02="numeric",
+  D208_03="numeric", D208_04="numeric", D208_05="numeric", D208_06="numeric",
+  D301_01="numeric", D301_02="numeric", D302="numeric", D302_01="logical",
+  D302_02="logical", D302_03="logical", D302_04="logical", D302_05="logical",
+  D302_06="logical", D302_06a="character", D303_01="character",
+  D303_02="character", D303_03="character", D304_01="numeric",
+  D304_02="numeric", D304_03="numeric", D304_04="numeric", D305_01="numeric",
+  D305_02="numeric", D305_03="numeric", D305_04="numeric", D306_01="numeric",
+  D306_02="numeric", D306_03="numeric", D306_04="numeric", D307_01="numeric",
+  D307_02="numeric", D307_03="numeric", D308_01="numeric", D308_02="numeric",
+  D308_03="numeric", D308_04="numeric", D308_05="numeric", D308_06="numeric",
+  D401_01="numeric", D401_02="numeric", D402="numeric", D402_01="logical",
+  D402_02="logical", D402_03="logical", D402_04="logical", D402_05="logical",
+  D402_06="logical", D402_06a="character", D403_01="character",
+  D403_02="character", D403_03="character", D404_01="numeric",
+  D404_02="numeric", D404_03="numeric", D404_04="numeric", D405_01="numeric",
+  D405_02="numeric", D405_03="numeric", D405_04="numeric", D406_01="numeric",
+  D406_02="numeric", D406_03="numeric", D406_04="numeric", D407_01="numeric",
+  D407_02="numeric", D407_03="numeric", D408_01="numeric", D408_02="numeric",
+  D408_03="numeric", D408_04="numeric", D408_05="numeric", D408_06="numeric",
+  D501="numeric", D801_01="character", D802="numeric", D803="numeric",
+  D804_01="character", RA01_CP="numeric", RA01="numeric", TIME001="integer",
+  TIME002="integer", TIME003="integer", TIME004="integer", TIME005="integer",
+  TIME006="integer", TIME007="integer", TIME008="integer", TIME009="integer",
+  TIME010="integer", TIME011="integer", TIME012="integer", TIME013="integer",
+  TIME014="integer", TIME015="integer", TIME016="integer", TIME017="integer",
+  TIME018="integer", TIME019="integer", TIME020="integer", TIME021="integer",
+  TIME022="integer", TIME023="integer", TIME024="integer", TIME025="integer",
+  TIME_SUM="integer", MAILSENT="POSIXct", LASTDATA="POSIXct",
+  STATUS="character", FINISHED="logical", Q_VIEWER="logical",
+  LASTPAGE="numeric", MAXPAGE="numeric", MISSING="numeric", MISSREL="numeric",
+  TIME_RSI="numeric"
+)
+```
+
+
+
+
+
+```{r}
+setwd("data")
+
+# 1. Define the column names (extracted from your script)
+col_names_vec <- c(
+  "CASE","SERIAL","REF","QUESTNNR","MODE","STARTED","A011_01","A011_02","A012",
+  "A012_01","A012_02","A012_03","A012_04","A012_05","A012_06","A012_06a",
+  "A014_01","A014_02","A014_03","A015_01","A015_02","A015_03","A015_04","A016_01",
+  "A016_02","A016_03","A016_04","A017_01","A017_02","A017_03","A017_04","A018_01",
+  "A018_02","A018_03","A019_01","A019_02","A019_03","A019_04","A019_05","A019_06",
+  "A019_07","A110_01","A110_02","A111","A111_01","A111_02","A111_03","A111_04",
+  "A111_05","A111_06","A111_06a","A112_01","A112_02","A112_03","A113_01",
+  "A113_02","A113_03","A113_04","A114_01","A114_02","A114_03","A114_04","A115_01",
+  "A115_02","A115_03","A115_04","A116_01","A116_02","A116_03","A117_01","A117_02",
+  "A117_03","A117_04","A117_05","A117_06","A117_07","A209_01","A209_02","A211",
+  "A211_01","A211_02","A211_03","A211_04","A211_05","A211_06","A211_06a",
+  "A212_01","A212_02","A212_03","A213_01","A213_02","A213_03","A213_04","A214_01",
+  "A214_02","A214_03","A214_04","A215_01","A215_02","A215_03","A215_04","A216_01",
+  "A216_02","A216_03","A217_01","A217_02","A217_03","A217_04","A217_05","A217_06",
+  "A217_07","A310_01","A310_02","A311","A311_01","A311_02","A311_03","A311_04",
+  "A311_05","A311_06","A311_06a","A312_01","A312_02","A312_03","A313_01",
+  "A313_02","A313_03","A313_04","A314_01","A314_02","A314_03","A314_04","A315_01",
+  "A315_02","A315_03","A315_04","A316_01","A316_02","A316_03","A317_01","A317_02",
+  "A317_03","A317_04","A317_05","A317_06","A317_07","A401","A701_01","A702",
+  "A702_05","A703","A705_01","D101_01","D101_02","D102","D102_01","D102_02",
+  "D102_03","D102_04","D102_05","D102_06","D102_06a","D103_01","D103_02",
+  "D103_03","D104_01","D104_02","D104_03","D104_04","D105_01","D105_02","D105_03",
+  "D105_04","D106_01","D106_02","D106_03","D106_04","D107_01","D107_02","D107_03",
+  "D108_01","D108_02","D108_03","D108_04","D108_05","D108_06","D108_07","D201_01",
+  "D201_02","D202","D202_01","D202_02","D202_03","D202_04","D202_05","D202_06",
+  "D202_06a","D203_01","D203_02","D203_03","D204_01","D204_02","D204_03",
+  "D204_04","D205_01","D205_02","D205_03","D205_04","D206_01","D206_02","D206_03",
+  "D206_04","D207_01","D207_02","D207_03","D208_01","D208_02","D208_03","D208_04",
+  "D208_05","D208_06","D301_01","D301_02","D302","D302_01","D302_02","D302_03",
+  "D302_04","D302_05","D302_06","D302_06a","D303_01","D303_02","D303_03",
+  "D304_01","D304_02","D304_03","D304_04","D305_01","D305_02","D305_03","D305_04",
+  "D306_01","D306_02","D306_03","D306_04","D307_01","D307_02","D307_03","D308_01",
+  "D308_02","D308_03","D308_04","D308_05","D308_06","D401_01","D401_02","D402",
+  "D402_01","D402_02","D402_03","D402_04","D402_05","D402_06","D402_06a",
+  "D403_01","D403_02","D403_03","D404_01","D404_02","D404_03","D404_04","D405_01",
+  "D405_02","D405_03","D405_04","D406_01","D406_02","D406_03","D406_04","D407_01",
+  "D407_02","D407_03","D408_01","D408_02","D408_03","D408_04","D408_05","D408_06",
+  "D501","D801_01","D802","D803","D804_01","RA01_CP","RA01","TIME001","TIME002",
+  "TIME003","TIME004","TIME005","TIME006","TIME007","TIME008","TIME009","TIME010",
+  "TIME011","TIME012","TIME013","TIME014","TIME015","TIME016","TIME017","TIME018",
+  "TIME019","TIME020","TIME021","TIME022","TIME023","TIME024","TIME025",
+  "TIME_SUM","MAILSENT","LASTDATA","STATUS","FINISHED","Q_VIEWER","LASTPAGE",
+  "MAXPAGE","MISSING","MISSREL","TIME_RSI"
 )
 
-row.names(ds) = ds$CASE
+# 2. Read the XLSX file
+# Note: skip = 1 is used if your Excel file has a descriptive text row in Row 1.
+# If Row 1 is already the column headers, set skip = 0.
+ds <- read_xlsx(
+  path = "data_Carerobots_2026-01-20_09-51.xlsx", 
+  sheet = 1, 
+  col_names = col_names_vec,
+  skip = 2 # second line is descriptive
+)
 
-rm(ds_file)
+# 3. Handle data types
+# Loop through the map and apply transformations
+for (col_name in names(type_map)) {
+  if (col_name %in% names(ds)) {
+    target_type <- type_map[col_name]
+    
+    if (target_type == "numeric") {
+      ds[[col_name]] <- as.numeric(ds[[col_name]])
+    } else if (target_type == "integer") {
+      ds[[col_name]] <- as.integer(ds[[col_name]])
+    } else if (target_type == "logical") {
+      # Handle 'T'/'F' or 'TRUE'/'FALSE' strings
+      ds[[col_name]] <- as.logical(ds[[col_name]])
+    } else if (target_type == "POSIXct") {
+      ds[[col_name]] <- as.POSIXct(ds[[col_name]])
+    } else if (target_type == "factor") {
+      ds[[col_name]] <- as.factor(ds[[col_name]])
+    } else {
+      ds[[col_name]] <- as.character(ds[[col_name]])
+    }
+  }
+}
 
-attr(ds, "project") = "Carerobots"
-attr(ds, "description") = "Care Robots"
-attr(ds, "date") = "2026-01-21 12:27:34"
-attr(ds, "server") = "https://www.soscisurvey.de"
+# Set row names
+row.names(ds) <- ds$CASE
+
+# 4. Set Metadata Attributes
+attr(ds, "project")     <- "Carerobots"
+attr(ds, "description") <- "Care Robots"
+attr(ds, "date")        <- "2026-01-21 12:27:34"
+attr(ds, "server")      <- "https://www.soscisurvey.de"
+
 
 # Variable und Value Labels
 ds$A401 = factor(ds$A401,
@@ -1215,7 +1255,6 @@ comment(ds$MISSREL) = "Missing answers (weighted by relevance)"
 comment(ds$TIME_RSI) = "Completion Speed (relative)"
 
 
-
 # Assure that the comments are retained in subsets
 as.data.frame.avector = as.data.frame.vector
 `[.avector` <- function(x,i,...) {
@@ -1231,250 +1270,24 @@ ds_tmp = data.frame(
 mostattributes(ds_tmp) = attributes(ds)
 ds = ds_tmp
 rm(ds_tmp)
-
 ```
 
+## fix error
 
-
-
-
-
-
-# prepare data questionnaires
-
-## study 1
-
-load data:
+set levels to max 120 characters to avoid error when saving as .sav
 
 ```{r}
-output_dir <- "outputs/raw"
+library(stringr)
 
-# Load the RDS files into a named list
-study <- readRDS(file.path(output_dir, "study.rds"))
+# Apply truncation to the levels of all respective factors
+levels(ds$A401) <- str_trunc(levels(ds$A401), width = 120)
+levels(ds$D501) <- str_trunc(levels(ds$D501), width = 120)
 
-# Combine into single data.frame
-suppressMessages({
-  dat <- bind_rows(study)
-})
-
-rm(study)
+# Check the results
+levels(ds$A401)
+levels(ds$D501)
 ```
 
-counter variable:
-
-```{r}
-dat$ID <- cumsum(dat$sender == "Greetings" & !is.na(dat$sender))
-
-table(dat$ID)
-
-tmp <- dat %>%
-  group_by(ID) %>%
-  summarise(N = n())
-table(tmp$N)
-```
-
-
-filter:
-
-```{r}
-# IDs, die zu nicht-NULL gehören
-tmp_ids <- dat$ID[!sapply(dat$sucsessfulAssociations, is.null)]
-
-# die nicht-NULL Dataframes
-tmp_cleaned <- dat$sucsessfulAssociations[!sapply(dat$sucsessfulAssociations, is.null)]
-
-# alles zu einem Dataframe zusammenkleben + IDs
-all_cols <- Reduce(union, lapply(tmp_cleaned, names))
-
-tmp_cleaned2 <- lapply(tmp_cleaned, function(d) {
-    missing <- setdiff(all_cols, names(d))
-    for (m in missing) d[[m]] <- NA
-    d[all_cols]  # reorder consistently
-})
-
-tmp_df <- do.call(rbind, Map(function(d, id) cbind(ID = id, d),
-                             tmp_cleaned2, tmp_ids))
-nrow(tmp_df)
-
-tmp <- tmp_df %>%
-  group_by(ID) %>%
-  summarise(N = n())
-table(tmp$N)
-
-tmp_df <- tmp_df[tmp_df$ID %in% names(table(tmp_df$ID))[table(tmp_df$ID) == 30],]
-nrow(tmp_df)
-
-nrow(dat)
-dat <- dat[dat$ID %in% tmp_df$ID, ]
-nrow(dat)
-
-tmp <- dat %>%
-  group_by(ID) %>%
-  summarise(N = n())
-table(tmp$N)
-```
-
-```{r}
-# sum(table(dat$ID) != max(table(dat$ID)))
-# sum(table(dat$ID) == max(table(dat$ID)))
-# 
-# 
-# length(unique(dat$ID))
-# dat <-
-#   dat[dat$ID %in% names(table(dat$ID))[table(dat$ID) == max(table(dat$ID))], ]
-# length(unique(dat$ID))
-```
-
-**questionnaire**:
-
-some elements are lists:
-
-```{r}
-colnames(dat)[sapply(dat, is.list)]
-```
-
-add meta manually and remove it:
-
-```{r}
-meta_df <- dat$meta[, c("language", "screen_width", "screen_height", "userAgent")]
-dat <- bind_cols(dat, meta_df)
-rm(meta_df)
-dat$meta <- NULL
-```
-create questionnaire:
-
-```{r}
-colnames(dat)
-```
-
-
-```{r}
-vec_notNumeric <- c("PROLIFIC_PID",
-                    
-                    "study_condition",
-                    
-                     "sociodemo_gender", 
-                    
-                    "feedback_attentionCheck", "feedback_technicalprobs", "feedback_technicalprobsText",
-                    
-                    "language", "screen_width", "screen_height", "userAgent")
-
-### get survey
-vec_ques <- c("PROLIFIC_PID",
-              "dummy_informedconsent",
-              "sociodemo_age", "lrscale", "rlgdgr",
-              "feedback_conscientiousCompletion",
-              "commCheck", "attCheck", "feedback_conscientiousCompletion",
-                    str_subset(string = colnames(dat), pattern = "^PUR"),
-                    str_subset(string = colnames(dat), pattern = "^AIAS"),
-                    str_subset(string = colnames(dat), pattern = "^PTTA"),
-
-              vec_notNumeric)
-
-
-
-ques_study <- questionnairetype(
-  dataset = dat,
-  listvars = vec_ques,
-  notNumeric = vec_notNumeric,
-  verbose = FALSE
-)
-
-ques_study$study_condition <- factor(x = ques_study$study_condition)
-ques_study$sociodemo_gender <- factor(x = ques_study$sociodemo_gender)
-
-
-dim(ques_study)
-```
-
-### reverse code items
-
-
-```{r}
-psych::cor.plot(r = cor(ques_study[,str_subset(string = colnames(ques_study), pattern = "^PUR")]))
-psych::cor.plot(r = cor(ques_study[,str_subset(string = colnames(ques_study), pattern = "^AIAS")]))
-# items which have a suffix "r" need to be reverse coded:
-psych::cor.plot(r = cor(ques_study[,str_subset(string = colnames(ques_study), pattern = "^PTTA")]))
-```
-
-```{r}
-ques_study$`PTTA-2r` <- 6 - ques_study$`PTTA-2r`
-ques_study$`PTTA-4r` <- 6 - ques_study$`PTTA-4r`
-ques_study$`PTTA-5r` <- 6 - ques_study$`PTTA-5r`
-```
-
-
-```{r}
-psych::cor.plot(r = cor(ques_study[,str_subset(string = colnames(ques_study), pattern = "^PTTA")]))
-```
-
-
-
-# prepare data associations
-
-
-```{r}
-colnames(dat)[sapply(dat, is.list)]
-```
-
-```{r}
-sucsessfulAssociations <- dat$sucsessfulAssociations[!sapply(dat$sucsessfulAssociations, is.null)]
-
-ass_study <- process_association_data(
-  association_list = sucsessfulAssociations,
-  metadata_df = ques_study
-)
-
-ass_study$study_condition <- factor(x = ass_study$study_condition)
-ass_study$gender <- factor(x = ass_study$gender)
-# Convert the character strings to POSIXct date-time objects
-ass_study$timestamp <- ymd_hms(ass_study$timestamp)
-
-
-
-dim(ass_study)
-
-
-hist(ass_study$timestamp, breaks = "days", 
-     main = "Frequency of Data Collection - Associations", 
-     xlab = "Time", col = "skyblue")
-
-
-# DT::datatable(data = ass_study)
-```
-
-```{r}
-table(ass_study$study_condition) /30
-
-tmp <- ass_study$study_condition[ass_study$response_position == 1 & ass_study$response_level == 1]
-table(tmp)
-```
-
-
-# delete test data
-
-```{r}
-# first 30 associations are test data
-ass_study$response[1:30]
-
-dim(ass_study)
-ass_study <- ass_study[31:nrow(ass_study), ]
-dim(ass_study)
-
-
-dim(ques_study)
-ques_study <- ques_study[ques_study$PROLIFIC_PID %in% ass_study$participant_id, ]
-dim(ques_study)
-```
-
-## compare study conditions between data sets
-
-```{r}
-## questionnaire
-table(ques_study$study_condition)
-## association data
-table(ass_study$study_condition) /30
-```
 
 
 
@@ -1482,29 +1295,12 @@ table(ass_study$study_condition) /30
 # save data sets
 
 
-
-## save questionnaire
-
 ```{r}
-setwd("outputs/questionnaire")
+setwd("outputs")
 
-saveRDS(ques_study, file = paste0("ques_study", ".rds"))
-writexl::write_xlsx(x = ques_study, path = paste0("ques_study", ".xlsx"))
-```
-
-## save associations
-
-
-```{r}
-setwd("outputs/associations")
-
-# Save RDS
-saveRDS(ass_study, file = "ass_study.rds")
-
-# Save CSV
-write.csv(ass_study, file = "ass_study.csv", row.names = FALSE)
-
-# Save XLSX using writexl
-writexl::write_xlsx(ass_study, path = "ass_study.xlsx")
+saveRDS(ds, file = paste0("ds", ".rds"))
+writexl::write_xlsx(x = ds, path = paste0("ds", ".xlsx"))
+write.csv2(x = ds, file =  paste0("ds", ".csv"))
+haven::write_sav(data = ds, path = paste0("ds", ".sav"))
 ```
 
