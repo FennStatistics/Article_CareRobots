@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.6.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Julius Fenn, Laura Londoño">
 
-<title>Data preperation all studies</title>
+<title>Data preperation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,9 +22,8 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -35,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -60,21 +59,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="dynamicScript_files/libs/clipboard/clipboard.min.js"></script>
-<script src="dynamicScript_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="dynamicScript_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="dynamicScript_files/libs/quarto-html/quarto.js"></script>
 <script src="dynamicScript_files/libs/quarto-html/popper.min.js"></script>
 <script src="dynamicScript_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="dynamicScript_files/libs/quarto-html/anchor.min.js"></script>
 <link href="dynamicScript_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="dynamicScript_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="dynamicScript_files/libs/quarto-html/quarto-syntax-highlighting-a8378a0342da607bf6aa9ac04725c156.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="dynamicScript_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="dynamicScript_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="dynamicScript_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="dynamicScript_files/libs/bootstrap/bootstrap-248fc53d3562cd95f231f3ec542c0df6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
 
-<body class="quarto-light">
+<body>
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -90,7 +88,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#fix-error" id="toc-fix-error" class="nav-link" data-scroll-target="#fix-error"><span class="header-section-number">5.1</span> fix error</a></li>
   </ul></li>
-  <li><a href="#save-data-sets" id="toc-save-data-sets" class="nav-link" data-scroll-target="#save-data-sets"><span class="header-section-number">6</span> save data sets</a></li>
+  <li><a href="#get-all-columns-containing-text-answers" id="toc-get-all-columns-containing-text-answers" class="nav-link" data-scroll-target="#get-all-columns-containing-text-answers"><span class="header-section-number">6</span> get all columns containing text answers</a></li>
+  <li><a href="#save-data-sets" id="toc-save-data-sets" class="nav-link" data-scroll-target="#save-data-sets"><span class="header-section-number">7</span> save data sets</a></li>
   </ul>
 </nav>
 </div>
@@ -98,7 +97,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data preperation all studies</h1>
+<h1 class="title">Data preperation</h1>
 </div>
 
 
@@ -160,10 +159,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">file</span>(<span class="st">"data_Carerobots_2026-01-27_10-05.csv"</span>, <span class="at">open =</span> <span class="st">"r"</span>, <span class="at">encoding =</span> <span class="st">"UTF-16"</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">readLines</span>(con, <span class="at">n =</span> <span class="dv">4</span>), <span class="at">warn =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "\"CASE\"\t\"SERIAL\"\t\"REF\"\t\"QUESTNNR\"\t\"MODE\"\t\"STARTED\"\t\"A011_01\"\t\"A011_02\"\t\"A012\"\t\"A012_01\"\t\"A012_02\"\t\"A012_03\"\t\"A012_04\"\t\"A012_05\"\t\"A012_06\"\t\"A012_06a\"\t\"A014_01\"\t\"A014_02\"\t\"A014_03\"\t\"A015_01\"\t\"A015_02\"\t\"A015_03\"\t\"A015_04\"\t\"A016_01\"\t\"A016_02\"\t\"A016_03\"\t\"A016_04\"\t\"A017_01\"\t\"A017_02\"\t\"A017_03\"\t\"A017_04\"\t\"A018_01\"\t\"A018_02\"\t\"A018_03\"\t\"A019_01\"\t\"A019_02\"\t\"A019_03\"\t\"A019_04\"\t\"A019_05\"\t\"A019_06\"\t\"A019_07\"\t\"A110_01\"\t\"A110_02\"\t\"A111\"\t\"A111_01\"\t\"A111_02\"\t\"A111_03\"\t\"A111_04\"\t\"A111_05\"\t\"A111_06\"\t\"A111_06a\"\t\"A112_01\"\t\"A112_02\"\t\"A112_03\"\t\"A113_01\"\t\"A113_02\"\t\"A113_03\"\t\"A113_04\"\t\"A114_01\"\t\"A114_02\"\t\"A114_03\"\t\"A114_04\"\t\"A115_01\"\t\"A115_02\"\t\"A115_03\"\t\"A115_04\"\t\"A116_01\"\t\"A116_02\"\t\"A116_03\"\t\"A117_01\"\t\"A117_02\"\t\"A117_03\"\t\"A117_04\"\t\"A117_05\"\t\"A117_06\"\t\"A117_07\"\t\"A209_01\"\t\"A209_02\"\t\"A211\"\t\"A211_01\"\t\"A211_02\"\t\"A211_03\"\t\"A211_04\"\t\"A211_05\"\t\"A211_06\"\t\"A211_06a\"\t\"A212_01\"\t\"A212_02\"\t\"A212_03\"\t\"A213_01\"\t\"A213_02\"\t\"A213_03\"\t\"A213_04\"\t\"A214_01\"\t\"A214_02\"\t\"A214_03\"\t\"A214_04\"\t\"A215_01\"\t\"A215_02\"\t\"A215_03\"\t\"A215_04\"\t\"A216_01\"\t\"A216_02\"\t\"A216_03\"\t\"A217_01\"\t\"A217_02\"\t\"A217_03\"\t\"A217_04\"\t\"A217_05\"\t\"A217_06\"\t\"A217_07\"\t\"A310_01\"\t\"A310_02\"\t\"A311\"\t\"A311_01\"\t\"A311_02\"\t\"A311_03\"\t\"A311_04\"\t\"A311_05\"\t\"A311_06\"\t\"A311_06a\"\t\"A312_01\"\t\"A312_02\"\t\"A312_03\"\t\"A313_01\"\t\"A313_02\"\t\"A313_03\"\t\"A313_04\"\t\"A314_01\"\t\"A314_02\"\t\"A314_03\"\t\"A314_04\"\t\"A315_01\"\t\"A315_02\"\t\"A315_03\"\t\"A315_04\"\t\"A316_01\"\t\"A316_02\"\t\"A316_03\"\t\"A317_01\"\t\"A317_02\"\t\"A317_03\"\t\"A317_04\"\t\"A317_05\"\t\"A317_06\"\t\"A317_07\"\t\"A401\"\t\"A701_01\"\t\"A702\"\t\"A702_05\"\t\"A703\"\t\"A705_01\"\t\"D101_01\"\t\"D101_02\"\t\"D102\"\t\"D102_01\"\t\"D102_02\"\t\"D102_03\"\t\"D102_04\"\t\"D102_05\"\t\"D102_06\"\t\"D102_06a\"\t\"D103_01\"\t\"D103_02\"\t\"D103_03\"\t\"D104_01\"\t\"D104_02\"\t\"D104_03\"\t\"D104_04\"\t\"D105_01\"\t\"D105_02\"\t\"D105_03\"\t\"D105_04\"\t\"D106_01\"\t\"D106_02\"\t\"D106_03\"\t\"D106_04\"\t\"D107_01\"\t\"D107_02\"\t\"D107_03\"\t\"D108_01\"\t\"D108_02\"\t\"D108_03\"\t\"D108_04\"\t\"D108_05\"\t\"D108_06\"\t\"D108_07\"\t\"D201_01\"\t\"D201_02\"\t\"D202\"\t\"D202_01\"\t\"D202_02\"\t\"D202_03\"\t\"D202_04\"\t\"D202_05\"\t\"D202_06\"\t\"D202_06a\"\t\"D203_01\"\t\"D203_02\"\t\"D203_03\"\t\"D204_01\"\t\"D204_02\"\t\"D204_03\"\t\"D204_04\"\t\"D205_01\"\t\"D205_02\"\t\"D205_03\"\t\"D205_04\"\t\"D206_01\"\t\"D206_02\"\t\"D206_03\"\t\"D206_04\"\t\"D207_01\"\t\"D207_02\"\t\"D207_03\"\t\"D208_01\"\t\"D208_02\"\t\"D208_03\"\t\"D208_04\"\t\"D208_05\"\t\"D208_06\"\t\"D301_01\"\t\"D301_02\"\t\"D302\"\t\"D302_01\"\t\"D302_02\"\t\"D302_03\"\t\"D302_04\"\t\"D302_05\"\t\"D302_06\"\t\"D302_06a\"\t\"D303_01\"\t\"D303_02\"\t\"D303_03\"\t\"D304_01\"\t\"D304_02\"\t\"D304_03\"\t\"D304_04\"\t\"D305_01\"\t\"D305_02\"\t\"D305_03\"\t\"D305_04\"\t\"D306_01\"\t\"D306_02\"\t\"D306_03\"\t\"D306_04\"\t\"D307_01\"\t\"D307_02\"\t\"D307_03\"\t\"D308_01\"\t\"D308_02\"\t\"D308_03\"\t\"D308_04\"\t\"D308_05\"\t\"D308_06\"\t\"D401_01\"\t\"D401_02\"\t\"D402\"\t\"D402_01\"\t\"D402_02\"\t\"D402_03\"\t\"D402_04\"\t\"D402_05\"\t\"D402_06\"\t\"D402_06a\"\t\"D403_01\"\t\"D403_02\"\t\"D403_03\"\t\"D404_01\"\t\"D404_02\"\t\"D404_03\"\t\"D404_04\"\t\"D405_01\"\t\"D405_02\"\t\"D405_03\"\t\"D405_04\"\t\"D406_01\"\t\"D406_02\"\t\"D406_03\"\t\"D406_04\"\t\"D407_01\"\t\"D407_02\"\t\"D407_03\"\t\"D408_01\"\t\"D408_02\"\t\"D408_03\"\t\"D408_04\"\t\"D408_05\"\t\"D408_06\"\t\"D501\"\t\"D801_01\"\t\"D802\"\t\"D803\"\t\"D804_01\"\t\"RA01_CP\"\t\"RA01\"\t\"TIME001\"\t\"TIME002\"\t\"TIME003\"\t\"TIME004\"\t\"TIME005\"\t\"TIME006\"\t\"TIME007\"\t\"TIME008\"\t\"TIME009\"\t\"TIME010\"\t\"TIME011\"\t\"TIME012\"\t\"TIME013\"\t\"TIME014\"\t\"TIME015\"\t\"TIME016\"\t\"TIME017\"\t\"TIME018\"\t\"TIME019\"\t\"TIME020\"\t\"TIME021\"\t\"TIME022\"\t\"TIME023\"\t\"TIME024\"\t\"TIME025\"\t\"TIME_SUM\"\t\"MAILSENT\"\t\"LASTDATA\"\t\"STATUS\"\t\"FINISHED\"\t\"Q_VIEWER\"\t\"LASTPAGE\"\t\"MAXPAGE\"\t\"MISSING\"\t\"MISSREL\"\t\"TIME_RSI\""                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-[2] "509\t\t\t\"qnr2\"\t\"interview\"\t2025-10-29 11:14:17\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t1\t\t\t\t\t0\t19\t2\t3\t1\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t6\t\t2025-10-29 11:14:23\t\t0\t0\t3\t3\t0\t0\t2.67"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-[3] "512\t\t\t\"base\"\t\"interview\"\t2025-10-29 11:30:21\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t1\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t0\t16\t3\t3\t2\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t8\t\t2025-10-29 11:30:29\t\t0\t0\t3\t3\t0\t0\t3"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-[4] "513\t\t\t\"qnr2\"\t\"interview\"\t2025-10-29 11:35:08\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t6\t6\t5\t2\t2\t2\t2\t2\t1\t\t\"it would free up a person to work on something else\"\t\"none\"\t\"none\"\t4\t3\t3\t3\t5\t5\t5\t5\t5\t5\t5\t5\t4\t4\t4\t3\t3\t3\t4\t4\t4\t4\t4\t4\t4\t2\t2\t2\t1\t2\t1\t\t\"this looks like it could be dangerous, and possibly end up hurting someone\"\t\"it looks unsafe, and not nearly as gentle as it should be\"\t\"I would only be afraid of it hurting, or dropping someone⸮  漀爀 洀愀氀昀甀渀挀琀椀漀渀椀渀最Ⰰ 最攀琀琀椀渀最 猀琀甀挀欀Ⰰ 攀琀挀∀ऀ㌀ऀ㌀ऀ㌀ऀ㌀ऀ㐀ऀ㐀ऀ㐀ऀ㐀ऀ㔀ऀ㘀ऀ㔀ऀ㘀ऀ㌀ऀ㌀ऀ㌀ऀ㌀ऀ㌀ऀ㌀ऀ㌀ऀ㌀ऀ㌀ऀ㔀ऀ㘀ऀ㔀ऀ㈀ऀ㈀ऀ㈀ऀ㈀ऀ㈀ऀ\u3100ऀऀ∀䤀 琀栀椀渀欀 椀琀 挀漀甀氀搀 戀攀 最爀攀愀琀 椀渀 洀漀猀琀 挀愀猀攀猀⸀  䤀 眀漀甀氀搀 眀漀爀爀礀 琀栀愀琀 猀漀洀攀 挀栀椀氀搀爀攀渀 洀椀最栀琀 戀攀 猀挀愀爀攀搀 漀昀 椀琀Ⰰ 愀渀搀 猀漀洀攀 漀氀搀攀爀 瀀攀漀瀀氀攀 洀愀礀 戀攀 挀漀渀昀甀猀攀搀⸀∀ऀ∀䤀 眀漀甀氀搀 眀漀爀爀礀 椀琀 挀漀甀氀搀 戀攀 栀愀挀欀攀搀 ∀ऀ∀洀愀欀椀渀最 猀甀爀攀 瀀愀琀椀攀渀琀 椀渀昀漀爀洀愀琀椀漀渀 椀猀 猀攀挀甀爀攀∀ऀ\u3100ऀ\u3100ऀ\u3100ऀ\u3100ऀ㌀ऀ\u3100ऀ㐀ऀ㘀ऀ㐀ऀ㔀ऀ㐀ऀ㔀ऀ㐀ऀ㐀ऀ㐀ऀ㌀ऀ㌀ऀ㐀ऀ㐀ऀ㐀ऀ㐀ऀ㔀ऀ㔀ऀ㌀ऀ㈀ऀ㈀ऀ㈀ऀ\u3100ऀ\u3100ऀ\u3100ऀऀ∀椀琀 挀漀甀氀搀 戀攀 瘀攀爀礀 栀攀氀瀀昀甀氀 昀漀爀 瀀愀琀椀攀渀琀猀 最漀椀渀最 琀栀爀漀甀最栀 爀攀挀漀瘀攀爀礀Ⰰ 攀琀挀∀ऀ∀椀琀 眀漀甀氀搀 渀攀攀搀 琀漀 挀愀爀攀昀甀氀Ⰰ 愀渀搀 猀愀昀攀∀ऀ∀渀漀渀攀∀ऀ㐀ऀ㐀ऀ㌀ऀ㌀ऀ㐀ऀ㔀ऀ㔀ऀ㔀ऀ㔀ऀ㔀ऀ㔀ऀ㔀ऀ㐀ऀ㐀ऀ㐀ऀ㌀ऀ㌀ऀ㐀ऀ㐀ऀ㐀ऀ㐀ऀ\u3100ऀ∀㔀㐀∀ऀ\u3100ऀ㔀ऀ∀甀渀椀琀攀搀 猀琀愀琀攀猀∀ऀ　ऀ\u3100㐀ऀ㐀ऀ㐀ऀ\u3100㠀ऀ㔀ऀ㘀㤀ऀ㌀㤀ऀ\u3100\u3100ऀ㌀㈀ऀ㐀ऀ㤀㈀ऀ㌀\u3100ऀ\u3100\u3100ऀ㠀㔀ऀ㌀㈀ऀ㜀　ऀ㜀㈀ऀ㔀㔀ऀ㤀㌀ऀ㈀ऀ㐀㔀ऀ㌀㘀ऀ\u3100㈀ऀ㔀㐀ऀ㌀ऀ\u3100㘀ऀ㠀㔀㔀ऀऀ㈀　㈀㔀ⴀ\u3100　ⴀ㈀㤀 \u3100\u3100㨀㔀　㨀　㌀ऀऀ\u3100ऀ　ऀ㈀㔀ऀ㈀㔀ऀ　ऀ　ऀ\u3100⸀㘀ഀ\u0a00㔀\u3100㐀ऀऀऀ∀焀渀爀㈀∀ऀ∀椀渀琀攀爀瘀椀攀眀∀ऀ㈀　㈀㔀ⴀ\u3100　ⴀ㈀㤀 \u3100\u3100㨀㐀㐀㨀㈀㐀ऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀ㘀ऀ㘀ऀ㔀ऀ㈀ऀ㈀ऀ㈀ऀ㈀ऀ㈀ऀ\u3100ऀऀ∀䤀 眀漀甀氀搀 愀挀挀攀瀀琀 琀栀攀 甀猀攀 漀昀 猀甀瀀瀀氀礀ⴀ搀攀氀椀瘀攀爀礀 爀漀戀漀琀猀 椀渀 栀攀愀氀琀栀挀愀爀攀 戀攀挀愀甀猀攀 琀栀攀礀 栀攀氀瀀 爀攀搀甀挀攀 琀栀攀 瀀栀礀猀椀挀愀氀 愀渀搀 氀漀最椀猀琀椀挀愀氀 戀甀爀搀攀渀 漀渀 渀甀爀猀椀渀最 猀琀愀昀昀Ⰰ 愀氀氀漀眀椀渀最 挀愀爀攀最椀瘀攀爀猀 琀漀 昀漀挀甀猀 漀渀 搀椀爀攀挀琀 瀀愀琀椀攀渀琀 挀愀爀攀⸀ 䤀渀 猀椀琀甀愀琀椀漀渀猀 氀椀欀攀 栀椀最栀ⴀ瀀爀攀猀猀甀爀攀 栀漀猀瀀椀琀愀氀 猀栀椀昀琀猀 漀爀 椀渀昀攀挀琀椀漀甀猀 搀椀猀攀愀猀攀 漀甀琀戀爀攀愀欀猀Ⰰ 琀栀攀猀攀 爀漀戀漀琀猀 挀愀渀 猀愀昀攀氀礀 琀爀愀渀猀瀀漀爀琀 洀攀搀椀挀愀琀椀漀渀猀Ⰰ 氀愀戀 猀愀洀瀀氀攀猀Ⰰ 愀渀搀 猀琀攀爀椀氀攀 攀焀甀椀瀀洀攀渀琀 眀椀琀栀漀甀琀 爀椀猀欀椀渀最 猀琀愀昀昀 攀砀瀀漀猀甀爀攀 漀爀 挀愀甀猀椀渀最 搀攀氀愀礀猀⸀\u0a00\u0a00䤀 眀漀甀氀搀 攀砀瀀攀挀琀 琀栀攀猀攀 爀漀戀漀琀猀 琀漀 戀攀 爀攀氀椀愀戀氀攀Ⰰ 愀挀挀甀爀愀琀攀Ⰰ 愀渀搀 攀愀猀礀 琀漀 漀瀀攀爀愀琀攀Ⰰ 眀椀琀栀 挀氀攀愀爀 瀀爀漀琀漀挀漀氀猀 昀漀爀 猀挀栀攀搀甀氀椀渀最 愀渀搀 琀爀愀挀欀椀渀最 搀攀氀椀瘀攀爀椀攀猀⸀ 䤀 愀氀猀漀 瘀愀氀甀攀 琀栀攀椀爀 愀戀椀氀椀琀礀 琀漀 椀渀琀攀最爀愀琀攀 猀洀漀漀琀栀氀礀 椀渀琀漀 攀砀椀猀琀椀渀最 眀漀爀欀昀氀漀眀猀 眀椀琀栀漀甀琀 搀椀猀爀甀瀀琀椀渀最 瀀愀琀椀攀渀琀猀 漀爀 猀琀愀昀昀⸀ 伀瘀攀爀愀氀氀Ⰰ 䤀 猀攀攀 琀栀攀洀 愀猀 猀甀瀀瀀漀爀琀椀瘀攀 琀漀漀氀猀 琀栀愀琀 椀洀瀀爀漀瘀攀 攀昀昀椀挀椀攀渀挀礀 愀渀搀 猀愀昀攀琀礀Ⰰ 爀愀琀栀攀爀 琀栀愀渀 爀攀瀀氀愀挀椀渀最 琀栀攀 攀猀猀攀渀琀椀愀氀 栀甀洀愀渀 爀漀氀攀 漀昀 栀攀愀氀琀栀挀愀爀攀 眀漀爀欀攀爀猀⸀∀ऀ∀伀渀攀 挀漀渀挀攀爀渀 椀猀 猀愀昀攀琀礀⸀ 圀栀椀氀攀 琀栀攀猀攀 爀漀戀漀琀猀 愀爀攀 搀攀猀椀最渀攀搀 琀漀 渀愀瘀椀最愀琀攀 栀漀猀瀀椀琀愀氀 攀渀瘀椀爀漀渀洀攀渀琀猀Ⰰ 琀栀攀爀攀 椀猀 愀 猀洀愀氀氀 爀椀猀欀 漀昀 挀漀氀氀椀猀椀漀渀猀 眀椀琀栀 猀琀愀昀昀Ⰰ 瀀愀琀椀攀渀琀猀Ⰰ 漀爀 攀焀甀椀瀀洀攀渀琀Ⰰ 眀栀椀挀栀 挀漀甀氀搀 挀愀甀猀攀 愀挀挀椀搀攀渀琀猀 漀爀 搀椀猀爀甀瀀琀 挀愀爀攀⸀ 䄀渀漀琀栀攀爀 椀猀猀甀攀 椀猀 爀攀氀椀愀戀椀氀椀琀礀 愀渀搀 搀攀瀀攀渀搀攀渀挀礀㬀 椀昀 愀 爀漀戀漀琀 洀愀氀昀甀渀挀琀椀漀渀猀 漀爀 搀攀氀椀瘀攀爀猀 琀栀攀 眀爀漀渀最 椀琀攀洀Ⰰ 椀琀 挀漀甀氀搀 搀攀氀愀礀 挀爀椀琀椀挀愀氀 琀爀攀愀琀洀攀渀琀猀 漀爀 挀愀甀猀攀 攀爀爀漀爀猀⸀\u0a00\u0a00䐀愀琀愀 瀀爀椀瘀愀挀礀 愀渀搀 猀攀挀甀爀椀琀礀 椀猀 愀氀猀漀 椀洀瀀漀爀琀愀渀琀Ⰰ 愀猀 琀栀攀猀攀 爀漀戀漀琀猀 漀昀琀攀渀 漀瀀攀爀愀琀攀 琀栀爀漀甀最栀 挀攀渀琀爀愀氀椀稀攀搀 猀礀猀琀攀洀猀 琀栀愀琀 琀爀愀挀欀 搀攀氀椀瘀攀爀椀攀猀 愀渀搀 椀琀攀洀 搀攀琀愀椀氀猀⸀ 䔀渀猀甀爀椀渀最 琀栀愀琀 猀攀渀猀椀琀椀瘀攀 椀渀昀漀爀洀愀琀椀漀渀 椀猀 瀀爀漀琀攀挀琀攀搀 椀猀 攀猀猀攀渀琀椀愀氀⸀\u0a00\u0a00䘀椀渀愀氀氀礀Ⰰ 攀琀栀椀挀愀氀 挀漀渀猀椀搀攀爀愀琀椀漀渀猀 愀爀漀甀渀搀 眀漀爀欀昀漀爀挀攀 椀洀瀀愀挀琀 愀爀椀猀攀⸀ 圀栀椀氀攀 爀漀戀漀琀猀 爀攀搀甀挀攀 爀攀瀀攀琀椀琀椀瘀攀 琀愀猀欀猀Ⰰ 漀瘀攀爀爀攀氀椀愀渀挀攀 漀渀 愀甀琀漀洀愀琀椀漀渀 挀漀甀氀搀 瀀漀琀攀渀琀椀愀氀氀礀 搀椀洀椀渀椀猀栀 猀琀愀昀昀 攀渀最愀最攀洀攀渀琀 漀爀 爀攀搀甀挀攀 漀瀀瀀漀爀琀甀渀椀琀椀攀猀 昀漀爀 栀甀洀愀渀 樀甀搀最洀攀渀琀 椀渀 氀漀最椀猀琀椀挀愀氀 搀攀挀椀猀椀漀渀ⴀ洀愀欀椀渀最⸀ 吀漀 洀椀琀椀最愀琀攀 琀栀攀猀攀 爀椀猀欀猀Ⰰ 爀漀戀漀琀猀 猀栀漀甀氀搀 戀攀 甀猀攀搀 愀猀 猀甀瀀瀀漀爀琀椀瘀攀 琀漀漀氀猀 眀椀琀栀 瀀爀漀瀀攀爀 漀瘀攀爀猀椀最栀琀Ⰰ 琀爀愀椀渀椀渀最Ⰰ 愀渀搀 猀愀昀攀琀礀 瀀爀漀琀漀挀漀氀猀⸀∀ऀ∀倀愀琀椀攀渀琀 愀渀搀 猀琀愀昀昀 猀愀昀攀琀礀 椀猀 瀀愀爀愀洀漀甀渀琀⸀ 刀漀戀漀琀猀 洀甀猀琀 渀愀瘀椀最愀琀攀 栀漀猀瀀椀琀愀氀 攀渀瘀椀爀漀渀洀攀渀琀猀 眀椀琀栀漀甀琀 挀愀甀猀椀渀最 挀漀氀氀椀猀椀漀渀猀 漀爀 搀椀猀爀甀瀀琀椀漀渀猀Ⰰ 愀渀搀 琀栀攀爀攀 猀栀漀甀氀搀 戀攀 挀氀攀愀爀 瀀爀漀琀漀挀漀氀猀 昀漀爀 栀愀渀搀氀椀渀最 洀愀氀昀甀渀挀琀椀漀渀猀 漀爀 攀洀攀爀最攀渀挀椀攀猀⸀\u0a00\u0a00刀攀氀椀愀戀椀氀椀琀礀 愀渀搀 愀挀挀漀甀渀琀愀戀椀氀椀琀礀 愀爀攀 愀氀猀漀 挀爀椀琀椀挀愀氀⸀ 䠀漀猀瀀椀琀愀氀猀 渀攀攀搀 猀礀猀琀攀洀猀 椀渀 瀀氀愀挀攀 琀漀 琀爀愀挀欀 搀攀氀椀瘀攀爀椀攀猀 愀挀挀甀爀愀琀攀氀礀 愀渀搀 愀猀猀椀最渀 爀攀猀瀀漀渀猀椀戀椀氀椀琀礀 椀昀 攀爀爀漀爀猀 漀挀挀甀爀Ⰰ 猀甀挀栀 愀猀 搀攀氀椀瘀攀爀椀渀最 琀栀攀 眀爀漀渀最 洀攀搀椀挀愀琀椀漀渀 漀爀 猀愀洀瀀氀攀⸀\u0a00\u0a00䐀愀琀愀 瀀爀椀瘀愀挀礀 愀渀搀 猀攀挀甀爀椀琀礀 洀甀猀琀 戀攀 攀渀猀甀爀攀搀Ⰰ 愀猀 琀栀攀猀攀 爀漀戀漀琀猀 漀昀琀攀渀 漀瀀攀爀愀琀攀 琀栀爀漀甀最栀 挀攀渀琀爀愀氀椀稀攀搀 猀礀猀琀攀洀猀 琀栀愀琀 猀琀漀爀攀 猀攀渀猀椀琀椀瘀攀 椀渀昀漀爀洀愀琀椀漀渀 愀戀漀甀琀 洀攀搀椀挀愀琀椀漀渀猀Ⰰ 氀愀戀 猀愀洀瀀氀攀猀Ⰰ 漀爀 瀀愀琀椀攀渀琀ⴀ爀攀氀愀琀攀搀 氀漀最椀猀琀椀挀猀⸀ 匀攀挀甀爀攀 搀愀琀愀 栀愀渀搀氀椀渀最 愀渀搀 愀挀挀攀猀猀 挀漀渀琀爀漀氀猀 愀爀攀 攀猀猀攀渀琀椀愀氀⸀\u0a00\u0a00䘀椀渀愀氀氀礀Ⰰ 椀洀瀀愀挀琀 漀渀 栀甀洀愀渀 爀漀氀攀猀 愀渀搀 眀漀爀欀昀氀漀眀 猀栀漀甀氀搀 戀攀 挀漀渀猀椀搀攀爀攀搀⸀ 圀栀椀氀攀 爀漀戀漀琀猀 爀攀搀甀挀攀 爀攀瀀攀琀椀琀椀瘀攀 琀愀猀欀猀Ⰰ 琀栀攀礀 猀栀漀甀氀搀 挀漀洀瀀氀攀洀攀渀琀 爀愀琀栀攀爀 琀栀愀渀 爀攀瀀氀愀挀攀 琀栀攀 樀甀搀最洀攀渀琀Ⰰ 漀瘀攀爀猀椀最栀琀Ⰰ 愀渀搀 搀攀挀椀猀椀漀渀ⴀ洀愀欀椀渀最 猀欀椀氀氀猀 漀昀 栀攀愀氀琀栀挀愀爀攀 猀琀愀昀昀⸀ 䴀愀椀渀琀愀椀渀椀渀最 琀爀愀渀猀瀀愀爀攀渀挀礀Ⰰ 琀爀愀椀渀椀渀最Ⰰ 愀渀搀 瀀爀漀瀀攀爀 猀甀瀀攀爀瘀椀猀椀漀渀 栀攀氀瀀猀 攀渀猀甀爀攀 攀琀栀椀挀愀氀 愀渀搀 攀昀昀攀挀琀椀瘀攀 椀洀瀀氀攀洀攀渀琀愀琀椀漀渀⸀∀ऀ㘀ऀ㜀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㔀ऀ㐀ऀ㔀ऀ㐀ऀ㐀ऀ㐀ऀ㐀ऀ㘀ऀ㘀ऀ㔀ऀ㈀ऀ㈀ऀ㈀ऀ㈀ऀ㈀ऀ\u3100ऀऀ∀䤀 眀漀甀氀搀 愀挀挀攀瀀琀 琀栀攀 甀猀攀 漀昀 渀甀爀猀攀 爀漀戀漀琀猀 椀渀 挀愀爀攀最椀瘀椀渀最 琀愀猀欀猀 戀攀挀愀甀猀攀 琀栀攀礀 挀愀渀 猀椀最渀椀昀椀挀愀渀琀氀礀 爀攀搀甀挀攀 琀栀攀 瀀栀礀猀椀挀愀氀 猀琀爀愀椀渀 漀渀 栀攀愀氀琀栀挀愀爀攀 眀漀爀欀攀爀猀 愀渀搀 栀攀氀瀀 瀀爀攀瘀攀渀琀 椀渀樀甀爀椀攀猀 挀愀甀猀攀搀 戀礀 氀椀昀琀椀渀最 漀爀 爀攀瀀攀琀椀琀椀瘀攀 洀漀瘀攀洀攀渀琀猀⸀ 䈀礀 琀愀欀椀渀最 漀瘀攀爀 爀漀甀琀椀渀攀 漀爀 瀀栀礀猀椀挀愀氀氀礀 搀攀洀愀渀搀椀渀最 琀愀猀欀猀Ⰰ 琀栀攀猀攀 爀漀戀漀琀猀 愀氀氀漀眀 渀甀爀猀攀猀 愀渀搀 挀愀爀攀最椀瘀攀爀猀 琀漀 昀漀挀甀猀 洀漀爀攀 漀渀 攀洀漀琀椀漀渀愀氀 猀甀瀀瀀漀爀琀Ⰰ 洀攀搀椀挀愀氀 搀攀挀椀猀椀漀渀ⴀ洀愀欀椀渀最Ⰰ 愀渀搀 瀀愀琀椀攀渀琀 椀渀琀攀爀愀挀琀椀漀渀Ⰰ 愀爀攀愀猀 眀栀攀爀攀 栀甀洀愀渀 攀洀瀀愀琀栀礀 愀渀搀 樀甀搀最洀攀渀琀 愀爀攀 攀猀猀攀渀琀椀愀氀⸀∀ऀ∀夀攀猀Ⰰ 琀栀攀爀攀 愀爀攀 猀攀瘀攀爀愀氀 爀椀猀欀猀 愀渀搀 攀琀栀椀挀愀氀 挀漀渀挀攀爀渀猀 愀猀猀漀挀椀愀琀攀搀 眀椀琀栀 甀猀椀渀最 爀漀戀漀琀猀 椀渀 栀攀愀氀琀栀挀愀爀攀⸀ 伀渀攀 洀愀樀漀爀 挀漀渀挀攀爀渀 椀猀 瀀愀琀椀攀渀琀 猀愀昀攀琀礀㨀 椀昀 愀 爀漀戀漀琀 洀愀氀昀甀渀挀琀椀漀渀猀 漀爀 洀椀猀椀渀琀攀爀瀀爀攀琀猀 愀 洀漀瘀攀洀攀渀琀Ⰰ 椀琀 挀漀甀氀搀 愀挀挀椀搀攀渀琀愀氀氀礀 栀愀爀洀 琀栀攀 瀀愀琀椀攀渀琀 搀甀爀椀渀最 氀椀昀琀椀渀最 漀爀 琀爀愀渀猀昀攀爀⸀ 䄀渀漀琀栀攀爀 椀猀猀甀攀 椀猀 瀀爀椀瘀愀挀礀Ⰰ 猀椀渀挀攀 琀栀攀猀攀 爀漀戀漀琀猀 漀昀琀攀渀 甀猀攀 猀攀渀猀漀爀猀 愀渀搀 挀愀洀攀爀愀猀 琀栀愀琀 挀漀氀氀攀挀琀 猀攀渀猀椀琀椀瘀攀 栀攀愀氀琀栀 搀愀琀愀⸀ 䔀渀猀甀爀椀渀最 琀栀愀琀 琀栀椀猀 椀渀昀漀爀洀愀琀椀漀渀 椀猀 猀攀挀甀爀攀氀礀 猀琀漀爀攀搀 愀渀搀 甀猀攀搀 爀攀猀瀀漀渀猀椀戀氀礀 椀猀 攀猀猀攀渀琀椀愀氀⸀∀ऀ∀䘀椀爀猀琀Ⰰ 瀀愀琀椀攀渀琀 猀愀昀攀琀礀 愀渀搀 搀椀最渀椀琀礀 洀甀猀琀 愀氀眀愀礀猀 挀漀洀攀 昀椀爀猀琀⸀ 刀漀戀漀琀猀 猀栀漀甀氀搀 戀攀 搀攀猀椀最渀攀搀 琀漀 栀愀渀搀氀攀 瀀愀琀椀攀渀琀猀 最攀渀琀氀礀 愀渀搀 猀攀挀甀爀攀氀礀Ⰰ 爀攀猀瀀攀挀琀椀渀最 琀栀攀椀爀 挀漀洀昀漀爀琀Ⰰ 瀀爀椀瘀愀挀礀Ⰰ 愀渀搀 愀甀琀漀渀漀洀礀⸀ 䤀渀昀漀爀洀攀搀 挀漀渀猀攀渀琀 椀猀 愀氀猀漀 挀爀椀琀椀挀愀氀Ⰰ 愀猀 瀀愀琀椀攀渀琀猀 猀栀漀甀氀搀 甀渀搀攀爀猀琀愀渀搀 栀漀眀 琀栀攀 爀漀戀漀琀 眀漀爀欀猀Ⰰ 眀栀愀琀 搀愀琀愀 椀琀 挀漀氀氀攀挀琀猀Ⰰ 愀渀搀 栀漀眀 椀琀 眀椀氀氀 戀攀 甀猀攀搀 椀渀 琀栀攀椀爀 挀愀爀攀⸀\u0a00\u0a00匀攀挀漀渀搀Ⰰ 搀愀琀愀 瀀爀漀琀攀挀琀椀漀渀 愀渀搀 挀漀渀昀椀搀攀渀琀椀愀氀椀琀礀 愀爀攀 洀愀樀漀爀 挀漀渀挀攀爀渀猀⸀ 吀栀攀猀攀 爀漀戀漀琀猀 漀昀琀攀渀 爀攀氀礀 漀渀 猀攀渀猀漀爀猀Ⰰ 挀愀洀攀爀愀猀Ⰰ 漀爀 䄀䤀 猀礀猀琀攀洀猀 琀栀愀琀 爀攀挀漀爀搀 猀攀渀猀椀琀椀瘀攀 栀攀愀氀琀栀 椀渀昀漀爀洀愀琀椀漀渀Ⰰ 猀漀 搀攀瘀攀氀漀瀀攀爀猀 洀甀猀琀 攀渀猀甀爀攀 猀琀爀椀挀琀 搀愀琀愀 攀渀挀爀礀瀀琀椀漀渀 愀渀搀 挀漀洀瀀氀椀愀渀挀攀 眀椀琀栀 栀攀愀氀琀栀挀愀爀攀 瀀爀椀瘀愀挀礀 爀攀最甀氀愀琀椀漀渀猀⸀\u0a00\u0a00吀栀椀爀搀Ⰰ 攀焀甀椀琀礀 愀渀搀 愀挀挀攀猀猀椀戀椀氀椀琀礀 猀栀漀甀氀搀 戀攀 愀搀搀爀攀猀猀攀搀⸀ 吀栀攀 琀攀挀栀渀漀氀漀最礀 猀栀漀甀氀搀 渀漀琀 漀渀氀礀 戀攀 愀瘀愀椀氀愀戀氀攀 琀漀 眀攀氀氀ⴀ昀甀渀搀攀搀 栀漀猀瀀椀琀愀氀猀 戀甀琀 愀氀猀漀 愀挀挀攀猀猀椀戀氀攀 琀漀 猀洀愀氀氀攀爀 昀愀挀椀氀椀琀椀攀猀 愀渀搀 搀椀瘀攀爀猀攀 瀀愀琀椀攀渀琀 瀀漀瀀甀氀愀琀椀漀渀猀⸀\u0a00\u0a00䰀愀猀琀氀礀Ⰰ 椀琀ᤀ猠 攀猀猀攀渀琀椀愀氀 琀漀 洀愀椀渀琀愀椀渀 栀甀洀愀渀 漀瘀攀爀猀椀最栀琀 愀渀搀 攀洀漀琀椀漀渀愀氀 挀漀渀渀攀挀琀椀漀渀 椀渀 挀愀爀攀⸀ 刀漀戀漀琀猀 猀栀漀甀氀搀 猀甀瀀瀀漀爀琀Ⰰ 渀漀琀 爀攀瀀氀愀挀攀Ⰰ 琀栀攀 栀甀洀愀渀 攀氀攀洀攀渀琀猀 漀昀 攀洀瀀愀琀栀礀Ⰰ 挀漀洀瀀愀猀猀椀漀渀Ⰰ 愀渀搀 攀琀栀椀挀愀氀 樀甀搀最洀攀渀琀 琀栀愀琀 愀爀攀 挀攀渀琀爀愀氀 琀漀 栀攀愀氀琀栀挀愀爀攀 瀀爀愀挀琀椀挀攀⸀∀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㜀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㘀ऀ㔀ऀ㐀ऀ㐀ऀ㐀ऀ㔀ऀ㔀ऀ㘀ऀ㘀ऀ㔀ऀ㈀ऀ㈀ऀ㈀ऀ㈀ऀ㈀ऀ\u3100ऀऀ∀䤀 眀漀甀氀搀 愀挀挀攀瀀琀 琀栀攀 甀猀攀 漀昀 爀漀戀漀琀猀 琀栀愀琀 洀漀渀椀琀漀爀 瘀椀琀愀氀 猀椀最渀猀 椀渀 挀愀爀攀最椀瘀椀渀最 琀愀猀欀猀 戀攀挀愀甀猀攀 琀栀攀礀 挀愀渀 最爀攀愀琀氀礀 椀洀瀀爀漀瘀攀 瀀愀琀椀攀渀琀 猀愀昀攀琀礀 愀渀搀 攀昀昀椀挀椀攀渀挀礀 椀渀 栀攀愀氀琀栀挀愀爀攀 猀攀琀琀椀渀最猀⸀ 䈀礀 挀漀渀琀椀渀甀漀甀猀氀礀 琀爀愀挀欀椀渀最 欀攀礀 栀攀愀氀琀栀 椀渀搀椀挀愀琀漀爀猀 氀椀欀攀 栀攀愀爀琀 爀愀琀攀Ⰰ 戀氀漀漀搀 瀀爀攀猀猀甀爀攀Ⰰ 愀渀搀 漀砀礀最攀渀 氀攀瘀攀氀猀Ⰰ 琀栀攀猀攀 爀漀戀漀琀猀 挀愀渀 搀攀琀攀挀琀 挀栀愀渀最攀猀 攀愀爀氀椀攀爀 琀栀愀渀 洀愀渀甀愀氀 挀栀攀挀欀猀Ⰰ 愀氀氀漀眀椀渀最 昀漀爀 昀愀猀琀攀爀 洀攀搀椀挀愀氀 爀攀猀瀀漀渀猀攀猀⸀ 吀栀椀猀 挀漀渀猀琀愀渀琀 洀漀渀椀琀漀爀椀渀最 栀攀氀瀀猀 瀀爀攀瘀攀渀琀 攀洀攀爀最攀渀挀椀攀猀 愀渀搀 爀攀搀甀挀攀猀 琀栀攀 眀漀爀欀氀漀愀搀 漀渀 渀甀爀猀攀猀Ⰰ 眀栀漀 挀愀渀 琀栀攀渀 昀漀挀甀猀 漀渀 搀椀爀攀挀琀 瀀愀琀椀攀渀琀 挀愀爀攀 愀渀搀 攀洀漀琀椀漀渀愀氀 猀甀瀀瀀漀爀琀⸀∀ऀ∀夀攀猀Ⰰ 琀栀攀爀攀 愀爀攀 猀攀瘀攀爀愀氀 爀椀猀欀猀 愀渀搀 攀琀栀椀挀愀氀 挀漀渀挀攀爀渀猀 琀漀 挀漀渀猀椀搀攀爀 眀栀攀渀 甀猀椀渀最 爀漀戀漀琀猀 琀漀 洀漀渀椀琀漀爀 瘀椀琀愀氀 猀椀最渀猀 椀渀 栀攀愀氀琀栀挀愀爀攀⸀ 伀渀攀 欀攀礀 挀漀渀挀攀爀渀 椀猀 搀愀琀愀 瀀爀椀瘀愀挀礀 愀渀搀 猀攀挀甀爀椀琀礀㨀 猀椀渀挀攀 琀栀攀猀攀 爀漀戀漀琀猀 挀漀氀氀攀挀琀 猀攀渀猀椀琀椀瘀攀 栀攀愀氀琀栀 椀渀昀漀爀洀愀琀椀漀渀Ⰰ 琀栀攀爀攀ᤀ猠 愀 爀椀猀欀 漀昀 甀渀愀甀琀栀漀爀椀稀攀搀 愀挀挀攀猀猀 漀爀 搀愀琀愀 戀爀攀愀挀栀攀猀 椀昀 瀀爀漀瀀攀爀 挀礀戀攀爀猀攀挀甀爀椀琀礀 洀攀愀猀甀爀攀猀 愀爀攀渀ᤀ琠 椀渀 瀀氀愀挀攀⸀ 䄀渀漀琀栀攀爀 挀漀渀挀攀爀渀 椀猀 爀攀氀椀愀戀椀氀椀琀礀 愀渀搀 愀挀挀甀爀愀挀礀⸀ 䤀昀 琀栀攀 爀漀戀漀琀 洀愀氀昀甀渀挀琀椀漀渀猀Ⰰ 洀椀猀爀攀愀搀猀 愀 猀椀最渀愀氀Ⰰ 漀爀 昀愀椀氀猀 琀漀 搀攀琀攀挀琀 愀 挀栀愀渀最攀 椀渀 愀 瀀愀琀椀攀渀琀ᤀ猠 挀漀渀搀椀琀椀漀渀Ⰰ 椀琀 挀漀甀氀搀 搀攀氀愀礀 挀爀椀琀椀挀愀氀 挀愀爀攀 漀爀 氀攀愀搀 琀漀 栀愀爀洀昀甀氀 漀甀琀挀漀洀攀猀⸀∀ऀ∀䘀椀爀猀琀Ⰰ 瀀愀琀椀攀渀琀 猀愀昀攀琀礀 愀渀搀 愀挀挀甀爀愀挀礀 愀爀攀 瀀愀爀愀洀漀甀渀琀⸀ 吀栀攀 爀漀戀漀琀 洀甀猀琀 爀攀氀椀愀戀氀礀 洀攀愀猀甀爀攀 愀渀搀 椀渀琀攀爀瀀爀攀琀 瘀椀琀愀氀 猀椀最渀猀Ⰰ 愀猀 攀爀爀漀爀猀 挀漀甀氀搀 搀攀氀愀礀 琀爀攀愀琀洀攀渀琀 漀爀 挀愀甀猀攀 栀愀爀洀⸀ 䌀漀渀琀椀渀甀漀甀猀 琀攀猀琀椀渀最Ⰰ 瘀愀氀椀搀愀琀椀漀渀Ⰰ 愀渀搀 栀甀洀愀渀 漀瘀攀爀猀椀最栀琀 愀爀攀 攀猀猀攀渀琀椀愀氀 琀漀 瀀爀攀瘀攀渀琀 洀椀猀琀愀欀攀猀⸀\u0a00\u0a00匀攀挀漀渀搀Ⰰ 瀀爀椀瘀愀挀礀 愀渀搀 搀愀琀愀 猀攀挀甀爀椀琀礀 愀爀攀 挀爀椀琀椀挀愀氀⸀ 吀栀攀猀攀 爀漀戀漀琀猀 挀漀氀氀攀挀琀 猀攀渀猀椀琀椀瘀攀 瀀攀爀猀漀渀愀氀 栀攀愀氀琀栀 椀渀昀漀爀洀愀琀椀漀渀Ⰰ 猀漀 搀攀瘀攀氀漀瀀攀爀猀 洀甀猀琀 攀渀猀甀爀攀 琀栀愀琀 愀氀氀 搀愀琀愀 椀猀 攀渀挀爀礀瀀琀攀搀Ⰰ 猀攀挀甀爀攀氀礀 猀琀漀爀攀搀Ⰰ 愀渀搀 甀猀攀搀 漀渀氀礀 昀漀爀 愀甀琀栀漀爀椀稀攀搀 瀀甀爀瀀漀猀攀猀Ⰰ 挀漀洀瀀氀礀椀渀最 眀椀琀栀 栀攀愀氀琀栀挀愀爀攀 瀀爀椀瘀愀挀礀 爀攀最甀氀愀琀椀漀渀猀⸀\u0a00\u0a00吀栀椀爀搀Ⰰ 洀愀椀渀琀愀椀渀椀渀最 栀甀洀愀渀 椀渀琀攀爀愀挀琀椀漀渀 愀渀搀 攀洀瀀愀琀栀礀 椀渀 挀愀爀攀 椀猀 椀洀瀀漀爀琀愀渀琀⸀ 圀栀椀氀攀 爀漀戀漀琀猀 挀愀渀 愀猀猀椀猀琀 眀椀琀栀 洀漀渀椀琀漀爀椀渀最Ⰰ 琀栀攀礀 猀栀漀甀氀搀 渀漀琀 爀攀瀀氀愀挀攀 琀栀攀 栀甀洀愀渀 挀漀渀渀攀挀琀椀漀渀 琀栀愀琀 猀甀瀀瀀漀爀琀猀 瀀愀琀椀攀渀琀猀ᤀ†攀洀漀琀椀漀渀愀氀 眀攀氀氀ⴀ戀攀椀渀最 愀渀搀 琀爀甀猀琀 椀渀 栀攀愀氀琀栀挀愀爀攀 瀀爀漀瘀椀搀攀爀猀⸀\u0a00\u0a00䘀椀渀愀氀氀礀Ⰰ 愀挀挀漀甀渀琀愀戀椀氀椀琀礀 愀渀搀 琀爀愀渀猀瀀愀爀攀渀挀礀 洀甀猀琀 戀攀 愀搀搀爀攀猀猀攀搀⸀ 䌀氀攀愀爀 瀀爀漀琀漀挀漀氀猀 猀栀漀甀氀搀 搀攀昀椀渀攀 眀栀漀 椀猀 爀攀猀瀀漀渀猀椀戀氀攀 昀漀爀 攀爀爀漀爀猀 漀爀 洀愀氀昀甀渀挀琀椀漀渀猀Ⰰ 愀渀搀 瀀愀琀椀攀渀琀猀 猀栀漀甀氀搀 戀攀 椀渀昀漀爀洀攀搀 愀戀漀甀琀 琀栀攀 爀漀戀漀琀ᤀ猠 爀漀氀攀Ⰰ 挀愀瀀愀戀椀氀椀琀椀攀猀Ⰰ 愀渀搀 氀椀洀椀琀愀琀椀漀渀猀⸀.\"\t5\t6\t6\t6\t6\t6\t6\t6\t5\t6\t6\t6\t5\t5\t5\t4\t5\t4\t4\t4\t4\t6\t6\t5\t2\t2\t2\t2\t2\t1\t\t\"I would accept the use of mobility-assistance robots in caregiving and rehabilitation tasks because they can significantly improve both patient outcomes and caregiver safety. These robots provide physical support to patients recovering from strokes or injuries, helping them practice walking, maintain proper posture, and reduce the risk of falls. This support allows caregivers to focus on supervising and guiding therapy rather than performing physically demanding lifts or transfers, which can reduce fatigue and injury.\"\t\"One key concern is patient safety. If the robot malfunctions, applies too much force, or misjudges a patient’s movement, it could cause falls, injuries, or delays in rehabilitation. Another concern is overreliance on technology, which might reduce direct interaction between patients and caregivers. Human guidance, encouragement, and feedback are critical in rehabilitation, and robots cannot fully replicate these aspects."</code></pre>
+<pre><code>[1] "\"CASE\"\t\"SERIAL\"\t\"REF\"\t\"QUESTNNR\"\t\"MODE\"\t\"STARTED\"\t\"A011_01\"\t\"A011_02\"\t\"A012\"\t\"A012_01\"\t\"A012_02\"\t\"A012_03\"\t\"A012_04\"\t\"A012_05\"\t\"A012_06\"\t\"A012_06a\"\t\"A014_01\"\t\"A014_02\"\t\"A014_03\"\t\"A015_01\"\t\"A015_02\"\t\"A015_03\"\t\"A015_04\"\t\"A016_01\"\t\"A016_02\"\t\"A016_03\"\t\"A016_04\"\t\"A017_01\"\t\"A017_02\"\t\"A017_03\"\t\"A017_04\"\t\"A018_01\"\t\"A018_02\"\t\"A018_03\"\t\"A019_01\"\t\"A019_02\"\t\"A019_03\"\t\"A019_04\"\t\"A019_05\"\t\"A019_06\"\t\"A019_07\"\t\"A110_01\"\t\"A110_02\"\t\"A111\"\t\"A111_01\"\t\"A111_02\"\t\"A111_03\"\t\"A111_04\"\t\"A111_05\"\t\"A111_06\"\t\"A111_06a\"\t\"A112_01\"\t\"A112_02\"\t\"A112_03\"\t\"A113_01\"\t\"A113_02\"\t\"A113_03\"\t\"A113_04\"\t\"A114_01\"\t\"A114_02\"\t\"A114_03\"\t\"A114_04\"\t\"A115_01\"\t\"A115_02\"\t\"A115_03\"\t\"A115_04\"\t\"A116_01\"\t\"A116_02\"\t\"A116_03\"\t\"A117_01\"\t\"A117_02\"\t\"A117_03\"\t\"A117_04\"\t\"A117_05\"\t\"A117_06\"\t\"A117_07\"\t\"A209_01\"\t\"A209_02\"\t\"A211\"\t\"A211_01\"\t\"A211_02\"\t\"A211_03\"\t\"A211_04\"\t\"A211_05\"\t\"A211_06\"\t\"A211_06a\"\t\"A212_01\"\t\"A212_02\"\t\"A212_03\"\t\"A213_01\"\t\"A213_02\"\t\"A213_03\"\t\"A213_04\"\t\"A214_01\"\t\"A214_02\"\t\"A214_03\"\t\"A214_04\"\t\"A215_01\"\t\"A215_02\"\t\"A215_03\"\t\"A215_04\"\t\"A216_01\"\t\"A216_02\"\t\"A216_03\"\t\"A217_01\"\t\"A217_02\"\t\"A217_03\"\t\"A217_04\"\t\"A217_05\"\t\"A217_06\"\t\"A217_07\"\t\"A310_01\"\t\"A310_02\"\t\"A311\"\t\"A311_01\"\t\"A311_02\"\t\"A311_03\"\t\"A311_04\"\t\"A311_05\"\t\"A311_06\"\t\"A311_06a\"\t\"A312_01\"\t\"A312_02\"\t\"A312_03\"\t\"A313_01\"\t\"A313_02\"\t\"A313_03\"\t\"A313_04\"\t\"A314_01\"\t\"A314_02\"\t\"A314_03\"\t\"A314_04\"\t\"A315_01\"\t\"A315_02\"\t\"A315_03\"\t\"A315_04\"\t\"A316_01\"\t\"A316_02\"\t\"A316_03\"\t\"A317_01\"\t\"A317_02\"\t\"A317_03\"\t\"A317_04\"\t\"A317_05\"\t\"A317_06\"\t\"A317_07\"\t\"A401\"\t\"A701_01\"\t\"A702\"\t\"A702_05\"\t\"A703\"\t\"A705_01\"\t\"D101_01\"\t\"D101_02\"\t\"D102\"\t\"D102_01\"\t\"D102_02\"\t\"D102_03\"\t\"D102_04\"\t\"D102_05\"\t\"D102_06\"\t\"D102_06a\"\t\"D103_01\"\t\"D103_02\"\t\"D103_03\"\t\"D104_01\"\t\"D104_02\"\t\"D104_03\"\t\"D104_04\"\t\"D105_01\"\t\"D105_02\"\t\"D105_03\"\t\"D105_04\"\t\"D106_01\"\t\"D106_02\"\t\"D106_03\"\t\"D106_04\"\t\"D107_01\"\t\"D107_02\"\t\"D107_03\"\t\"D108_01\"\t\"D108_02\"\t\"D108_03\"\t\"D108_04\"\t\"D108_05\"\t\"D108_06\"\t\"D108_07\"\t\"D201_01\"\t\"D201_02\"\t\"D202\"\t\"D202_01\"\t\"D202_02\"\t\"D202_03\"\t\"D202_04\"\t\"D202_05\"\t\"D202_06\"\t\"D202_06a\"\t\"D203_01\"\t\"D203_02\"\t\"D203_03\"\t\"D204_01\"\t\"D204_02\"\t\"D204_03\"\t\"D204_04\"\t\"D205_01\"\t\"D205_02\"\t\"D205_03\"\t\"D205_04\"\t\"D206_01\"\t\"D206_02\"\t\"D206_03\"\t\"D206_04\"\t\"D207_01\"\t\"D207_02\"\t\"D207_03\"\t\"D208_01\"\t\"D208_02\"\t\"D208_03\"\t\"D208_04\"\t\"D208_05\"\t\"D208_06\"\t\"D301_01\"\t\"D301_02\"\t\"D302\"\t\"D302_01\"\t\"D302_02\"\t\"D302_03\"\t\"D302_04\"\t\"D302_05\"\t\"D302_06\"\t\"D302_06a\"\t\"D303_01\"\t\"D303_02\"\t\"D303_03\"\t\"D304_01\"\t\"D304_02\"\t\"D304_03\"\t\"D304_04\"\t\"D305_01\"\t\"D305_02\"\t\"D305_03\"\t\"D305_04\"\t\"D306_01\"\t\"D306_02\"\t\"D306_03\"\t\"D306_04\"\t\"D307_01\"\t\"D307_02\"\t\"D307_03\"\t\"D308_01\"\t\"D308_02\"\t\"D308_03\"\t\"D308_04\"\t\"D308_05\"\t\"D308_06\"\t\"D401_01\"\t\"D401_02\"\t\"D402\"\t\"D402_01\"\t\"D402_02\"\t\"D402_03\"\t\"D402_04\"\t\"D402_05\"\t\"D402_06\"\t\"D402_06a\"\t\"D403_01\"\t\"D403_02\"\t\"D403_03\"\t\"D404_01\"\t\"D404_02\"\t\"D404_03\"\t\"D404_04\"\t\"D405_01\"\t\"D405_02\"\t\"D405_03\"\t\"D405_04\"\t\"D406_01\"\t\"D406_02\"\t\"D406_03\"\t\"D406_04\"\t\"D407_01\"\t\"D407_02\"\t\"D407_03\"\t\"D408_01\"\t\"D408_02\"\t\"D408_03\"\t\"D408_04\"\t\"D408_05\"\t\"D408_06\"\t\"D501\"\t\"D801_01\"\t\"D802\"\t\"D803\"\t\"D804_01\"\t\"RA01_CP\"\t\"RA01\"\t\"TIME001\"\t\"TIME002\"\t\"TIME003\"\t\"TIME004\"\t\"TIME005\"\t\"TIME006\"\t\"TIME007\"\t\"TIME008\"\t\"TIME009\"\t\"TIME010\"\t\"TIME011\"\t\"TIME012\"\t\"TIME013\"\t\"TIME014\"\t\"TIME015\"\t\"TIME016\"\t\"TIME017\"\t\"TIME018\"\t\"TIME019\"\t\"TIME020\"\t\"TIME021\"\t\"TIME022\"\t\"TIME023\"\t\"TIME024\"\t\"TIME025\"\t\"TIME_SUM\"\t\"MAILSENT\"\t\"LASTDATA\"\t\"STATUS\"\t\"FINISHED\"\t\"Q_VIEWER\"\t\"LASTPAGE\"\t\"MAXPAGE\"\t\"MISSING\"\t\"MISSREL\"\t\"TIME_RSI\""
+[2] "\u0a0d㔀　㤀ऀऀऀ∀焀渀爀㈀∀ऀ∀椀渀琀攀爀瘀椀攀眀∀ऀ㈀　㈀㔀ⴀ\u3100　ⴀ㈀㤀 \u3100\u3100㨀\u3100㐀㨀\u3100㜀ऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀ\u3100ऀऀऀऀऀ　ऀ\u3100㤀ऀ㈀ऀ㌀ऀ\u3100ऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀ㘀ऀऀ㈀　㈀㔀ⴀ\u3100　ⴀ㈀㤀 \u3100\u3100㨀\u3100㐀㨀㈀㌀ऀऀ　ऀ　ऀ㌀ऀ㌀ऀ　ऀ　ऀ㈀⸀㘀㜀ഀഀ"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+[3] "512\t\t\t\"base\"\t\"interview\"\t2025-10-29 11:30:21\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t1\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t0\t16\t3\t3\t2\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t8\t\t2025-10-29 11:30:29\t\t0\t0\t3\t3\t0\t0\t3"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+[4] "\u0a0d㔀\u3100㌀ऀऀऀ∀焀渀爀㈀∀ऀ∀椀渀琀攀爀瘀椀攀眀∀ऀ㈀　㈀㔀ⴀ\u3100　ⴀ㈀㤀 \u3100\u3100㨀㌀㔀㨀　㠀ऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀऀ㘀ऀ㘀ऀ㔀ऀ㈀ऀ㈀ऀ㈀ऀ㈀ऀ㈀ऀ\u3100ऀऀ∀椀琀 眀漀甀氀搀 昀爀攀攀 甀瀀 愀 瀀攀爀猀漀渀 琀漀 眀漀爀欀 漀渀 猀漀洀攀琀栀椀渀最 攀氀猀攀∀ऀ∀渀漀渀攀∀ऀ∀渀漀渀攀∀ऀ㐀ऀ㌀ऀ㌀ऀ㌀ऀ㔀ऀ㔀ऀ㔀ऀ㔀ऀ㔀ऀ㔀ऀ㔀ऀ㔀ऀ㐀ऀ㐀ऀ㐀ऀ㌀ऀ㌀ऀ㌀ऀ㐀ऀ㐀ऀ㐀ऀ㐀ऀ㐀ऀ㐀ऀ㐀ऀ㈀ऀ㈀ऀ㈀ऀ\u3100ऀ㈀ऀ\u3100ऀऀ∀琀栀椀猀 氀漀漀欀猀 氀椀欀攀 椀琀 挀漀甀氀搀 戀攀 搀愀渀最攀爀漀甀猀Ⰰ 愀渀搀 瀀漀猀猀椀戀氀礀 攀渀搀 甀瀀 栀甀爀琀椀渀最 猀漀洀攀漀渀攀∀ऀ∀椀琀 氀漀漀欀猀 甀渀猀愀昀攀Ⰰ 愀渀搀 渀漀琀 渀攀愀爀氀礀 愀猀 最攀渀琀氀攀 愀猀 椀琀 猀栀漀甀氀搀 戀攀∀ऀ∀䤀 眀漀甀氀搀 漀渀氀礀 戀攀 愀昀爀愀椀搀 漀昀 椀琀 栀甀爀琀椀渀最Ⰰ 漀爀 搀爀漀瀀瀀椀渀最 猀漀洀攀漀渀攀⸀.  or malfunctioning, getting stuck, etc\"\t3\t3\t3\t3\t4\t4\t4\t4\t5\t6\t5\t6\t3\t3\t3\t3\t3\t3\t3\t3\t3\t5\t6\t5\t2\t2\t2\t2\t2\t1\t\t\"I think it could be great in most cases.  I would worry that some children might be scared of it, and some older people may be confused.\"\t\"I would worry it could be hacked \"\t\"making sure patient information is secure\"\t1\t1\t1\t1\t3\t1\t4\t6\t4\t5\t4\t5\t4\t4\t4\t3\t3\t4\t4\t4\t4\t5\t5\t3\t2\t2\t2\t1\t1\t1\t\t\"it could be very helpful for patients going through recovery, etc\"\t\"it would need to careful, and safe\"\t\"none\"\t4\t4\t3\t3\t4\t5\t5\t5\t5\t5\t5\t5\t4\t4\t4\t3\t3\t4\t4\t4\t4\t1\t\"54\"\t1\t5\t\"united states\"\t0\t14\t4\t4\t18\t5\t69\t39\t11\t32\t4\t92\t31\t11\t85\t32\t70\t72\t55\t93\t2\t45\t36\t12\t54\t3\t16\t855\t\t2025-10-29 11:50:03\t\t1\t0\t25\t25\t0\t0\t1.6"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">close</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1399,257 +1398,453 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="save-data-sets" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> save data sets</h1>
+<section id="get-all-columns-containing-text-answers" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> get all columns containing text answers</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"outputs"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(ds, <span class="at">file =</span> <span class="fu">paste0</span>(<span class="st">"ds"</span>, <span class="st">".rds"</span>))</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>writexl<span class="sc">::</span><span class="fu">write_xlsx</span>(<span class="at">x =</span> ds, <span class="at">path =</span> <span class="fu">paste0</span>(<span class="st">"ds"</span>, <span class="st">".xlsx"</span>))</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(<span class="at">x =</span> ds, <span class="at">file =</span>  <span class="fu">paste0</span>(<span class="st">"ds"</span>, <span class="st">".csv"</span>))</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>haven<span class="sc">::</span><span class="fu">write_sav</span>(<span class="at">data =</span> ds, <span class="at">path =</span> <span class="fu">paste0</span>(<span class="st">"ds"</span>, <span class="st">".sav"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>extract_string_vars_with_3_words <span class="ot">&lt;-</span> <span class="cf">function</span>(ds) {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  ds <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">where</span>(is.character)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">where</span>(<span class="sc">~</span> <span class="fu">any</span>(<span class="fu">str_count</span>(., <span class="st">"</span><span class="sc">\\</span><span class="st">S+"</span>) <span class="sc">&gt;=</span> <span class="dv">3</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>()</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">extract_string_vars_with_3_words</span>(ds)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>vars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "A012_06a" "A014_01"  "A014_02"  "A014_03"  "A111_06a" "A112_01" 
+ [7] "A112_02"  "A112_03"  "A211_06a" "A212_01"  "A212_02"  "A212_03" 
+[13] "A311_06a" "A312_01"  "A312_02"  "A312_03"  "D102_06a" "D103_01" 
+[19] "D103_02"  "D103_03"  "D202_06a" "D203_01"  "D203_02"  "D203_03" 
+[25] "D302_06a" "D303_01"  "D303_02"  "D303_03"  "D402_06a" "D403_01" 
+[31] "D403_02"  "D403_03"  "D804_01" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(v <span class="cf">in</span> vars){</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">#######</span><span class="sc">\n</span><span class="st">"</span>, v, <span class="st">"entries:</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">as.vector</span>(ds[<span class="fu">complete.cases</span>(ds[, v]), v])[[<span class="dv">1</span>]][<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+#######
+ A012_06a entries:
+ clinicas dentales GINECOLOGIA Y ODONTOLOGIA Clínicas de medicina familiar y situaciones donde no haya urgencias
+
+#######
+ A014_01 entries:
+ me preocupa que el robot lastime a alguna persona Me preocuparia la seguridad, de que solo las personas correctas recibieran los suministros correctos El robot parece muy lento como para permitir hacer las cosas de forma ágil.
+
+#######
+ A014_02 entries:
+ me preocupa la privacidad Preocupacion etica, no, creo que no deberia haber ningun problema etico Que puedan aumentar los errores al no haber verificaciones humanas en el proceso
+
+#######
+ A014_03 entries:
+ deberia haber un profesional siempre presente Solo lo de que si se vea mucho la seguridad de quien recibira que Riesgo de pérdida de confidencialidad para los pacientes.
+
+#######
+ A111_06a entries:
+ Hospitales de Ginecologia y Obstetricia uci En casa con pacientes con dificultad para ser dependientes
+
+#######
+ A112_01 entries:
+ me da desconfianza que el robot vaya a fallar y lastmar al paciente Solo creo que tendria que usarse bajo supervision, pues puede que incluso superficies inestables le afecten Que por el momento el robot se observa algo torpe, me preocuparía mucho que deje caer un paciente.
+
+#######
+ A112_02 entries:
+ me preocupa que hay muchas personas que están en contra de ser tratados con un robot. hay pacientes que se asustarian No, creo que eticamente hablando es aceptable Me preocupa sobre todo que pueda llegar a lastimar a un paciente, especialmente aquellos con problemas de demencia que puedan ponerse combativos con el robot
+
+#######
+ A112_03 entries:
+ dberia de usarse siempre en presencia de un profesional No en el desarrollo del robot en si, mas la educacion hacia las personas a que no les del miedo estas tecnologias y vean todas las ventajas Asegurar la seguridad del paciente. Aun no se ve lo suficientemente estable esta tecnología para uso a nivel hospitalario o del hogar.
+
+#######
+ A211_06a entries:
+ clinica de urgencias, salas de espera de hospitales Urgencias CARDIOLOGÍA
+
+#######
+ A212_01 entries:
+ me preocupa que el robot cometa errores y el paciente no pueda pedirle que corrija No tengo porque rechazarlo, me parece muy buena idea El robot es simpático, fácil de entender y hace una tarea que consume mucho tiempo y que realmente no requiere mucha habilidad. Solemos enviar a las estudiantes de enfermería a tomar los signos. El robot libera tiempo que ellas ahora pueden dedicar a desarrollar otras habilidades
+
+#######
+ A212_02 entries:
+ me preocupa a privacidad de la informacion del paciente asi como la falta de contacto humano No, no creo que haya problemas eticos Que el robot no sea capaz de detectar una emergencia y alguien pueda salir lastimado porque no va un ser humano a verle con regularidad
+
+#######
+ A212_03 entries:
+ dberia de haber un profesional siempre presente Solo que sepa tratar con pacientes aunque sean dificiles Que el algoritmo realmente sea capaz de detectar problemas y que alerte al personal de forma oportuna
+
+#######
+ A311_06a entries:
+ Rehabiitación Hospitales de cardiología Centros de rehabilitacio o fisioterapia
+
+#######
+ A312_01 entries:
+ me parece una adicion util para rehabilitacion o terapia fisica estereotipos y siento que seria importante que sepan cuando llamr a una persona para problemas serios Nos ayudaría mucho a mejorar la rehabilitación de los pacientes con menos riesgos de caídas para el paciente y menor riesgo de lesión para quienes están dando la rehabilitación
+
+#######
+ A312_02 entries:
+ me preocupa que tenga una falla y lastime a alguien no, algunos grupos seguramente veran cuestiones eticas pero a mi parecer no seria riesgo o preocupacion Ninguno
+
+#######
+ A312_03 entries:
+ deberia haber un profesional siempre presente Que todos los involucrados esten de acuerdo El acceso equitativo al mismo.
+
+#######
+ D102_06a entries:
+ Nursing homes I think such a robot could be usefull in office settings as well Outpatient Surgery Centers
+
+#######
+ D103_01 entries:
+ it would free up a person to work on something else I would accept the use of supply-delivery robots in healthcare because they help reduce the physical and logistical burden on nursing staff, allowing caregivers to focus on direct patient care. In situations like high-pressure hospital shifts or infectious disease outbreaks, these robots can safely transport medications, lab samples, and sterile equipment without risking staff exposure or causing delays.
+
+I would expect these robots to be reliable, accurate, and easy to operate, with clear protocols for scheduling and tracking deliveries. I also value their ability to integrate smoothly into existing workflows without disrupting patients or staff. Overall, I see them as supportive tools that improve efficiency and safety, rather than replacing the essential human role of healthcare workers. I would accept this robot because it could effectively transport supplies between the hospital and the ambulance, saving time during emergencies when every second counts. By restocking the equipment quickly it would reduce delays limit unnecessary staff movement and help EMS team stay focused on patient care after rather than logistics
+
+#######
+ D103_02 entries:
+ none One concern is safety. While these robots are designed to navigate hospital environments, there is a small risk of collisions with staff, patients, or equipment, which could cause accidents or disrupt care. Another issue is reliability and dependency; if a robot malfunctions or delivers the wrong item, it could delay critical treatments or cause errors.
+
+Data privacy and security is also important, as these robots often operate through centralized systems that track deliveries and item details. Ensuring that sensitive information is protected is essential.
+
+Finally, ethical considerations around workforce impact arise. While robots reduce repetitive tasks, overreliance on automation could potentially diminish staff engagement or reduce opportunities for human judgment in logistical decision-making. To mitigate these risks, robots should be used as supportive tools with proper oversight, training, and safety protocols. Yes risks include delays if the robot malfunctions errors in supply delivery or obstacles and busy emergency areas that could interfere with urgent situations I
+
+#######
+ D103_03 entries:
+ none Patient and staff safety is paramount. Robots must navigate hospital environments without causing collisions or disruptions, and there should be clear protocols for handling malfunctions or emergencies.
+
+Reliability and accountability are also critical. Hospitals need systems in place to track deliveries accurately and assign responsibility if errors occur, such as delivering the wrong medication or sample.
+
+Data privacy and security must be ensured, as these robots often operate through centralized systems that store sensitive information about medications, lab samples, or patient-related logistics. Secure data handling and access controls are essential.
+
+Finally, impact on human roles and workflow should be considered. While robots reduce repetitive tasks, they should complement rather than replace the judgment, oversight, and decision-making skills of healthcare staff. Maintaining transparency, training, and proper supervision helps ensure ethical and effective implementation. Ethical issues include ensuring reliability during emergencies, maintaining health oversight and accountability, prioritizing safety and safe pace environments preventing world flow disruptions and ensuring the robot supports emergency staff without expect without replacing critical human judgment decision making.
+
+#######
+ D202_06a entries:
+ None nursing homes none
+
+#######
+ D203_01 entries:
+ this looks like it could be dangerous, and possibly end up hurting someone I would accept the use of nurse robots in caregiving tasks because they can significantly reduce the physical strain on healthcare workers and help prevent injuries caused by lifting or repetitive movements. By taking over routine or physically demanding tasks, these robots allow nurses and caregivers to focus more on emotional support, medical decision-making, and patient interaction, areas where human empathy and judgment are essential. From a nurses perspective my back has a vote and it's screaming yes. A soft friendly robot that can safely detect weight stabilize a patient and transform from bed to wheelchair could dramatically reduce step injuries and burnout. In the busy hospital that matters if it's consistent calm and doesn't rush it could actually make transfers safer and more dignified especially for patients who feel embarrassed by needing multiple people to lift them. I'd expect to work with me not to replace me like a strong steady extra set of hands that never gets tired. Why I'd hesitate The geriatric patients are the wild card many already feel disoriented powerless or scared. Rolling robot into the room no matter how soft and friendly could spike anxiety or mistrust. Touches personal care is human and I'd worry about the emotional comfort consent and fear especially with dementia patients who may not understand what's happening. Bottom line I'd accept it as a tool not a caregiver. It should support nurses, not substitute compassion. If it earns patients trust slowly, with explanation, choice, and human presence i'm open. If it tries to automate care without humanity hard no
+
+#######
+ D203_02 entries:
+ it looks unsafe, and not nearly as gentle as it should be Yes, there are several risks and ethical concerns associated with using robots in healthcare. One major concern is patient safety: if a robot malfunctions or misinterprets a movement, it could accidentally harm the patient during lifting or transfer. Another issue is privacy, since these robots often use sensors and cameras that collect sensitive health data. Ensuring that this information is securely stored and used responsibly is essential. First patient dignity and consent are front and center. Being lifted or transferred is intensely vulnerable moment. If a patient especially in an older adult or someone with cognitive decline doesn't fully understand or agree to a robot touching their body, that crosses an ethical line. Care should never feel forced or confusing. Second there's emotional harm to consider Healthcare is already lonely for many patients replacing human touch with the machine even partially risk making people feel like task instead of humans. With geriatric patients that sense of abandonment can still settle but be deeply damaging. 3rd safety and accountability matter if a robot malfunctions during a transfer who is responsible? The nurse?The hospital questionmark the manufacturer questionmark ethical use use demands crystal clear accountability and fail saves because one error could mean a serious injury Data and privacy raised concerns if the robot detects weight Let me see then there's roll creep a robot introduced as assistive can quietly become a replacement if staffing cuts follow The shift cares from relational to transgressional and that's a moral downgrade and not progress in short the robot is ethically acceptable only if it protects dignity requires informed consent keeps humans present safeguards data and is used to support not replace caregivers
+
+#######
+ D203_03 entries:
+ I would only be afraid of it hurting, or dropping someone.  or malfunctioning, getting stuck, etc First, patient safety and dignity must always come first. Robots should be designed to handle patients gently and securely, respecting their comfort, privacy, and autonomy. Informed consent is also critical, as patients should understand how the robot works, what data it collects, and how it will be used in their care.
+
+Second, data protection and confidentiality are major concerns. These robots often rely on sensors, cameras, or AI systems that record sensitive health information, so developers must ensure strict data encryption and compliance with healthcare privacy regulations.
+
+Third, equity and accessibility should be addressed. The technology should not only be available to well-funded hospitals but also accessible to smaller facilities and diverse patient populations.
+
+Lastly, it’s essential to maintain human oversight and emotional connection in care. Robots should support, not replace, the human elements of empathy, compassion, and ethical judgment that are central to healthcare practice. Based on my professional experience in caregiving, several ethical issues must be carefully considered when developing or implementing a Care Assist Robot in a healthcare setting. Foremost it is patient dignity and informed consent, especially during high vulnerable moments such as lifting or transferring, where the pat particularly older adult older adults or those with cognitive impairment must clearly understand what is happening and retain the right to refuse without fear or confusion. Human presence and accountability are also essentially The robot should function strictly as an assistive tool under direct caregiver supervision, never independently, because ethical care requires reassurance, observation, and responsibility that technology alone cannot provide. Safety must be prioritized over efficiency with conservative movement with a conservative movement multiple fail-safe and immediate manual override options to prevent injury equity is another concern the robot must be designed to and tested to be safely accommodate diverse body types mobility levels and disabilities to avoid bias or unequal care. Additionally, any data collected such as weight or movement patterns must be minimal transparent and securely protected to respect the patient privacy finally workforce ethics should, must be addressed to ensure the to ensure the robot reduces caregiver injury and burnout rather than being used to justify understanding or replace human caregiving as ethical. As ethical, inflammation should strengthen, not diminish the human centered value of healthcare. Oh my goodness
+
+#######
+ D302_06a entries:
+ nursing homes Nursing homes n/a
+
+#######
+ D303_01 entries:
+ I think it could be great in most cases.  I would worry that some children might be scared of it, and some older people may be confused. I would accept the use of robots that monitor vital signs in caregiving tasks because they can greatly improve patient safety and efficiency in healthcare settings. By continuously tracking key health indicators like heart rate, blood pressure, and oxygen levels, these robots can detect changes earlier than manual checks, allowing for faster medical responses. This constant monitoring helps prevent emergencies and reduces the workload on nurses, who can then focus on direct patient care and emotional support. I would accept the use of a mobility assist to robot because it could help patients with impaired leg function regain movement balance and independence while also reducing physical strain on caregivers during walking or standing assistance. My expectation would be that it moves gently adapts to the patient's pace and it is always used with a caregiver's presence so patients feel supported rather than intimidated
+
+#######
+ D303_02 entries:
+ I would worry it could be hacked Yes, there are several risks and ethical concerns to consider when using robots to monitor vital signs in healthcare. One key concern is data privacy and security: since these robots collect sensitive health information, there’s a risk of unauthorized access or data breaches if proper cybersecurity measures aren’t in place. Another concern is reliability and accuracy. If the robot malfunctions, misreads a signal, or fails to detect a change in a patient’s condition, it could delay critical care or lead to harmful outcomes. Yes there are concerns about patient safety if the robot malfunctions, the need for clear and informed consent and the possibility that patients may feel anxious confused or overly dependent on technology during mobile ability assistance.
+
+#######
+ D303_03 entries:
+ making sure patient information is secure First, patient safety and accuracy are paramount. The robot must reliably measure and interpret vital signs, as errors could delay treatment or cause harm. Continuous testing, validation, and human oversight are essential to prevent mistakes.
+
+Second, privacy and data security are critical. These robots collect sensitive personal health information, so developers must ensure that all data is encrypted, securely stored, and used only for authorized purposes, complying with healthcare privacy regulations.
+
+Third, maintaining human interaction and empathy in care is important. While robots can assist with monitoring, they should not replace the human connection that supports patients’ emotional well-being and trust in healthcare providers.
+
+Finally, accountability and transparency must be addressed. Clear protocols should define who is responsible for errors or malfunctions, and patients should be informed about the robot’s role, capabilities, and limitations. Key ethical issues include protecting patient dignity, ensuring informed consent, maintaining human supervision and accountability, prioritizing safety with strong bill saves, designing for different body types and mobility use levels and life understanding, Patient data and ensuring the robot supports not replacing human caregiving rehabilitation
+
+#######
+ D402_06a entries:
+ Physical therapy Physical Therapy Specialty Centers focused on stroke and spine recovery.
+
+#######
+ D403_01 entries:
+ it could be very helpful for patients going through recovery, etc I would accept the use of mobility-assistance robots in caregiving and rehabilitation tasks because they can significantly improve both patient outcomes and caregiver safety. These robots provide physical support to patients recovering from strokes or injuries, helping them practice walking, maintain proper posture, and reduce the risk of falls. This support allows caregivers to focus on supervising and guiding therapy rather than performing physically demanding lifts or transfers, which can reduce fatigue and injury. I would accept the robot as a supportive tool because it could reduce physical strain and injury during patient transfers, making care safer for both staff and patients. However, I would be cautious using it with geriatric or cognitively impaired patients as unfamiliar technology may cause fear or confusion it would expect to be a use slowly gently and only with a caregivers presence
+
+#######
+ D403_02 entries:
+ it would need to careful, and safe One key concern is patient safety. If the robot malfunctions, applies too much force, or misjudges a patient’s movement, it could cause falls, injuries, or delays in rehabilitation. Another concern is overreliance on technology, which might reduce direct interaction between patients and caregivers. Human guidance, encouragement, and feedback are critical in rehabilitation, and robots cannot fully replicate these aspects.
+
+Privacy and data security are also important, as these robots often collect detailed information about a patient’s movements and physical abilities. Ensuring that this data is securely stored and used appropriately is essential.
+
+Finally, ethical considerations around autonomy and informed consent arise. Patients should fully understand how the robot works, its limitations, and their right to refuse or limit its use. Proper training for caregivers and continuous monitoring can help mitigate these risks while ensuring safe and ethical implementation. Yes there are risk related to patient consent, dignity, emotional comfort, safety in case of malfunction, and over reliance on technology instead of human care.
+
+#######
+ D403_03 entries:
+ none Patient safety and well-being are paramount. The robot must support movement without causing falls, injuries, or discomfort, and caregivers must maintain oversight to intervene if necessary.
+
+Informed consent and autonomy are also critical. Patients should understand how the robot works, what data it collects, and have the right to refuse or limit its use according to their comfort and preferences.
+
+Data privacy and security must be addressed, as these robots collect sensitive information on patient movements, posture, and progress. Ensuring secure storage and responsible use of this data is essential.
+
+Finally, maintaining human interaction and therapeutic engagement is an ethical priority. While robots can assist with repetitive or physically demanding tasks, they should not replace the motivation, guidance, and emotional support that therapists provide during rehabilitation. Key ethical issues include informed consent, preservation of patient dignity, mandatory human supervision, strong safety safeguards, protection of patient data, fair design for all body types and abilities, and ensuring the robot supports the caregivers rather than replacing human care.
+
+#######
+ D804_01 entries:
+ united states United States b n</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">"'"</span>, vars, <span class="st">"',"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'A012_06a', 'A014_01', 'A014_02', 'A014_03', 'A111_06a', 'A112_01', 'A112_02', 'A112_03', 'A211_06a', 'A212_01', 'A212_02', 'A212_03', 'A311_06a', 'A312_01', 'A312_02', 'A312_03', 'D102_06a', 'D103_01', 'D103_02', 'D103_03', 'D202_06a', 'D203_01', 'D203_02', 'D203_03', 'D302_06a', 'D303_01', 'D303_02', 'D303_03', 'D402_06a', 'D403_01', 'D403_02', 'D403_03', 'D804_01',</code></pre>
+</div>
+</div>
+</section>
+<section id="save-data-sets" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> save data sets</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"outputs"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(ds, <span class="at">file =</span> <span class="fu">paste0</span>(<span class="st">"ds"</span>, <span class="st">".rds"</span>))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>writexl<span class="sc">::</span><span class="fu">write_xlsx</span>(<span class="at">x =</span> ds, <span class="at">path =</span> <span class="fu">paste0</span>(<span class="st">"ds"</span>, <span class="st">".xlsx"</span>))</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv2</span>(<span class="at">x =</span> ds, <span class="at">file =</span>  <span class="fu">paste0</span>(<span class="st">"ds"</span>, <span class="st">".csv"</span>))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>haven<span class="sc">::</span><span class="fu">write_sav</span>(<span class="at">data =</span> ds, <span class="at">path =</span> <span class="fu">paste0</span>(<span class="st">"ds"</span>, <span class="st">".sav"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
 </main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
       }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
-        }
-        return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
         }
       }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
     }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
     }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
-        }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
         }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1657,161 +1852,185 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 </div> <!-- /content -->
 
 

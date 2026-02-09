@@ -1,6 +1,6 @@
 ---
-title: "Data analysis all studies"
-author: "Richard Bergs, Julius Fenn"
+title: "Data preperation - part 2"
+author: "Julius Fenn, Laura Londoño"
 format:
   html:
     toc: true
@@ -20,19 +20,17 @@ Define your global variables (e.g., to reduce run time):
 ```{r}
 #| label: global variables
 
-
+# aaa
 ```
-
 
 # functions
 
 ```{r}
 ########################################
-# xx
+# aaa
 ########################################
-### argss:
-# xx
-
+### args:
+# aaa = bbb
 
 ```
 
@@ -45,90 +43,115 @@ Define your global variables (e.g., to reduce run time):
 
 ### load packages (also packages loaded, which are not needed for data preperation)
 require(pacman)
-p_load('tidyverse', 'jsonlite',
+p_load('tidyverse',
        'stargazer',  'DT', 'psych',
-       'writexl', 'associatoR',
-       'ggstatsplot')
-# devtools::install_github("samuelae/associatoR")
+       'writexl', 'readxl', 'haven',
+       'stringdist')
 ```
 
+# load and prepare raw data files
 
-# load prepared data
+load .xlsx file with all translations (Spanish in English):
 
 ```{r}
-setwd("outputs/questionnaire")
-
-ques_study <- readRDS(file = paste0("ques_study", ".rds"))
+setwd("../02_translateData/outputs")
+ds_trans <- readxl::read_xlsx(path = "translations_all_variables_man.xlsx", sheet = 1)
 ```
+
+read prepared data:
 
 ```{r}
-setwd("outputs/associations")
-
-ass_study <- readRDS(file = paste0("ass_study", ".rds"))
-```
-# Check and summarize scales
-
-
-```{r}
-# Ich finde es wichtig, dass ein Mensch in dem beschriebenen Kontext Aufsicht über KI hat.
-barplot(table(ques_study$`PUR-1`))
-# Ich halte den Einsatz von KI in diesem Kontext für riskant.
-barplot(table(ques_study$`PUR-2`))
+setwd("../01_dataPreperation/outputs")
+ds <- read_rds(file = "ds.rds")
 ```
 
-
-## compute mean scores
-
-```{r}
-ques_study$mean_AIAS <- rowMeans(x = ques_study[, str_subset(string = colnames(ques_study), pattern = "^AIAS")], na.rm = FALSE) # no missing
-ques_study$mean_PTTA <- rowMeans(x = ques_study[, str_subset(string = colnames(ques_study), pattern = "^PTTA")], na.rm = FALSE) # no missing
-```
-
-```{r}
-hist(ques_study$mean_AIAS)
-hist(ques_study$mean_PTTA)
-cor(ques_study$mean_AIAS, ques_study$mean_PTTA)
-```
-
-
-
-# Analyze data
-
-```{r}
-ggstatsplot::ggbetweenstats(data = ques_study, x = study_condition, y = mean_AIAS, type = "parametric")
-ggstatsplot::ggbetweenstats(data = ques_study, x = study_condition, y = mean_PTTA, type = "parametric")
-```
-
-```{r}
-library(afex)
-
-# Run the Between-Subjects ANOVA
-model_anova <- aov_ez(
-  id = "PROLIFIC_PID",      # Replace with your subject ID column name
-  dv = "mean_PTTA",           # Your Dependent Variable
-  data = ques_study, 
-  between = "study_condition" # Your Independent Variable
-)
-
-# Print the ANOVA table
-print(model_anova)
-
-
-library(emmeans)
-
-# Get the marginal means
-ls_means <- emmeans(model_anova, specs = "study_condition")
-
-# Perform pairwise comparisons
-post_hocs <- pairs(ls_means, adjust = "tukey")
-
-# View results
-print(post_hocs)
-```
-
+# add variables for English translation
 
 
 ```{r}
-ggstatsplot::ggbetweenstats(data = ques_study, x = study_condition, y = `PUR-2`, type = "parametric")
+for(v in unique(ds_trans$variable)){
+
+  v_en <- paste0(v, "_EN")
+
+  # initialize new EN variable (same length as ds)
+  ds[[v_en]] <- NA
+
+  # subset translations for this variable
+  tmp <- ds_trans[ds_trans$variable == v, ]
+  
+  ds[[v]] <- str_remove_all(string = ds[[v]], pattern = "\\\r")
+
+  # loop over translation rows
+  for (i in seq_len(nrow(tmp))) {
+
+    case_i <- tmp$CASE[i]
+    orig_i <- tmp$Original[i]
+    eng_i  <- tmp$English[i]
+    
+    sim <- 1 - stringdist::stringdist(ds[[v]], orig_i, method = "lv") /
+              pmax(nchar(ds[[v]]), nchar(orig_i))
+
+    # rows in ds where CASE matches AND original text matches > 95%
+    idx <- ds$CASE == case_i & sim >= 0.95
+
+    if(sum(idx) != 1){
+      stop("no matching IDs found")
+    }
+
+    # overwrite EN value
+    ds[[v_en]][idx] <- eng_i
+  }
+}
 ```
+
+## flag which need to be manually translated - fixed
+
+```{r}
+sum(!is.na(ds$A014_01_EN))
+sum(!is.na(ds$A312_03_EN))
+
+table(ds_trans$variable)
+```
+
+```{r}
+# tmp <- cbind(ds$CASE, ds$A014_01, ds$A014_01_EN)
+# tmp[rowSums(is.na(tmp)) == 1, ]
+# 
+# ds_trans[ds_trans$variable == "A014_01" & ds_trans$CASE %in% tmp[,1][rowSums(is.na(tmp)) == 1],]
+# 
+# for(v in unique(ds_trans$variable)){
+# 
+#   v_en   <- paste0(v, "_EN")
+#   v_flag <- paste0(v, "_EN_manual")  # 1 = needs manual translation
+# 
+#   # make sure EN col exists (if not created yet)
+#   if (!v_en %in% names(ds)) ds[[v_en]] <- 0
+# 
+#   # needs manual translation if:
+#   # - original text exists in ds[[v]]
+#   # - but EN is still NA
+#   ds[[v_flag]] <- as.integer(!is.na(ds[[v]]) & (is.na(ds[[v_en]]) | ds[[v_en]] == ""))
+# }
+# 
+# ## quick checks
+# sapply(paste0(unique(ds_trans$variable), "_EN_manual"), \(x) sum(ds[[x]] == 1, na.rm = TRUE))
+# sum(as.numeric(sapply(paste0(unique(ds_trans$variable), "_EN_manual"), \(x) sum(ds[[x]] == 1, na.rm = TRUE))))
+```
+
+
+# save data sets
+
+
+```{r}
+setwd("outputs")
+
+saveRDS(ds, file = paste0("ds", ".rds"))
+writexl::write_xlsx(x = ds, path = paste0("ds", ".xlsx"))
+write.csv2(x = ds, file =  paste0("ds", ".csv"))
+haven::write_sav(data = ds, path = paste0("ds", ".sav"))
+```
+
+
+
+
 

@@ -1,6 +1,6 @@
 ---
-title: "Data analysis all studies"
-author: "Richard Bergs, Julius Fenn"
+title: "Data analysis"
+author: "Julius Fenn, Laura Londoño"
 format:
   html:
     toc: true
@@ -20,19 +20,17 @@ Define your global variables (e.g., to reduce run time):
 ```{r}
 #| label: global variables
 
-
+# aaa
 ```
-
 
 # functions
 
 ```{r}
 ########################################
-# xx
+# aaa
 ########################################
-### argss:
-# xx
-
+### args:
+# aaa = bbb
 
 ```
 
@@ -45,90 +43,155 @@ Define your global variables (e.g., to reduce run time):
 
 ### load packages (also packages loaded, which are not needed for data preperation)
 require(pacman)
-p_load('tidyverse', 'jsonlite',
+p_load('tidyverse',
        'stargazer',  'DT', 'psych',
-       'writexl', 'associatoR',
-       'ggstatsplot')
-# devtools::install_github("samuelae/associatoR")
+       'writexl', 'readxl', 'haven',
+       'stringdist')
+```
+
+# load prepared data file
+
+```{r}
+setwd("../03_dataPreperation/outputs")
+ds <- read_rds(file = "ds.rds")
 ```
 
 
-# load prepared data
-
-```{r}
-setwd("outputs/questionnaire")
-
-ques_study <- readRDS(file = paste0("ques_study", ".rds"))
-```
-
-```{r}
-setwd("outputs/associations")
-
-ass_study <- readRDS(file = paste0("ass_study", ".rds"))
-```
-# Check and summarize scales
+# survey scales
 
 
 ```{r}
-# Ich finde es wichtig, dass ein Mensch in dem beschriebenen Kontext Aufsicht über KI hat.
-barplot(table(ques_study$`PUR-1`))
-# Ich halte den Einsatz von KI in diesem Kontext für riskant.
-barplot(table(ques_study$`PUR-2`))
-```
+get_scale_groups <- function(var_names, min_items = 2, drop_en = TRUE) {
+  x <- var_names
 
+  # optional: exclude metadata-ish variables
+  # (customize this if you want)
+  meta_regex <- "^(CASE|SERIAL|REF|QUESTNNR|MODE|STARTED|MAILSENT|LASTDATA|STATUS|FINISHED|Q_VIEWER|LASTPAGE|MAXPAGE|MISSING|MISSREL|TIME(_|\\d)|TIME_SUM|TIME_RSI|RA01(_CP)?)$"
+  x <- x[!str_detect(x, meta_regex)]
 
-## compute mean scores
+  # keep only names that look like battery items: STEM_01 or STEM_01a etc
+  item_regex <- "^[A-Za-z]\\d{3,}_(\\d+)([A-Za-z])?(_EN)?$"
+  x_items <- x[str_detect(x, item_regex)]
 
-```{r}
-ques_study$mean_AIAS <- rowMeans(x = ques_study[, str_subset(string = colnames(ques_study), pattern = "^AIAS")], na.rm = FALSE) # no missing
-ques_study$mean_PTTA <- rowMeans(x = ques_study[, str_subset(string = colnames(ques_study), pattern = "^PTTA")], na.rm = FALSE) # no missing
-```
+  # define stem: remove trailing _##[a]? and optional _EN
+  stem <- x_items %>%
+    { if (drop_en) str_remove(., "_EN$") else . } %>%
+    str_remove("_(\\d+)([A-Za-z])?$")
 
-```{r}
-hist(ques_study$mean_AIAS)
-hist(ques_study$mean_PTTA)
-cor(ques_study$mean_AIAS, ques_study$mean_PTTA)
+  tibble(var = x_items, stem = stem) %>%
+    group_by(stem) %>%
+    summarize(vars = list(sort(var)), n = n(), .groups = "drop") %>%
+    filter(n >= min_items) %>%
+    arrange(desc(n))
+}
+
+scale_groups <- get_scale_groups(colnames(ds), min_items = 2, drop_en = TRUE)
+
+# Inspect what was detected
+scale_groups
 ```
 
 
-
-# Analyze data
-
 ```{r}
-ggstatsplot::ggbetweenstats(data = ques_study, x = study_condition, y = mean_AIAS, type = "parametric")
-ggstatsplot::ggbetweenstats(data = ques_study, x = study_condition, y = mean_PTTA, type = "parametric")
-```
+# --- safe numeric conversion -------------------------------------------------
+to_numeric_safe <- function(x) {
+  # keep haven labelled as their underlying numeric codes
+  if (inherits(x, "labelled")) return(as.numeric(haven::zap_labels(x)))
+  if (is.numeric(x)) return(x)
+  if (is.logical(x)) return(as.numeric(x))
 
-```{r}
-library(afex)
+  # factors/characters: try to parse numbers; non-numeric -> NA (quietly)
+  readr::parse_number(as.character(x), na = c("", "NA", "NaN", "NULL"))
+}
 
-# Run the Between-Subjects ANOVA
-model_anova <- aov_ez(
-  id = "PROLIFIC_PID",      # Replace with your subject ID column name
-  dv = "mean_PTTA",           # Your Dependent Variable
-  data = ques_study, 
-  between = "study_condition" # Your Independent Variable
-)
+# --- robust plotting ---------------------------------------------------------
+plot_scale_cor_safe <- function(data, vars, stem = NULL, use = "pairwise") {
 
-# Print the ANOVA table
-print(model_anova)
+  dat0 <- data %>% dplyr::select(all_of(vars))
 
+  # convert all to numeric safely
+  dat <- dat0 %>%
+    mutate(across(everything(), to_numeric_safe))
 
-library(emmeans)
+  # drop columns that are all NA
+  all_na <- vapply(dat, function(x) all(is.na(x)), logical(1))
+  if (any(all_na)) dat <- dat[, !all_na, drop = FALSE]
 
-# Get the marginal means
-ls_means <- emmeans(model_anova, specs = "study_condition")
+  # drop columns with zero variance (sd==0) or single unique non-NA value
+  is_const <- vapply(dat, function(x) {
+    ux <- unique(x[!is.na(x)])
+    length(ux) <= 1
+  }, logical(1))
+  if (any(is_const)) dat <- dat[, !is_const, drop = FALSE]
 
-# Perform pairwise comparisons
-post_hocs <- pairs(ls_means, adjust = "tukey")
+  # need at least 2 columns
+  if (ncol(dat) < 2) {
+    return(list(ok = FALSE,
+                reason = "Too few usable columns after cleaning (all-NA/constant).",
+                stem = stem, vars = vars))
+  }
 
-# View results
-print(post_hocs)
-```
+  # drop rows that are all NA across remaining columns
+  dat <- dat[rowSums(is.na(dat)) < ncol(dat), , drop = FALSE]
 
+  # need at least 2 rows to get correlations
+  if (nrow(dat) < 2) {
+    return(list(ok = FALSE,
+                reason = "Too few usable rows after cleaning (empty / all missing).",
+                stem = stem, vars = vars))
+  }
 
+  # compute correlations safely
+  R <- tryCatch(
+    stats::cor(dat, use = use),
+    error = function(e) e
+  )
+  if (inherits(R, "error")) {
+    return(list(ok = FALSE,
+                reason = paste("cor() failed:", R$message),
+                stem = stem, vars = vars))
+  }
 
-```{r}
-ggstatsplot::ggbetweenstats(data = ques_study, x = study_condition, y = `PUR-2`, type = "parametric")
+  # if correlation matrix is all NA, skip
+  if (all(is.na(R))) {
+    return(list(ok = FALSE,
+                reason = "Correlation matrix is all NA (insufficient overlap / missingness).",
+                stem = stem, vars = vars))
+  }
+
+  # plot safely
+  title <- if (!is.null(stem)) paste0("Correlations: ", stem) else "Correlations"
+  tryCatch(
+    psych::corPlot(R, main = title),
+    warning = function(w) { # still allow plot, but report warning
+      invokeRestart("muffleWarning")
+    },
+    error = function(e) e
+  ) -> plt
+
+  if (inherits(plt, "error")) {
+    return(list(ok = FALSE,
+                reason = paste("corPlot() failed:", plt$message),
+                stem = stem, vars = vars))
+  }
+
+  list(ok = TRUE, reason = NA_character_, stem = stem, vars = vars,
+       n_rows = nrow(dat), n_cols = ncol(dat))
+}
+
+# --- iterate without crashing ------------------------------------------------
+results <- map2(scale_groups$vars, scale_groups$stem, ~ plot_scale_cor_safe(ds, .x, stem = .y))
+
+# Summary of failures (if any)
+fail_log <- bind_rows(lapply(results, function(x) {
+  tibble(ok = x$ok,
+         stem = x$stem,
+         reason = x$reason,
+         n_rows = x$n_rows %||% NA_integer_,
+         n_cols = x$n_cols %||% NA_integer_)
+})) %>% filter(!ok)
+
+fail_log
+
 ```
 
