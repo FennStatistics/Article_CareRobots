@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Julius Fenn, Laura Londoño">
+
+<title>Data analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="dynamicScript_files/libs/clipboard/clipboard.min.js"></script>
+<script src="dynamicScript_files/libs/quarto-html/quarto.js"></script>
+<script src="dynamicScript_files/libs/quarto-html/popper.min.js"></script>
+<script src="dynamicScript_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="dynamicScript_files/libs/quarto-html/anchor.min.js"></script>
+<link href="dynamicScript_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="dynamicScript_files/libs/quarto-html/quarto-syntax-highlighting-a8378a0342da607bf6aa9ac04725c156.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="dynamicScript_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="dynamicScript_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="dynamicScript_files/libs/bootstrap/bootstrap-248fc53d3562cd95f231f3ec542c0df6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes"><span class="header-section-number">1</span> Notes</a></li>
+  <li><a href="#global-variables" id="toc-global-variables" class="nav-link" data-scroll-target="#global-variables"><span class="header-section-number">2</span> global variables</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="header-section-number">3</span> functions</a></li>
+  <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages"><span class="header-section-number">4</span> load packages</a></li>
+  <li><a href="#load-prepared-data-file" id="toc-load-prepared-data-file" class="nav-link" data-scroll-target="#load-prepared-data-file"><span class="header-section-number">5</span> load prepared data file</a></li>
+  <li><a href="#survey-scales" id="toc-survey-scales" class="nav-link" data-scroll-target="#survey-scales"><span class="header-section-number">6</span> survey scales</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Julius Fenn, Laura Londoño </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="notes" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Notes</h1>
+</section>
+<section id="global-variables" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> global variables</h1>
+<p>Define your global variables (e.g., to reduce run time):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># aaa</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="functions" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> functions</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">########################################</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># aaa</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">########################################</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">### args:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># aaa = bbb</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-packages" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> load packages</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">### load packages (also packages loaded, which are not needed for data preperation)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(pacman)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">'tidyverse'</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">'stargazer'</span>,  <span class="st">'DT'</span>, <span class="st">'psych'</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">'writexl'</span>, <span class="st">'readxl'</span>, <span class="st">'haven'</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>       <span class="st">'stringdist'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-prepared-data-file" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> load prepared data file</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"../03_dataPreperation/outputs"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ds <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="at">file =</span> <span class="st">"ds.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="survey-scales" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> survey scales</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>get_scale_groups <span class="ot">&lt;-</span> <span class="cf">function</span>(var_names, <span class="at">min_items =</span> <span class="dv">2</span>, <span class="at">drop_en =</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> var_names</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># optional: exclude metadata-ish variables</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># (customize this if you want)</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  meta_regex <span class="ot">&lt;-</span> <span class="st">"^(CASE|SERIAL|REF|QUESTNNR|MODE|STARTED|MAILSENT|LASTDATA|STATUS|FINISHED|Q_VIEWER|LASTPAGE|MAXPAGE|MISSING|MISSREL|TIME(_|</span><span class="sc">\\</span><span class="st">d)|TIME_SUM|TIME_RSI|RA01(_CP)?)$"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x[<span class="sc">!</span><span class="fu">str_detect</span>(x, meta_regex)]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># keep only names that look like battery items: STEM_01 or STEM_01a etc</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  item_regex <span class="ot">&lt;-</span> <span class="st">"^[A-Za-z]</span><span class="sc">\\</span><span class="st">d{3,}_(</span><span class="sc">\\</span><span class="st">d+)([A-Za-z])?(_EN)?$"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  x_items <span class="ot">&lt;-</span> x[<span class="fu">str_detect</span>(x, item_regex)]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># define stem: remove trailing _##[a]? and optional _EN</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  stem <span class="ot">&lt;-</span> x_items <span class="sc">%&gt;%</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    { <span class="cf">if</span> (drop_en) <span class="fu">str_remove</span>(., <span class="st">"_EN$"</span>) <span class="cf">else</span> . } <span class="sc">%&gt;%</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_remove</span>(<span class="st">"_(</span><span class="sc">\\</span><span class="st">d+)([A-Za-z])?$"</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">var =</span> x_items, <span class="at">stem =</span> stem) <span class="sc">%&gt;%</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(stem) <span class="sc">%&gt;%</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">vars =</span> <span class="fu">list</span>(<span class="fu">sort</span>(var)), <span class="at">n =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(n <span class="sc">&gt;=</span> min_items) <span class="sc">%&gt;%</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>scale_groups <span class="ot">&lt;-</span> <span class="fu">get_scale_groups</span>(<span class="fu">colnames</span>(ds), <span class="at">min_items =</span> <span class="dv">2</span>, <span class="at">drop_en =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect what was detected</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>scale_groups</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 64 × 3
+   stem  vars          n
+   &lt;chr&gt; &lt;list&gt;    &lt;int&gt;
+ 1 A111  &lt;chr [8]&gt;     8
+ 2 A211  &lt;chr [8]&gt;     8
+ 3 A311  &lt;chr [8]&gt;     8
+ 4 A012  &lt;chr [7]&gt;     7
+ 5 A019  &lt;chr [7]&gt;     7
+ 6 A117  &lt;chr [7]&gt;     7
+ 7 A217  &lt;chr [7]&gt;     7
+ 8 A317  &lt;chr [7]&gt;     7
+ 9 D102  &lt;chr [7]&gt;     7
+10 D108  &lt;chr [7]&gt;     7
+# ℹ 54 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- safe numeric conversion -------------------------------------------------</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>to_numeric_safe <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># keep haven labelled as their underlying numeric codes</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">inherits</span>(x, <span class="st">"labelled"</span>)) <span class="fu">return</span>(<span class="fu">as.numeric</span>(haven<span class="sc">::</span><span class="fu">zap_labels</span>(x)))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.numeric</span>(x)) <span class="fu">return</span>(x)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.logical</span>(x)) <span class="fu">return</span>(<span class="fu">as.numeric</span>(x))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># factors/characters: try to parse numbers; non-numeric -&gt; NA (quietly)</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">parse_number</span>(<span class="fu">as.character</span>(x), <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>, <span class="st">"NaN"</span>, <span class="st">"NULL"</span>))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># --- robust plotting ---------------------------------------------------------</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>plot_scale_cor_safe <span class="ot">&lt;-</span> <span class="cf">function</span>(data, vars, <span class="at">stem =</span> <span class="cn">NULL</span>, <span class="at">use =</span> <span class="st">"pairwise"</span>) {</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  dat0 <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">all_of</span>(vars))</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert all to numeric safely</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> dat0 <span class="sc">%&gt;%</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), to_numeric_safe))</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># drop columns that are all NA</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  all_na <span class="ot">&lt;-</span> <span class="fu">vapply</span>(dat, <span class="cf">function</span>(x) <span class="fu">all</span>(<span class="fu">is.na</span>(x)), <span class="fu">logical</span>(<span class="dv">1</span>))</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">any</span>(all_na)) dat <span class="ot">&lt;-</span> dat[, <span class="sc">!</span>all_na, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># drop columns with zero variance (sd==0) or single unique non-NA value</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  is_const <span class="ot">&lt;-</span> <span class="fu">vapply</span>(dat, <span class="cf">function</span>(x) {</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    ux <span class="ot">&lt;-</span> <span class="fu">unique</span>(x[<span class="sc">!</span><span class="fu">is.na</span>(x)])</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">length</span>(ux) <span class="sc">&lt;=</span> <span class="dv">1</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  }, <span class="fu">logical</span>(<span class="dv">1</span>))</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">any</span>(is_const)) dat <span class="ot">&lt;-</span> dat[, <span class="sc">!</span>is_const, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># need at least 2 columns</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">ncol</span>(dat) <span class="sc">&lt;</span> <span class="dv">2</span>) {</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">ok =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>                <span class="at">reason =</span> <span class="st">"Too few usable columns after cleaning (all-NA/constant)."</span>,</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>                <span class="at">stem =</span> stem, <span class="at">vars =</span> vars))</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># drop rows that are all NA across remaining columns</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> dat[<span class="fu">rowSums</span>(<span class="fu">is.na</span>(dat)) <span class="sc">&lt;</span> <span class="fu">ncol</span>(dat), , drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>  <span class="co"># need at least 2 rows to get correlations</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nrow</span>(dat) <span class="sc">&lt;</span> <span class="dv">2</span>) {</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">ok =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>                <span class="at">reason =</span> <span class="st">"Too few usable rows after cleaning (empty / all missing)."</span>,</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>                <span class="at">stem =</span> stem, <span class="at">vars =</span> vars))</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>  <span class="co"># compute correlations safely</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>  R <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>(</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>    stats<span class="sc">::</span><span class="fu">cor</span>(dat, <span class="at">use =</span> use),</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e) e</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">inherits</span>(R, <span class="st">"error"</span>)) {</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">ok =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>                <span class="at">reason =</span> <span class="fu">paste</span>(<span class="st">"cor() failed:"</span>, R<span class="sc">$</span>message),</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>                <span class="at">stem =</span> stem, <span class="at">vars =</span> vars))</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>  <span class="co"># if correlation matrix is all NA, skip</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">all</span>(<span class="fu">is.na</span>(R))) {</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">ok =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>                <span class="at">reason =</span> <span class="st">"Correlation matrix is all NA (insufficient overlap / missingness)."</span>,</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>                <span class="at">stem =</span> stem, <span class="at">vars =</span> vars))</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>  <span class="co"># plot safely</span></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(stem)) <span class="fu">paste0</span>(<span class="st">"Correlations: "</span>, stem) <span class="cf">else</span> <span class="st">"Correlations"</span></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>(</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>    psych<span class="sc">::</span><span class="fu">corPlot</span>(R, <span class="at">main =</span> title),</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">warning =</span> <span class="cf">function</span>(w) { <span class="co"># still allow plot, but report warning</span></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>      <span class="fu">invokeRestart</span>(<span class="st">"muffleWarning"</span>)</span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e) e</span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> plt</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">inherits</span>(plt, <span class="st">"error"</span>)) {</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">ok =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>                <span class="at">reason =</span> <span class="fu">paste</span>(<span class="st">"corPlot() failed:"</span>, plt<span class="sc">$</span>message),</span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>                <span class="at">stem =</span> stem, <span class="at">vars =</span> vars))</span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">ok =</span> <span class="cn">TRUE</span>, <span class="at">reason =</span> <span class="cn">NA_character_</span>, <span class="at">stem =</span> stem, <span class="at">vars =</span> vars,</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>       <span class="at">n_rows =</span> <span class="fu">nrow</span>(dat), <span class="at">n_cols =</span> <span class="fu">ncol</span>(dat))</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a><span class="co"># --- iterate without crashing ------------------------------------------------</span></span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">map2</span>(scale_groups<span class="sc">$</span>vars, scale_groups<span class="sc">$</span>stem, <span class="sc">~</span> <span class="fu">plot_scale_cor_safe</span>(ds, .x, <span class="at">stem =</span> .y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There were 2 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 9 parsing failures.
+row col expected                                                     actual
+ 19  -- a number Hospitales de Ginecologia y Obstetricia                   
+ 22  -- a number uci                                                       
+ 39  -- a number En casa con pacientes con dificultad para ser dependientes
+ 51  -- a number Casa                                                      
+ 78  -- a number fisioterapia                                              
+... ... ........ ..........................................................
+See problems(...) for more details.
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 1 remaining warning.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There were 2 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 14 parsing failures.
+row col expected                                              actual
+ 29  -- a number clinica de urgencias, salas de espera de hospitales
+ 34  -- a number Urgencias                                          
+ 41  -- a number CARDIOLOGÍA                                        
+ 51  -- a number Casa                                               
+ 62  -- a number Clinicas de atención primaria                      
+... ... ........ ...................................................
+See problems(...) for more details.
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 1 remaining warning.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There were 2 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 18 parsing failures.
+row col expected                                  actual
+ 16  -- a number Rehabiitación                          
+ 19  -- a number Hospitales de cardiología              
+ 20  -- a number Centros de rehabilitacio o fisioterapia
+ 22  -- a number rehabilitación                         
+ 41  -- a number NEUROLOGÍA                             
+... ... ........ .......................................
+See problems(...) for more details.
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 1 remaining warning.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `mutate()`.
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 9 parsing failures.
+row col expected                                                              actual
+ 29  -- a number clinicas dentales                                                  
+ 41  -- a number GINECOLOGIA Y ODONTOLOGIA                                          
+ 47  -- a number Clínicas de medicina familiar y situaciones donde no haya urgencias
+ 64  -- a number Asilos                                                             
+ 78  -- a number Laboratorio                                                        
+... ... ........ ...................................................................
+See problems(...) for more details.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `mutate()`.
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 10 parsing failures.
+row col expected                                                                       actual
+127  -- a number Nursing homes                                                               
+156  -- a number I think such a robot could be usefull in office settings as well            
+183  -- a number Outpatient Surgery Centers                                                  
+206  -- a number I don't think this particular robot is that useful in any of these settings.
+212  -- a number Nursing homes                                                               
+... ... ........ ............................................................................
+See problems(...) for more details.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `mutate()`.
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 11 parsing failures.
+row col expected                                                                                           actual
+130  -- a number None                                                                                            
+172  -- a number nursing homes                                                                                   
+182  -- a number none                                                                                            
+197  -- a number Home attendants with patients that exceed a weight limit or are unable to collaborate with help.
+243  -- a number Home health                                                                                     
+... ... ........ ................................................................................................
+See problems(...) for more details.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `mutate()`.
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 10 parsing failures.
+row col expected             actual
+172  -- a number nursing homes     
+212  -- a number Nursing homes     
+243  -- a number n/a               
+258  -- a number comp science class
+324  -- a number None              
+... ... ........ ..................
+See problems(...) for more details.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `mutate()`.
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 13 parsing failures.
+row col expected                                                  actual
+127  -- a number Physical therapy                                       
+162  -- a number Physical Therapy                                       
+183  -- a number Specialty Centers focused on stroke and spine recovery.
+199  -- a number The places were you rebuild walking skills             
+204  -- a number I don't know.                                          
+... ... ........ .......................................................
+See problems(...) for more details.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There were 6 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 147 parsing failures.
+row col expected                                                                                                                                                                                                      actual
+  5  -- a number me preocupa que el robot lastime a alguna persona                                                                                                                                                          
+  6  -- a number Me preocuparia la seguridad, de que solo las personas correctas recibieran los suministros correctos                                                                                                       
+ 11  -- a number El robot parece muy lento como para permitir hacer las cosas de forma ágil.                                                                                                                                
+ 12  -- a number more personal, more time                                                                                                                                                                                   
+ 13  -- a number Considero que puede ser muy adecuado para aumentar el control sobre los insumos y la cadena de entrega, es decir, con el robot se podría saber fácilmente el estatus de las tareas y a cargo de quién están
+... ... ........ ...........................................................................................................................................................................................................
+See problems(...) for more details.
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 5 remaining warnings.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There were 6 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 146 parsing failures.
+row col expected                                                                                                                                                                                                                        actual
+  5  -- a number me da desconfianza que el robot vaya a fallar y lastmar al paciente                                                                                                                                                          
+  6  -- a number Solo creo que tendria que usarse bajo supervision, pues puede que incluso superficies inestables le afecten                                                                                                                  
+ 11  -- a number Que por el momento el robot se observa algo torpe, me preocuparía mucho que deje caer un paciente.                                                                                                                           
+ 12  -- a number it would be usefull for the people that cant move and you need to take them to another part of the hospital or clinique 
+Im excited that finally we are using the technology to not just help the patient, help the personal
+ 13  -- a number Puede ser muy útil aunque tal vez un poco lento                                                                                                                                                                              
+... ... ........ .............................................................................................................................................................................................................................
+See problems(...) for more details.
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 5 remaining warnings.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There were 6 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 142 parsing failures.
+row col expected                                                                                                                                                                                                                                                                                   actual
+  5  -- a number me preocupa que el robot cometa errores y el paciente no pueda pedirle que corrija                                                                                                                                                                                                      
+  6  -- a number No tengo porque rechazarlo, me parece muy buena idea                                                                                                                                                                                                                                    
+ 11  -- a number El robot es simpático, fácil de entender y hace una tarea que consume mucho tiempo y que realmente no requiere mucha habilidad. Solemos enviar a las estudiantes de enfermería a tomar los signos. El robot libera tiempo que ellas ahora pueden dedicar a desarrollar otras habilidades
+ 12  -- a number I would not reject it for any reason, this is a reflection of the good use of technology                                                                                                                                                                                                
+ 13  -- a number En general creo que su implementación puede ser positiva, pero me reservo un poco porque creo que podría alentar un poco las actividades usuales de las enfermeras                                                                                                                      
+... ... ........ ........................................................................................................................................................................................................................................................................................
+See problems(...) for more details.
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 5 remaining warnings.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There were 6 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 142 parsing failures.
+row col expected                                                                                                                                                                                                                                                              actual
+  5  -- a number me parece una adicion util para rehabilitacion o terapia fisica                                                                                                                                                                                                    
+  6  -- a number estereotipos y siento que seria importante que sepan cuando llamr a una persona para problemas serios                                                                                                                                                              
+ 11  -- a number Nos ayudaría mucho a mejorar la rehabilitación de los pacientes con menos riesgos de caídas para el paciente y menor riesgo de lesión para quienes están dando la rehabilitación                                                                                   
+ 12  -- a number It is very useful and can serve as a prosthesis                                                                                                                                                                                                                    
+ 13  -- a number Considero que este tipo de robots son súmamente necesarios y benéficos en el área de la salud, podría ayudar a muchísimos pacientes con él. Además beneficiaría también a los cuidadores que usualmente usan su propia fuerza física para este tipo de movilidades.
+... ... ........ ...................................................................................................................................................................................................................................................................
+See problems(...) for more details.
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 5 remaining warnings.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-9.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-10.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-11.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-12.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-13.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-14.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-15.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-16.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-17.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-18.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-19.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-20.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-21.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-22.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-23.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-24.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-25.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-26.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-27.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-28.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-29.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-30.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-31.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-32.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-33.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-34.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-35.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-36.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-37.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-38.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-39.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There were 3 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 158 parsing failures.
+row col expected                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  actual
+  3  -- a number it would free up a person to work on something else                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+  4  -- a number I would accept the use of supply-delivery robots in healthcare because they help reduce the physical and logistical burden on nursing staff, allowing caregivers to focus on direct patient care. In situations like high-pressure hospital shifts or infectious disease outbreaks, these robots can safely transport medications, lab samples, and sterile equipment without risking staff exposure or causing delays.
+
+I would expect these robots to be reliable, accurate, and easy to operate, with clear protocols for scheduling and tracking deliveries. I also value their ability to integrate smoothly into existing workflows without disrupting patients or staff. Overall, I see them as supportive tools that improve efficiency and safety, rather than replacing the essential human role of healthcare workers.
+123  -- a number I would accept this robot because it could effectively transport supplies between the hospital and the ambulance, saving time during emergencies when every second counts. By restocking the equipment quickly it would reduce delays limit unnecessary staff movement and help EMS team stay focused on patient care after rather than logistics                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+126  -- a number The robot would save nurses and other healthcare professionals time by not having to physically walk back and forth with supplies and medications.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+127  -- a number This robot has nothing to do with patient care and helps take a load off of workers who need to share or deliver supplies. I feel like it is a little slow, so it would not be used for stat deliveries, but it could be useful in delivering everyday items.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+... ... ........ .......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+See problems(...) for more details.
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 2 remaining warnings.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-40.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There were 3 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 150 parsing failures.
+row col expected                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 actual
+  3  -- a number this looks like it could be dangerous, and possibly end up hurting someone                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+  4  -- a number I would accept the use of nurse robots in caregiving tasks because they can significantly reduce the physical strain on healthcare workers and help prevent injuries caused by lifting or repetitive movements. By taking over routine or physically demanding tasks, these robots allow nurses and caregivers to focus more on emotional support, medical decision-making, and patient interaction, areas where human empathy and judgment are essential.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+123  -- a number From a nurses perspective my back has a vote and it's screaming yes. A soft friendly robot that can safely detect weight stabilize a patient and transform from bed to wheelchair could dramatically reduce step injuries and burnout. In the busy hospital that matters if it's consistent calm and doesn't rush it could actually make transfers safer and more dignified especially for patients who feel embarrassed by needing multiple people to lift them. I'd expect to work with me not to replace me like a strong steady extra set of hands that never gets tired. Why I'd hesitate The geriatric patients are the wild card many already feel disoriented powerless or scared. Rolling robot into the room no matter how soft and friendly could spike anxiety or mistrust. Touches personal care is human and I'd worry about the emotional comfort consent and fear especially with dementia patients who may not understand what's happening. Bottom line I'd accept it as a tool not a caregiver. It should support nurses, not substitute compassion. If it earns patients trust slowly, with explanation, choice, and human presence i'm open. If it tries to automate care without humanity hard no
+126  -- a number Judging from the video, the robot did an adequate job of lifting the human from the hospital bed and placing them in a wheelchair.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+127  -- a number Tis robot is large and takes up a lot of space that most hospital rooms do not have. It only has two points of contact with the patient which is not providing the max amount of safety.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+... ... ........ .......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 2 remaining warnings.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-41.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There were 3 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 157 parsing failures.
+row col expected                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             actual
+  3  -- a number I think it could be great in most cases.  I would worry that some children might be scared of it, and some older people may be confused.                                                                                                                                                                                                                                                                                                                                                                                          
+  4  -- a number I would accept the use of robots that monitor vital signs in caregiving tasks because they can greatly improve patient safety and efficiency in healthcare settings. By continuously tracking key health indicators like heart rate, blood pressure, and oxygen levels, these robots can detect changes earlier than manual checks, allowing for faster medical responses. This constant monitoring helps prevent emergencies and reduces the workload on nurses, who can then focus on direct patient care and emotional support.
+123  -- a number I would accept the use of a mobility assist to robot because it could help patients with impaired leg function regain movement balance and independence while also reducing physical strain on caregivers during walking or standing assistance. My expectation would be that it moves gently adapts to the patient's pace and it is always used with a caregiver's presence so patients feel supported rather than intimidated                                                                                                   
+126  -- a number This robot is adequate to take basic vital signs like pulse.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+127  -- a number This robot is only useful for patients that are fully aware, comfortable with technology and able to understand the instructions. Many patients in acute care are there because they are not able to do these things. Also, there is room for error just because the patient is responsible for making sure they respond appropriately.                                                                                                                                                                                           
+... ... ........ ..................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+See problems(...) for more details.
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 2 remaining warnings.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-42.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There were 3 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `across(everything(), to_numeric_safe)`.
+Caused by warning:
+! 155 parsing failures.
+row col expected                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      actual
+  3  -- a number it could be very helpful for patients going through recovery, etc                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+  4  -- a number I would accept the use of mobility-assistance robots in caregiving and rehabilitation tasks because they can significantly improve both patient outcomes and caregiver safety. These robots provide physical support to patients recovering from strokes or injuries, helping them practice walking, maintain proper posture, and reduce the risk of falls. This support allows caregivers to focus on supervising and guiding therapy rather than performing physically demanding lifts or transfers, which can reduce fatigue and injury.
+123  -- a number I would accept the robot as a supportive tool because it could reduce physical strain and injury during patient transfers, making care safer for both staff and patients. However, I would be cautious using it with geriatric or cognitively impaired patients as unfamiliar technology may cause fear or confusion it would expect to be a use slowly gently and only with a caregivers presence                                                                                                                                         
+126  -- a number This robot seems very helpful for people to regain their mobility.                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+127  -- a number The robot is beneficial to the health of patient's skin, joint, and mental well being. However, it requires training, extra staffing and an investment.                                                                                                                                                                                                                                                                                                                                                                                    
+... ... ........ ...........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+See problems(...) for more details.
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 2 remaining warnings.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-43.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-44.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-45.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-46.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-47.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-48.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-49.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-50.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="dynamicScript_files/figure-html/unnamed-chunk-6-51.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of failures (if any)</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>fail_log <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(results, <span class="cf">function</span>(x) {</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">ok =</span> x<span class="sc">$</span>ok,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">stem =</span> x<span class="sc">$</span>stem,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">reason =</span> x<span class="sc">$</span>reason,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">n_rows =</span> x<span class="sc">$</span>n_rows <span class="sc">%||%</span> <span class="cn">NA_integer_</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">n_cols =</span> x<span class="sc">$</span>n_cols <span class="sc">%||%</span> <span class="cn">NA_integer_</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>})) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span>ok)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>fail_log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 5
+   ok    stem  reason                                              n_rows n_cols
+   &lt;lgl&gt; &lt;chr&gt; &lt;chr&gt;                                                &lt;int&gt;  &lt;int&gt;
+ 1 FALSE A111  Too few usable columns after cleaning (all-NA/cons…     NA     NA
+ 2 FALSE A211  Too few usable columns after cleaning (all-NA/cons…     NA     NA
+ 3 FALSE A311  Too few usable columns after cleaning (all-NA/cons…     NA     NA
+ 4 FALSE A012  Too few usable columns after cleaning (all-NA/cons…     NA     NA
+ 5 FALSE D102  Too few usable columns after cleaning (all-NA/cons…     NA     NA
+ 6 FALSE D202  Too few usable columns after cleaning (all-NA/cons…     NA     NA
+ 7 FALSE D302  Too few usable columns after cleaning (all-NA/cons…     NA     NA
+ 8 FALSE D402  Too few usable columns after cleaning (all-NA/cons…     NA     NA
+ 9 FALSE A014  Too few usable columns after cleaning (all-NA/cons…     NA     NA
+10 FALSE D103  Too few usable columns after cleaning (all-NA/cons…     NA     NA
+11 FALSE D203  Too few usable columns after cleaning (all-NA/cons…     NA     NA
+12 FALSE D303  Too few usable columns after cleaning (all-NA/cons…     NA     NA
+13 FALSE D403  Too few usable columns after cleaning (all-NA/cons…     NA     NA</code></pre>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

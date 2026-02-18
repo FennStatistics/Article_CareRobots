@@ -1,5 +1,5 @@
 ---
-title: "Data preperation all studies"
+title: "Data preperation - part 1"
 author: "Julius Fenn, Laura Londoño"
 format:
   html:
@@ -1289,6 +1289,27 @@ levels(ds$D501)
 ```
 
 
+# get all columns containing text answers
+
+```{r}
+extract_string_vars_with_3_words <- function(ds) {
+  ds %>%
+    select(where(is.character)) %>%
+    select(where(~ any(str_count(., "\\S+") >= 3, na.rm = TRUE))) %>%
+    names()
+}
+vars <- extract_string_vars_with_3_words(ds)
+vars
+
+for(v in vars){
+  cat("\n\n#######\n", v, "entries:\n", as.vector(ds[complete.cases(ds[, v]), v])[[1]][1:3])
+}
+```
+
+
+```{r}
+cat(paste0("'", vars, "',"))
+```
 
 
 
