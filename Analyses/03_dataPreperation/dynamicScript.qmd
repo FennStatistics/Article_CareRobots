@@ -1,0 +1,157 @@
+---
+title: "Data preperation - part 2"
+author: "Julius Fenn, Laura Londoño"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    html-math-method: katex
+    number-sections: true
+---
+
+
+# Notes
+
+
+# global variables
+
+Define your global variables (e.g., to reduce run time):
+
+```{r}
+#| label: global variables
+
+# aaa
+```
+
+# functions
+
+```{r}
+########################################
+# aaa
+########################################
+### args:
+# aaa = bbb
+
+```
+
+
+# load packages
+
+```{r}
+#| label: load packages
+#| warning: false
+
+### load packages (also packages loaded, which are not needed for data preperation)
+require(pacman)
+p_load('tidyverse',
+       'stargazer',  'DT', 'psych',
+       'writexl', 'readxl', 'haven',
+       'stringdist')
+```
+
+# load and prepare raw data files
+
+load .xlsx file with all translations (Spanish in English):
+
+```{r}
+setwd("../02_translateData/outputs")
+ds_trans <- readxl::read_xlsx(path = "translations_all_variables_man.xlsx", sheet = 1)
+```
+
+read prepared data:
+
+```{r}
+setwd("../01_dataPreperation/outputs")
+ds <- read_rds(file = "ds.rds")
+```
+
+# add variables for English translation
+
+
+```{r}
+for(v in unique(ds_trans$variable)){
+
+  v_en <- paste0(v, "_EN")
+
+  # initialize new EN variable (same length as ds)
+  ds[[v_en]] <- NA
+
+  # subset translations for this variable
+  tmp <- ds_trans[ds_trans$variable == v, ]
+  
+  ds[[v]] <- str_remove_all(string = ds[[v]], pattern = "\\\r")
+
+  # loop over translation rows
+  for (i in seq_len(nrow(tmp))) {
+
+    case_i <- tmp$CASE[i]
+    orig_i <- tmp$Original[i]
+    eng_i  <- tmp$English[i]
+    
+    sim <- 1 - stringdist::stringdist(ds[[v]], orig_i, method = "lv") /
+              pmax(nchar(ds[[v]]), nchar(orig_i))
+
+    # rows in ds where CASE matches AND original text matches > 95%
+    idx <- ds$CASE == case_i & sim >= 0.95
+
+    if(sum(idx) != 1){
+      stop("no matching IDs found")
+    }
+
+    # overwrite EN value
+    ds[[v_en]][idx] <- eng_i
+  }
+}
+```
+
+## flag which need to be manually translated - fixed
+
+```{r}
+sum(!is.na(ds$A014_01_EN))
+sum(!is.na(ds$A312_03_EN))
+
+table(ds_trans$variable)
+```
+
+```{r}
+# tmp <- cbind(ds$CASE, ds$A014_01, ds$A014_01_EN)
+# tmp[rowSums(is.na(tmp)) == 1, ]
+# 
+# ds_trans[ds_trans$variable == "A014_01" & ds_trans$CASE %in% tmp[,1][rowSums(is.na(tmp)) == 1],]
+# 
+# for(v in unique(ds_trans$variable)){
+# 
+#   v_en   <- paste0(v, "_EN")
+#   v_flag <- paste0(v, "_EN_manual")  # 1 = needs manual translation
+# 
+#   # make sure EN col exists (if not created yet)
+#   if (!v_en %in% names(ds)) ds[[v_en]] <- 0
+# 
+#   # needs manual translation if:
+#   # - original text exists in ds[[v]]
+#   # - but EN is still NA
+#   ds[[v_flag]] <- as.integer(!is.na(ds[[v]]) & (is.na(ds[[v_en]]) | ds[[v_en]] == ""))
+# }
+# 
+# ## quick checks
+# sapply(paste0(unique(ds_trans$variable), "_EN_manual"), \(x) sum(ds[[x]] == 1, na.rm = TRUE))
+# sum(as.numeric(sapply(paste0(unique(ds_trans$variable), "_EN_manual"), \(x) sum(ds[[x]] == 1, na.rm = TRUE))))
+```
+
+
+# save data sets
+
+
+```{r}
+setwd("outputs")
+
+saveRDS(ds, file = paste0("ds", ".rds"))
+writexl::write_xlsx(x = ds, path = paste0("ds", ".xlsx"))
+write.csv2(x = ds, file =  paste0("ds", ".csv"))
+haven::write_sav(data = ds, path = paste0("ds", ".sav"))
+```
+
+
+
+
+

@@ -1,0 +1,10 @@
+# avoid uploading sensitive information
+**/__pycache__/
+**/API_key.py
+
+**/zz_templates
+**/zz_internal_files
+
+**/rsconnect
+
+**/API_key.py
