@@ -1,0 +1,324 @@
+variable,label,pct_na,type
+case,Interview number (sequential),0,integer
+questnnr,Questionnaire that has been used in the interview,0,factor
+started,Time the interview has started (Europe/Berlin),0,numeric
+a011_01,"General Rating: En general, calificaría al robot de manera positiva",0.5934959349593496,integer
+a011_02,"General Rating: En general, apoyaría la integración de este robot en entornos de atención médica",0.5934959349593496,integer
+a012,Use of Robots in Medical Settings: Residual option (negative) or number of selected options,0.5934959349593496,integer
+a012_01,Use of Robots in Medical Settings: Hospitales Generales,0.5934959349593496,integer
+a012_02,Use of Robots in Medical Settings: Hospitales Pediátricos,0.5934959349593496,integer
+a012_03,Use of Robots in Medical Settings: Hospitales Geriátricos,0.5934959349593496,integer
+a012_04,Use of Robots in Medical Settings: Hospitales Psiquiátricos,0.5934959349593496,integer
+a012_05,Use of Robots in Medical Settings: Hospitales de traumatología y ortopedia,0.5934959349593496,integer
+a012_06,"Use of Robots in Medical Settings: Otro campo, ¿cuál?",0.5934959349593496,integer
+a012_06a,"Use of Robots in Medical Settings: Otro campo, ¿cuál? (free text)",0.975609756097561,character
+a014_01,"Open Questions: ¿Cuáles son sus principales razones para aceptar o rechazar el uso de este robot en tareas de cuidado? Puede referirse a situaciones específicas, sentimientos o expectativas que tenga",0.6016260162601627,character
+a014_02,"Open Questions: ¿Ve algún riesgo o preocupación ética en el uso de este robot en el ámbito de la salud? Por favor, explíque su respuesta",0.6016260162601627,character
+a014_03,"Open Questions: Según su experiencia profesional, ¿qué cuestiones éticas cree que deberían considerarse al desarrollar o implementar este robot?",0.6097560975609756,character
+a015_01,Performance Expectancy (PE): Consideraría útil al robot en mi trabajo.,0.5934959349593496,integer
+a015_02,Performance Expectancy (PE): Usar el robot me permitiría realizar las tareas más rápidamente.,0.5934959349593496,integer
+a015_03,Performance Expectancy (PE): Usar el robot aumentaría mi productividad.,0.5934959349593496,integer
+a015_04,"Performance Expectancy (PE): Si usara el robot, tendría más posibilidades de recibir un aumento.",0.5934959349593496,integer
+a016_01,Attitude Toward using Technology: Mi interacción con el robot sería clara y comprensible.,0.5934959349593496,integer
+a016_02,Attitude Toward using Technology: El robot haría que el trabajo fuera más interesante.,0.5934959349593496,integer
+a016_03,Attitude Toward using Technology: Trabajar con el robot sería divertido.,0.5934959349593496,integer
+a016_04,Attitude Toward using Technology: Me gustaría trabajar con el robot.,0.5934959349593496,integer
+a017_01,Self-Efficacy: Si no hubiera nadie cerca para decirme qué hacer mientras trabajo,0.5934959349593496,integer
+a017_02,Self-Efficacy: Si pudiera llamar a alguien para pedir ayuda si me quedo atascado.,0.5934959349593496,integer
+a017_03,Self-Efficacy: Si tengo mucho tiempo para completar el trabajo para el cual se proporcionó el robot.,0.5934959349593496,integer
+a017_04,Self-Efficacy: Si solo tuviera la función de ayuda incorporada para recibir asistencia.,0.5934959349593496,integer
+a018_01,Behavioral Intention: Tengo la intención de usar el robot en los próximos 12 meses.,0.5934959349593496,integer
+a018_02,Behavioral Intention: Preveo que usaré el robot en los próximos 24 meses.,0.5934959349593496,integer
+a018_03,Behavioral Intention: Planeo usar el robot en los próximos 24 meses.,0.5934959349593496,integer
+a019_01,Moderating Effect Ethics: Poco ético/Ético,0.5934959349593496,integer
+a019_02,Moderating Effect Ethics: Injusto/Justo,0.5934959349593496,integer
+a019_03,Moderating Effect Ethics: No es moralmente correcto/Moralmente correcto,0.5934959349593496,integer
+a019_04,Moderating Effect Ethics: No aceptable para mi familia/Aceptable para mi familia,0.5934959349593496,integer
+a019_05,Moderating Effect Ethics: Culturalmente inaceptable/Culturalmente aceptable,0.5934959349593496,integer
+a019_06,Moderating Effect Ethics: No es personalmente satisfactorio/Personalmente satisfactorio,0.5934959349593496,integer
+a019_07,Moderating Effect Ethics: Viola un contrato tácito/No viola un contrato tácito,0.5934959349593496,integer
+a110_01,"General Rating: En general, calificaría al robot de manera positiva.",0.5962059620596206,integer
+a110_02,"General Rating: En general, apoyaría la integración de este robot en entornos de atención médica",0.5962059620596206,integer
+a111,Use of Robots in Medical Settings: Residual option (negative) or number of selected options,0.5962059620596206,integer
+a111_01,Use of Robots in Medical Settings: Hospitales generales,0.5962059620596206,integer
+a111_02,Use of Robots in Medical Settings: Hospitales pediátricos,0.5962059620596206,integer
+a111_03,Use of Robots in Medical Settings: Hospitales geriátricos,0.5962059620596206,integer
+a111_04,Use of Robots in Medical Settings: Hospitales psiquiátricos,0.5962059620596206,integer
+a111_05,Use of Robots in Medical Settings: Hospitales de traumatología y ortopedia,0.5962059620596206,integer
+a111_06,"Use of Robots in Medical Settings: Otro campo, ¿cuál?",0.5962059620596206,integer
+a111_06a,"Use of Robots in Medical Settings: Otro campo, ¿cuál? (free text)",0.975609756097561,character
+a112_01,"Open Questions: ¿Cuáles son sus principales razones para aceptar o rechazar el uso de este robot en tareas de cuidado? Puede referirse a situaciones específicas, sentimientos o expectativas que tenga",0.5989159891598916,character
+a112_02,"Open Questions: ¿Ve algún riesgo o preocupación ética en el uso de este robot en el ámbito de la salud? Por favor, explíque su respuesta",0.6016260162601627,character
+a112_03,"Open Questions: Según su experiencia profesional, ¿qué cuestiones éticas cree que deberían considerarse al desarrollar o implementar este robot?",0.5989159891598916,character
+a113_01,Performance Expectancy (PE): Consideraría útil al robot en mi trabajo.,0.5962059620596206,integer
+a113_02,Performance Expectancy (PE): Usar el robot me permitiría realizar las tareas más rápidamente.,0.5962059620596206,integer
+a113_03,Performance Expectancy (PE): Usar el robot aumentaría mi productividad.,0.5962059620596206,integer
+a113_04,"Performance Expectancy (PE): Si usara el robot, tendría más posibilidades de recibir un aumento.",0.5962059620596206,integer
+a114_01,Attitude Toward using Technology: Mi interacción con el robot sería clara y comprensible.,0.5962059620596206,integer
+a114_02,Attitude Toward using Technology: El robot haría que el trabajo fuera más interesante.,0.5962059620596206,integer
+a114_03,Attitude Toward using Technology: Trabajar con el robot sería divertido.,0.5962059620596206,integer
+a114_04,Attitude Toward using Technology: Me gustaría trabajar con el robot.,0.5962059620596206,integer
+a115_01,Self-Efficacy: Si no hubiera nadie cerca para decirme qué hacer mientras trabajo,0.5962059620596206,integer
+a115_02,Self-Efficacy: Si pudiera llamar a alguien para pedir ayuda si me quedo atascado.,0.5962059620596206,integer
+a115_03,Self-Efficacy: Si tengo mucho tiempo para completar el trabajo para el cual se proporcionó el robot.,0.5962059620596206,integer
+a115_04,Self-Efficacy: Si solo tuviera la función de ayuda incorporada para recibir asistencia.,0.5962059620596206,integer
+a116_01,Behavioral Intention: Tengo la intención de usar el robot en los próximos 12 meses.,0.5962059620596206,integer
+a116_02,Behavioral Intention: Preveo que usaré el robot en los próximos 24 meses.,0.5962059620596206,integer
+a116_03,Behavioral Intention: Planeo usar el robot en los próximos 24 meses.,0.5962059620596206,integer
+a117_01,Moderating Effect Ethics: Poco ético/Ético,0.5962059620596206,integer
+a117_02,Moderating Effect Ethics: Injusto/Justo,0.5962059620596206,integer
+a117_03,Moderating Effect Ethics: No es moralmente correcto/Moralmente correcto,0.5962059620596206,integer
+a117_04,Moderating Effect Ethics: No aceptable para mi familia/Aceptable para mi familia,0.5962059620596206,integer
+a117_05,Moderating Effect Ethics: Culturalmente inaceptable/Culturalmente aceptable,0.5962059620596206,integer
+a117_06,Moderating Effect Ethics: No es personalmente satisfactorio/Personalmente satisfactorio,0.5962059620596206,integer
+a117_07,Moderating Effect Ethics: Viola un contrato tácito/No viola un contrato tácito,0.5962059620596206,integer
+a209_01,"General Rating: En general, calificaría al robot de manera positiva.",0.5907859078590786,integer
+a209_02,"General Rating: En general, apoyaría la integración de este robot en entornos de atención médica.",0.5907859078590786,integer
+a211,Use of Robots in Medical Settings: Residual option (negative) or number of selected options,0.5907859078590786,integer
+a211_01,Use of Robots in Medical Settings: Hospitales generales,0.5907859078590786,integer
+a211_02,Use of Robots in Medical Settings: Hospitales pediátricos,0.5907859078590786,integer
+a211_03,Use of Robots in Medical Settings: Hospitales geriátricos,0.5907859078590786,integer
+a211_04,Use of Robots in Medical Settings: Hospitales psiquiátricos,0.5907859078590786,integer
+a211_05,Use of Robots in Medical Settings: Hospitales de traumatología y ortopedia,0.5907859078590786,integer
+a211_06,"Use of Robots in Medical Settings: Otro campo, ¿cuál?",0.5907859078590786,integer
+a211_06a,"Use of Robots in Medical Settings: Otro campo, ¿cuál? (free text)",0.962059620596206,character
+a212_01,"Open Questions: ¿Cuáles son sus principales razones para aceptar o rechazar el uso de este robot en tareas de cuidado? Puede referirse a situaciones específicas, sentimientos o expectativas que tenga",0.5989159891598916,character
+a212_02,"Open Questions: ¿Ve algún riesgo o preocupación ética en el uso de este robot en el ámbito de la salud? Por favor, explíque su respuesta",0.5989159891598916,character
+a212_03,"Open Questions: Según su experiencia profesional, ¿qué cuestiones éticas cree que deberían considerarse al desarrollar o implementar este robot?",0.6043360433604336,character
+a213_01,Performance Expectancy (PE): Consideraría útil al robot en mi trabajo.,0.5907859078590786,integer
+a213_02,Performance Expectancy (PE): Usar el robot me permitiría realizar las tareas más rápidamente.,0.5907859078590786,integer
+a213_03,Performance Expectancy (PE): Usar el robot aumentaría mi productividad.,0.5907859078590786,integer
+a213_04,"Performance Expectancy (PE): Si usara el robot, tendría más posibilidades de recibir un aumento.",0.5907859078590786,integer
+a214_01,Attitude Toward using Technology: Mi interacción con el robot sería clara y comprensible.,0.5907859078590786,integer
+a214_02,Attitude Toward using Technology: El robot haría que el trabajo fuera más interesante.,0.5907859078590786,integer
+a214_03,Attitude Toward using Technology: Trabajar con el robot sería divertido.,0.5907859078590786,integer
+a214_04,Attitude Toward using Technology: Me gustaría trabajar con el robot.,0.5907859078590786,integer
+a215_01,Self-Efficacy: Si no hubiera nadie cerca para decirme qué hacer mientras trabajo,0.5907859078590786,integer
+a215_02,Self-Efficacy: Si pudiera llamar a alguien para pedir ayuda si me quedo atascado.,0.5907859078590786,integer
+a215_03,Self-Efficacy: Si tengo mucho tiempo para completar el trabajo para el cual se proporcionó el robot.,0.5907859078590786,integer
+a215_04,Self-Efficacy: Si solo tuviera la función de ayuda incorporada para recibir asistencia.,0.5907859078590786,integer
+a216_01,Behavioral Intention: Tengo la intención de usar el robot en los próximos 12 meses.,0.5907859078590786,integer
+a216_02,Behavioral Intention: Preveo que usaré el robot en los próximos 24 meses.,0.5907859078590786,integer
+a216_03,Behavioral Intention: Planeo usar el robot en los próximos 24 meses.,0.5907859078590786,integer
+a217_01,Moderating Effect Ethics: Poco ético/Ético,0.5907859078590786,integer
+a217_02,Moderating Effect Ethics: Injusto/Justo,0.5907859078590786,integer
+a217_03,Moderating Effect Ethics: No es moralmente correcto/Moralmente correcto,0.5907859078590786,integer
+a217_04,Moderating Effect Ethics: No aceptable para mi familia/Aceptable para mi familia,0.5907859078590786,integer
+a217_05,Moderating Effect Ethics: Culturalmente inaceptable/Culturalmente aceptable,0.5907859078590786,integer
+a217_06,Moderating Effect Ethics: No es personalmente satisfactorio/Personalmente satisfactorio,0.5907859078590786,integer
+a217_07,Moderating Effect Ethics: Viola un contrato tácito/No viola un contrato tácito,0.5907859078590786,integer
+a310_01,"General Rating: En general, calificaría al robot de manera positiva.",0.5989159891598916,integer
+a310_02,"General Rating: En general, apoyaría la integración de este robot en entornos de atención médica.",0.5989159891598916,integer
+a311,Use of Robots in Medical Settings: Residual option (negative) or number of selected options,0.5989159891598916,integer
+a311_01,Use of Robots in Medical Settings: Hospitales generales,0.5989159891598916,integer
+a311_02,Use of Robots in Medical Settings: Hospitales pediátricos,0.5989159891598916,integer
+a311_03,Use of Robots in Medical Settings: Hospitales geriátricos,0.5989159891598916,integer
+a311_04,Use of Robots in Medical Settings: Hospitales psiquiátricos,0.5989159891598916,integer
+a311_05,Use of Robots in Medical Settings: Hospitales de traumatología y ortopedia,0.5989159891598916,integer
+a311_06,"Use of Robots in Medical Settings: Otro campo, ¿cuál?",0.5989159891598916,integer
+a311_06a,"Use of Robots in Medical Settings: Otro campo, ¿cuál? (free text)",0.9512195121951219,character
+a312_01,"Open Questions: ¿Cuáles son sus principales razones para aceptar o rechazar el uso de este robot en tareas de cuidado? Puede referirse a situaciones específicas, sentimientos o expectativas que tenga",0.6043360433604336,character
+a312_02,"Open Questions: ¿Ve algún riesgo o preocupación ética en el uso de este robot en el ámbito de la salud? Por favor, explíque su respuesta",0.6070460704607046,character
+a312_03,"Open Questions: Según su experiencia profesional, ¿qué cuestiones éticas cree que deberían considerarse al desarrollar o implementar este robot?",0.6070460704607046,character
+a313_01,Performance Expectancy (PE): Consideraría útil al robot en mi trabajo.,0.5962059620596206,integer
+a313_02,Performance Expectancy (PE): Usar el robot me permitiría realizar las tareas más rápidamente.,0.5962059620596206,integer
+a313_03,Performance Expectancy (PE): Usar el robot aumentaría mi productividad.,0.5962059620596206,integer
+a313_04,"Performance Expectancy (PE): Si usara el robot, tendría más posibilidades de recibir un aumento.",0.5962059620596206,integer
+a314_01,Attitude Toward using Technology: Mi interacción con el robot sería clara y comprensible.,0.5962059620596206,integer
+a314_02,Attitude Toward using Technology: El robot haría que el trabajo fuera más interesante.,0.5962059620596206,integer
+a314_03,Attitude Toward using Technology: Trabajar con el robot sería divertido.,0.5962059620596206,integer
+a314_04,Attitude Toward using Technology: Me gustaría trabajar con el robot.,0.5962059620596206,integer
+a315_01,Self-Efficacy: Si no hubiera nadie cerca para decirme qué hacer mientras trabajo.,0.5962059620596206,integer
+a315_02,Self-Efficacy: Si pudiera llamar a alguien para pedir ayuda si me quedo atascado.,0.5962059620596206,integer
+a315_03,Self-Efficacy: Si tengo mucho tiempo para completar el trabajo para el cual se proporcionó el robot.,0.5962059620596206,integer
+a315_04,Self-Efficacy: Si solo tuviera la función de ayuda incorporada para recibir asistencia.,0.5962059620596206,integer
+a316_01,Behavioral Intention: Tengo la intención de usar el robot en los próximos 12 meses.,0.5962059620596206,integer
+a316_02,Behavioral Intention: Preveo que usaré el robot en los próximos 24 meses.,0.5962059620596206,integer
+a316_03,Behavioral Intention: Planeo usar el robot en los próximos 24 meses.,0.5962059620596206,integer
+a317_01,Moderating Effect Ethics: Poco ético/Ético,0.5962059620596206,integer
+a317_02,Moderating Effect Ethics: Injusto/Justo,0.5962059620596206,integer
+a317_03,Moderating Effect Ethics: No es moralmente correcto/Moralmente correcto,0.5962059620596206,integer
+a317_04,Moderating Effect Ethics: No aceptable para mi familia/Aceptable para mi familia,0.5962059620596206,integer
+a317_05,Moderating Effect Ethics: Culturalmente inaceptable/Culturalmente aceptable,0.5962059620596206,integer
+a317_06,Moderating Effect Ethics: No es personalmente satisfactorio/Personalmente satisfactorio,0.5962059620596206,integer
+a317_07,Moderating Effect Ethics: Viola un contrato tácito/No viola un contrato tácito,0.5962059620596206,integer
+a701_01,Age: Edad,0.6043360433604336,integer
+a702,Gender,0.6043360433604336,integer
+a703,Years of experience in the field,0.6043360433604336,integer
+a705_01,Country: ¿Desde qué país está respondiendo este cuestionario?,0.6043360433604336,character
+d101_01,"General Rating: Overall, I would rate the robot positively.",0.5609756097560976,integer
+d101_02,"General Rating: Overall, I would support the integration of this robot in healthcare settings.",0.5609756097560976,integer
+d102,Use of Robots in Medical Settings: Residual option (negative) or number of selected options,0.5609756097560976,integer
+d102_01,Use of Robots in Medical Settings: General Hospitals,0.5609756097560976,integer
+d102_02,Use of Robots in Medical Settings: Pediatric Hospitals,0.5609756097560976,integer
+d102_03,Use of Robots in Medical Settings: Geriatric Hospitals,0.5609756097560976,integer
+d102_04,Use of Robots in Medical Settings: Psiquiatric Hospitals,0.5609756097560976,integer
+d102_05,Use of Robots in Medical Settings: Trauma and Orthopedic Hospitals,0.5609756097560976,integer
+d102_06,"Use of Robots in Medical Settings: Another field, which one?",0.5609756097560976,integer
+d102_06a,"Use of Robots in Medical Settings: Another field, which one? (free text)",0.9728997289972899,character
+d103_01,"Open Questions: What are your main reasons for accepting or rejecting the use of this robot in caregiving tasks? You may refer to specific situations, feelings, or expectations you have.",0.5718157181571816,character
+d103_02,Open Questions: Do you see any risks or ethical concerns in using this robot in healthcare? Please explain your answer.,0.5718157181571816,character
+d103_03,"Open Questions: Based on your professional experience, what ethical issues do you think should be considered when developing or implementing this robot?",0.5718157181571816,character
+d104_01,Performance Expectancy (PE): I would find the robot useful in my job,0.5609756097560976,integer
+d104_02,Performance Expectancy (PE): Using the robot would enable me to accomplish tasks more quickly.,0.5609756097560976,integer
+d104_03,Performance Expectancy (PE): Using the robot would increase my productivity.,0.5609756097560976,integer
+d104_04,"Performance Expectancy (PE): If I used the robot, I would have more chances of getting a raise.",0.5609756097560976,integer
+d105_01,Attitude Toward using Technology: My interaction with the robot would be clear and understandable,0.5609756097560976,integer
+d105_02,Attitude Toward using Technology: The robot would make work more interesting.,0.5609756097560976,integer
+d105_03,Attitude Toward using Technology: Working with the robot would be fun,0.5609756097560976,integer
+d105_04,Attitude Toward using Technology: I would like to work with the robot.,0.5609756097560976,integer
+d106_01,Self-Efficacy: If there was no one around to tell me what to do as I go.,0.5609756097560976,integer
+d106_02,Self-Efficacy: If I could call someone for help if I got stuck.,0.5609756097560976,integer
+d106_03,Self-Efficacy: If I have a lot of time to complete the job for which the robot was provided.,0.5609756097560976,integer
+d106_04,Self-Efficacy: If I would have just the built-in help facility for assistance.,0.5609756097560976,integer
+d107_01,Behavioral Intention: I would intend to use the robot in the next 12 months,0.5609756097560976,integer
+d107_02,Behavioral Intention: I predict I would use the robot in the next 24 months,0.5609756097560976,integer
+d107_03,Behavioral Intention: I plan to use the robot in the next 24 months.,0.5609756097560976,integer
+d108_01,Moderating Effect Ethics: Unethical/Ethical,0.5609756097560976,integer
+d108_02,Moderating Effect Ethics: Unfair/Fair,0.5609756097560976,integer
+d108_03,Moderating Effect Ethics: Not morally right/Morally right,0.5609756097560976,integer
+d108_04,Moderating Effect Ethics: Not acceptable to my family/Acceptable to my family,0.5609756097560976,integer
+d108_05,Moderating Effect Ethics: Culturally unacceptable/Culturally acceptable,0.5609756097560976,integer
+d108_06,Moderating Effect Ethics: Not personally satisfying/Personally satisfying,0.5609756097560976,integer
+d108_07,Moderating Effect Ethics: Violates an unwritten contract/Does not violate an unwritten contract,0.5609756097560976,integer
+d201_01,"General Rating: Overall, I would rate the robot positively.",0.5745257452574526,integer
+d201_02,"General Rating: Overall, I would support the integration of this robot in healthcare settings.",0.5745257452574526,integer
+d202,Use of Robots in Medical Settings: Residual option (negative) or number of selected options,0.5745257452574526,integer
+d202_01,Use of Robots in Medical Settings: General Hospitals,0.5745257452574526,integer
+d202_02,Use of Robots in Medical Settings: Pediatric Hospitals,0.5745257452574526,integer
+d202_03,Use of Robots in Medical Settings: Geriatric Hospitals,0.5745257452574526,integer
+d202_04,Use of Robots in Medical Settings: Psiquiatric Hospitals,0.5745257452574526,integer
+d202_05,Use of Robots in Medical Settings: Trauma and Orthopedic Hospitals,0.5745257452574526,integer
+d202_06,"Use of Robots in Medical Settings: Another field, which one?",0.5745257452574526,integer
+d202_06a,"Use of Robots in Medical Settings: Another field, which one? (free text)",0.9701897018970189,character
+d203_01,"Open Questions: What are your main reasons for accepting or rejecting the use of this robot in caregiving tasks? You may refer to specific situations, feelings, or expectations you have.",0.5826558265582655,character
+d203_02,Open Questions: Do you see any risks or ethical concerns in using this robot in healthcare? Please explain your answer.,0.5826558265582655,character
+d203_03,"Open Questions: Based on your professional experience, what ethical issues do you think should be considered when developing or implementing this robot?",0.5826558265582655,character
+d204_01,Performance Expectancy (PE): I would find the robot useful in my job,0.5745257452574526,integer
+d204_02,Performance Expectancy (PE): Using the robot would enable me to accomplish tasks more quickly.,0.5745257452574526,integer
+d204_03,Performance Expectancy (PE): Using the robot would increase my productivity.,0.5745257452574526,integer
+d204_04,"Performance Expectancy (PE): If I used the robot, I would have more chances of getting a raise.",0.5745257452574526,integer
+d205_01,Attitude Toward using Technology: My interaction with the robot would be clear and understandable,0.5745257452574526,integer
+d205_02,Attitude Toward using Technology: The robot would make work more interesting.,0.5745257452574526,integer
+d205_03,Attitude Toward using Technology: Working with the robot would be fun,0.5745257452574526,integer
+d205_04,Attitude Toward using Technology: I would like to work with the robot.,0.5745257452574526,integer
+d206_01,Self-Efficacy: If there was no one around to tell me what to do as I go.,0.5745257452574526,integer
+d206_02,Self-Efficacy: If I could call someone for help if I got stuck.,0.5745257452574526,integer
+d206_03,Self-Efficacy: If I have a lot of time to complete the job for which the robot was provided.,0.5745257452574526,integer
+d206_04,Self-Efficacy: If I would have just the built-in help facility for assistance.,0.5745257452574526,integer
+d207_01,Behavioral Intention: I would intend to use the robot in the next 12 months,0.5745257452574526,integer
+d207_02,Behavioral Intention: I predict I would use the robot in the next 24 months,0.5745257452574526,integer
+d207_03,Behavioral Intention: I plan to use the robot in the next 24 months.,0.5745257452574526,integer
+d208_01,Moderating Effect Ethics: Unethical/Ethical,0.5745257452574526,integer
+d208_02,Moderating Effect Ethics: Unfair/Fair,0.5745257452574526,integer
+d208_03,Moderating Effect Ethics: Not acceptable to my family/Acceptable to my family,0.5745257452574526,integer
+d208_04,Moderating Effect Ethics: Culturally unacceptable/Culturally acceptable,0.5745257452574526,integer
+d208_05,Moderating Effect Ethics: Not personally satisfying/Personally satisfying,0.5745257452574526,integer
+d208_06,Moderating Effect Ethics: Violates an unwritten contract/Does not violate an unwritten contract,0.5745257452574526,integer
+d301_01,"General Rating: Overall, I would rate the robot positively.",0.5555555555555556,integer
+d301_02,"General Rating: Overall, I would support the integration of this robot in healthcare settings.",0.5555555555555556,integer
+d302,Use of Robots in Medical Settings: Residual option (negative) or number of selected options,0.5555555555555556,integer
+d302_01,Use of Robots in Medical Settings: General Hospitals,0.5555555555555556,integer
+d302_02,Use of Robots in Medical Settings: Pediatric Hospitals,0.5555555555555556,integer
+d302_03,Use of Robots in Medical Settings: Geriatric Hospitals,0.5555555555555556,integer
+d302_04,Use of Robots in Medical Settings: Psiquiatric Hospitals,0.5555555555555556,integer
+d302_05,Use of Robots in Medical Settings: Trauma and Orthopedic Hospitals,0.5555555555555556,integer
+d302_06,"Use of Robots in Medical Settings: Another field, which one?",0.5555555555555556,integer
+d302_06a,"Use of Robots in Medical Settings: Another field, which one? (free text)",0.9728997289972899,character
+d303_01,"Open Questions: What are your main reasons for accepting or rejecting the use of this robot in caregiving tasks? You may refer to specific situations, feelings, or expectations you have.",0.5663956639566395,character
+d303_02,Open Questions: Do you see any risks or ethical concerns in using this robot in healthcare? Please explain your answer.,0.5691056910569106,character
+d303_03,"Open Questions: Based on your professional experience, what ethical issues do you think should be considered when developing or implementing this robot?",0.5691056910569106,character
+d304_01,Performance Expectancy (PE): I would find the robot useful in my job,0.5555555555555556,integer
+d304_02,Performance Expectancy (PE): Using the robot would enable me to accomplish tasks more quickly.,0.5555555555555556,integer
+d304_03,Performance Expectancy (PE): Using the robot would increase my productivity.,0.5555555555555556,integer
+d304_04,"Performance Expectancy (PE): If I used the robot, I would have more chances of getting a raise.",0.5555555555555556,integer
+d305_01,Attitude Toward using Technology: My interaction with the robot would be clear and understandable,0.5555555555555556,integer
+d305_02,Attitude Toward using Technology: The robot would make work more interesting.,0.5555555555555556,integer
+d305_03,Attitude Toward using Technology: Working with the robot would be fun,0.5555555555555556,integer
+d305_04,Attitude Toward using Technology: I would like to work with the robot.,0.5555555555555556,integer
+d306_01,Self-Efficacy: If there was no one around to tell me what to do as I go.,0.5555555555555556,integer
+d306_02,Self-Efficacy: If I could call someone for help if I got stuck.,0.5555555555555556,integer
+d306_03,Self-Efficacy: If I have a lot of time to complete the job for which the robot was provided.,0.5555555555555556,integer
+d306_04,Self-Efficacy: If I would have just the built-in help facility for assistance.,0.5555555555555556,integer
+d307_01,Behavioral Intention: I would intend to use the robot in the next 12 months,0.5555555555555556,integer
+d307_02,Behavioral Intention: I predict I would use the robot in the next 24 months,0.5555555555555556,integer
+d307_03,Behavioral Intention: I plan to use the robot in the next 24 months.,0.5555555555555556,integer
+d308_01,Moderating Effect Ethics: Unethical/Ethical,0.5555555555555556,integer
+d308_02,Moderating Effect Ethics: Unfair/Fair,0.5555555555555556,integer
+d308_03,Moderating Effect Ethics: Not acceptable to my family/Acceptable to my family,0.5555555555555556,integer
+d308_04,Moderating Effect Ethics: Culturally unacceptable/Culturally acceptable,0.5555555555555556,integer
+d308_05,Moderating Effect Ethics: Not personally satisfying/Personally satisfying,0.5555555555555556,integer
+d308_06,Moderating Effect Ethics: Violates an unwritten contract/Does not violate an unwritten contract,0.5555555555555556,integer
+d401_01,"General Rating: Overall, I would rate the robot positively.",0.5691056910569106,integer
+d401_02,"General Rating: Overall, I would support the integration of this robot in healthcare settings.",0.5691056910569106,integer
+d402,Use of Robots in Medical Settings: Residual option (negative) or number of selected options,0.5691056910569106,integer
+d402_01,Use of Robots in Medical Settings: General Hospitals,0.5691056910569106,integer
+d402_02,Use of Robots in Medical Settings: Pediatric Hospitals,0.5691056910569106,integer
+d402_03,Use of Robots in Medical Settings: Geriatric Hospitals,0.5691056910569106,integer
+d402_04,Use of Robots in Medical Settings: Psiquiatric Hospitals,0.5691056910569106,integer
+d402_05,Use of Robots in Medical Settings: Trauma and Orthopedic Hospitals,0.5691056910569106,integer
+d402_06,"Use of Robots in Medical Settings: Another field, which one?",0.5691056910569106,integer
+d402_06a,"Use of Robots in Medical Settings: Another field, which one? (free text)",0.964769647696477,character
+d403_01,"Open Questions: What are your main reasons for accepting or rejecting the use of this robot in caregiving tasks? You may refer to specific situations, feelings, or expectations you have.",0.5772357723577236,character
+d403_02,Open Questions: Do you see any risks or ethical concerns in using this robot in healthcare? Please explain your answer.,0.5799457994579946,character
+d403_03,"Open Questions: Based on your professional experience, what ethical issues do you think should be considered when developing or implementing this robot?",0.5772357723577236,character
+d404_01,Performance Expectancy (PE): I would find the robot useful in my job,0.5691056910569106,integer
+d404_02,Performance Expectancy (PE): Using the robot would enable me to accomplish tasks more quickly.,0.5691056910569106,integer
+d404_03,Performance Expectancy (PE): Using the robot would increase my productivity.,0.5691056910569106,integer
+d404_04,"Performance Expectancy (PE): If I used the robot, I would have more chances of getting a raise.",0.5691056910569106,integer
+d405_01,Attitude Toward using Technology: My interaction with the robot would be clear and understandable,0.5691056910569106,integer
+d405_02,Attitude Toward using Technology: The robot would make work more interesting.,0.5691056910569106,integer
+d405_03,Attitude Toward using Technology: Working with the robot would be fun,0.5691056910569106,integer
+d405_04,Attitude Toward using Technology: I would like to work with the robot.,0.5691056910569106,integer
+d406_01,Self-Efficacy: If there was no one around to tell me what to do as I go.,0.5691056910569106,integer
+d406_02,Self-Efficacy: If I could call someone for help if I got stuck.,0.5691056910569106,integer
+d406_03,Self-Efficacy: If I have a lot of time to complete the job for which the robot was provided.,0.5691056910569106,integer
+d406_04,Self-Efficacy: If I would have just the built-in help facility for assistance.,0.5691056910569106,integer
+d407_01,Behavioral Intention: I would intend to use the robot in the next 12 months,0.5691056910569106,integer
+d407_02,Behavioral Intention: I predict I would use the robot in the next 24 months,0.5691056910569106,integer
+d407_03,Behavioral Intention: I plan to use the robot in the next 24 months.,0.5691056910569106,integer
+d408_01,Moderating Effect Ethics: Unethical/Ethical,0.5691056910569106,integer
+d408_02,Moderating Effect Ethics: Unfair/Fair,0.5691056910569106,integer
+d408_03,Moderating Effect Ethics: Not acceptable to my family/Acceptable to my family,0.5691056910569106,integer
+d408_04,Moderating Effect Ethics: Culturally unacceptable/Culturally acceptable,0.5691056910569106,integer
+d408_05,Moderating Effect Ethics: Not personally satisfying/Personally satisfying,0.5691056910569106,integer
+d408_06,Moderating Effect Ethics: Violates an unwritten contract/Does not violate an unwritten contract,0.5691056910569106,integer
+d801_01,Age: Age,0.5880758807588076,character
+d802,Gender,0.5880758807588076,integer
+d803,Years of experience in the field,0.5880758807588076,integer
+d804_01,Country: From which country are you responding to this questionnaire?,0.5880758807588076,character
+ra01_cp,"Block rotation: Complete clearances of the ballot, yet",0,integer
+ra01,Block rotation: Code drawn,0,integer
+time001,Time spent on page 1,0,integer
+time002,Time spent on page 2,0,integer
+time003,Time spent on page 3,0.0027100271002710027,integer
+time004,Time spent on page 4,0.13821138211382114,integer
+time005,Time spent on page 5,0.14905149051490515,integer
+time006,Time spent on page 6,0.15447154471544716,integer
+time007,Time spent on page 7,0.15447154471544716,integer
+time008,Time spent on page 8,0.16802168021680217,integer
+time009,Time spent on page 9,0.12737127371273713,integer
+time010,Time spent on page 10,0.14905149051490515,integer
+time011,Time spent on page 11,0.17073170731707318,integer
+time012,Time spent on page 12,0.17073170731707318,integer
+time013,Time spent on page 13,0.17615176151761516,integer
+time014,Time spent on page 14,0.11653116531165311,integer
+time015,Time spent on page 15,0.13008130081300814,integer
+time016,Time spent on page 16,0.14634146341463414,integer
+time017,Time spent on page 17,0.14634146341463414,integer
+time018,Time spent on page 18,0.15447154471544716,integer
+time019,Time spent on page 19,0.11653116531165311,integer
+time020,Time spent on page 20,0.13550135501355012,integer
+time021,Time spent on page 21,0.15989159891598917,integer
+time022,Time spent on page 22,0.16531165311653118,integer
+time023,Time spent on page 23,0.17615176151761516,integer
+time024,Time spent on page 24,0.19241192411924118,integer
+time025,Time spent on page 25,0.19241192411924118,integer
+time_sum,Time spent overall (except outliers),0,integer
+lastdata,Time when the data was most recently updated,0,numeric
+finished,Has the interview been finished (reached last page)?,0,integer
+lastpage,Last page that the participant has handled in the questionnaire,0,integer
+maxpage,Hindmost page handled by the participant,0,integer
+missing,Missing answers in percent,0,integer
+missrel,Missing answers (weighted by relevance),0,integer
+time_rsi,Completion Speed (relative),0,numeric
