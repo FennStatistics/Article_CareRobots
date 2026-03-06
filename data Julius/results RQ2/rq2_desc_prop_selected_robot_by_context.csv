@@ -1,0 +1,21 @@
+"robot_label","context_label","n","prop_selected","percent_selected"
+"Assisting with mobility","General hospitals",307,0.625407166123778,62.5407166123778
+"Assisting with mobility","Geriatric hospitals",307,0.723127035830619,72.3127035830619
+"Assisting with mobility","Pediatric hospitals",307,0.791530944625407,79.1530944625407
+"Assisting with mobility","Psychiatric hospitals",307,0.179153094462541,17.9153094462541
+"Assisting with mobility","Trauma & orthopedic",307,0.876221498371335,87.6221498371335
+"Delivering supplies","General hospitals",312,0.92948717948718,92.948717948718
+"Delivering supplies","Geriatric hospitals",312,0.766025641025641,76.6025641025641
+"Delivering supplies","Pediatric hospitals",312,0.766025641025641,76.6025641025641
+"Delivering supplies","Psychiatric hospitals",312,0.522435897435897,52.2435897435897
+"Delivering supplies","Trauma & orthopedic",312,0.673076923076923,67.3076923076923
+"Helping into bed","General hospitals",306,0.754901960784314,75.4901960784314
+"Helping into bed","Geriatric hospitals",306,0.88562091503268,88.562091503268
+"Helping into bed","Pediatric hospitals",306,0.447712418300654,44.7712418300654
+"Helping into bed","Psychiatric hospitals",306,0.290849673202614,29.0849673202614
+"Helping into bed","Trauma & orthopedic",306,0.676470588235294,67.6470588235294
+"Monitoring vital signs","General hospitals",315,0.93015873015873,93.015873015873
+"Monitoring vital signs","Geriatric hospitals",315,0.612698412698413,61.2698412698413
+"Monitoring vital signs","Pediatric hospitals",315,0.647619047619048,64.7619047619048
+"Monitoring vital signs","Psychiatric hospitals",315,0.323809523809524,32.3809523809524
+"Monitoring vital signs","Trauma & orthopedic",315,0.533333333333333,53.3333333333333
