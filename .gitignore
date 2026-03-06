@@ -10,3 +10,12 @@
 **/API_key.py
 .Rproj.user
 .positai
+
+# R / RStudio
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# macOS
+.DS_Store
